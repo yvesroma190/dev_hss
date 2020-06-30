@@ -94,7 +94,7 @@ Router::scope('/', function (RouteBuilder $routes) {
 });
 
 Router::prefix('admin', function (RouteBuilder $routes) {
-    $routes->connect('/', ['controller' => 'Users', 'action' => 'index']);
+    $routes->connect('/', ['controller' => 'Souscriptionsmarts', 'action' => 'index']);
     $routes->fallbacks(DashedRoute::class);
 });
 
