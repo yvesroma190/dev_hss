@@ -48,11 +48,19 @@ class ElementsmartsController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($id = null)
     {
         $elementsmart = $this->Elementsmarts->newEntity();
         if ($this->request->is('post')) {
             $elementsmart = $this->Elementsmarts->patchEntity($elementsmart, $this->request->getData());
+
+            //Reccuperation de l'ID de l'offre associé à l'élément ajoutée
+            $this->loadModel('Offresmarts');
+            $offre = $this->Offresmarts->get($id);
+            $element->offresmart_id =  $offresmart->id;
+
+
+
             if ($this->Elementsmarts->save($elementsmart)) {
                 $this->Flash->success(__('The elementsmart has been saved.'));
 

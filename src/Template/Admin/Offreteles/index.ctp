@@ -78,12 +78,6 @@
                     </span>
                     <span class="text">Ajouter une offre télésurveillance</span>
                 </a>
-                <!--<a href=<?= $this->Url->build(['controller'=>'Elements', 'action'=>'index']) ?> class="btn btn-warning btn-icon-split">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-database"></i>
-                    </span>
-                    <span class="text">Gestion des éléments</span>
-                  </a>-->
             </div>
         </div>
     <hr class="sidebar-divider d-none d-md-block">
@@ -97,7 +91,7 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Liste des offres</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Liste des offres de télésurveillance</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -131,9 +125,9 @@
                             <td><?= h($offretele->created) ?></td>
                             <td><?= h($offretele->modified) ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(__('View'), ['action' => 'view', $offretele->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['action' => 'edit', $offretele->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $offretele->id], ['confirm' => __('Are you sure you want to delete # {0}?', $offretele->id)]) ?>
+                                <?= $this->Html->link(__('Détails'), ['action' => 'view', $offretele->id]) ?>
+                                <?= $this->Html->link(__('Modifier'), ['action' => 'edit', $offretele->id]) ?>
+                                <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $offretele->id], ['confirm' => __('Voulez-vous supprimer cette offre? # {0}?', $offretele->id)]) ?>
                             </td>
                         </tr>
                         <?php endforeach; ?>
