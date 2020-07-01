@@ -55,7 +55,7 @@
                 <?= $this->Form->postLink(
                 __('Delete'),
                 ['action' => 'Supprimer cette offre', $offresmart->id],
-                ['confirm' => __('Voulez-vous supprimer cette offre? # {0}?', $offre->id), 'class' => 'btn btn-danger']
+                ['confirm' => __('Voulez-vous supprimer cette offre? # {0}?', $offresmart->id), 'class' => 'btn btn-danger']
                 ) ?>
             </div>
         </div>
@@ -82,13 +82,6 @@
                     <i class="fas fa-plus-circle"></i>
                 </span>
                 <span class="text">Modifier</span>
-                </button>
-
-                <button class="btn btn-danger btn-icon-split">
-                <span class="icon text-white-50">
-                    <i class="fas fa-times-circle "></i>
-                </span>
-                <span class="text">Annuler</span>
                 </button>
             <?= $this->Form->end() ?>
         </div>

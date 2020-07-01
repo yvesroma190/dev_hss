@@ -39,12 +39,12 @@
         <div class="row">
             <div class="lg-12"> 
                        
-                <a href=<?= $this->Url->build(['controller'=>'Elementsmarts', 'action'=>'index']) ?> class="btn btn-success btn-icon-split">
+                <!--<a href=<?= $this->Url->build(['controller'=>'Elementsmarts', 'action'=>'index']) ?> class="btn btn-success btn-icon-split">
                     <span class="icon text-white-50">
                         <i class="fas fa-list"></i>
                     </span>
                     <span class="text">Liste des éléments smarts</span>
-                </a>
+                </a>-->
             </div>
         </div>
     <hr class="sidebar-divider d-none d-md-block">
