@@ -53,10 +53,18 @@ class ElementtelesController extends AppController
         $elementtele = $this->Elementteles->newEntity();
         if ($this->request->is('post')) {
             $elementtele = $this->Elementteles->patchEntity($elementtele, $this->request->getData());
+
+            //Reccuperation de l'ID de l'offre associé à l'élément ajoutée
+            $this->loadModel('Offreteles');
+            $offretele = $this->Offreteles->get($id);
+            $elementtele->offretele_id =  $offretele->id;
+
+
+
             if ($this->Elementteles->save($elementtele)) {
                 $this->Flash->success(__('The elementtele has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect($this->referer());
             }
             $this->Flash->error(__('The elementtele could not be saved. Please, try again.'));
         }
