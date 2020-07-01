@@ -56,7 +56,7 @@ class ElementsmartsController extends AppController
             if ($this->Elementsmarts->save($elementsmart)) {
                 $this->Flash->success(__('The elementsmart has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect($this->referer());
             }
             $this->Flash->error(__('The elementsmart could not be saved. Please, try again.'));
         }

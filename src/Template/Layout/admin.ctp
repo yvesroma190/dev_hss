@@ -67,9 +67,14 @@
           <span>Souscriptions</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href=<?= $this->Url->build(['controller'=>'Offres', 'action'=>'index'])  ?> >
+        <a class="nav-link" href=<?= $this->Url->build(['controller'=>'Offresmarts', 'action'=>'index'])  ?> >
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>Offres</span></a>
+          <span>Offres smart protection</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href=<?= $this->Url->build(['controller'=>'Offreteles', 'action'=>'index'])  ?> >
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Offres télésurveillance</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href=<?= $this->Url->build(['controller'=>'Clients', 'action'=>'index'])  ?> >

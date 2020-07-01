@@ -4,7 +4,7 @@
  * @var \App\Model\Entity\Compte $compte
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
+<!--<nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('List Comptes'), ['action' => 'index']) ?></li>
@@ -24,4 +24,58 @@
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
+</div>-->
+
+
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Gestion des comptes clients</h1>
+    </div>
+    <hr class="sidebar-divider d-none d-md-block">
+
+        <!-- Sous Menu -->
+        <div class="row">
+            <div class="lg-12"> 
+                       
+                <a href=<?= $this->Url->build(['controller'=>'Comptes', 'action'=>'index']) ?> class="btn btn-success btn-icon-split">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-list"></i>
+                    </span>
+                    <span class="text">Liste des comptes clients</span>
+                </a>
+            </div>
+        </div>
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <div class="card shadow mb-6">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Créer un compte client</h6>
+        </div>
+        <div class="card-body">
+            <?= $this->Form->create($compte) ?>
+                <div class="form-group">
+                    <?= $this->Form->control('login', ['type'=>'text', 'class'=>'form-control', 'label'=>'Pseudo client:']);?>
+                </div>
+                <div class="form-group">
+                    <?= $this->Form->control('password', ['type'=>'password', 'class'=>'form-control', 'label'=>'Mot de passe:']);?>
+                </div>
+                <div class="form-group">
+                    <?= $this->Form->control('client_id', ['options' => $clients, 'empty' => true, 'class'=>'form-control', 'label'=>'Client:']);?>
+                </div> 
+
+                <button class="btn btn-primary btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="fas fa-plus-circle"></i>
+                </span>
+                <span class="text">Créer</span>
+                </button>
+            <?= $this->Form->end() ?>
+        </div>
+    </div>
+
+
 </div>
+
+
