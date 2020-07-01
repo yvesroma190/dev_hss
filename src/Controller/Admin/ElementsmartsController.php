@@ -56,8 +56,8 @@ class ElementsmartsController extends AppController
 
             //Reccuperation de l'ID de l'offre associé à l'élément ajoutée
             $this->loadModel('Offresmarts');
-            $offre = $this->Offresmarts->get($id);
-            $element->offresmart_id =  $offresmart->id;
+            $offresmart = $this->Offresmarts->get($id);
+            $elementsmart->offresmart_id =  $offresmart->id;
 
 
 
