@@ -81,7 +81,7 @@
     <div class="row">
         <?php foreach ($categories as $category): ?>
         <div class="span12">
-            <h4><strong><?= h($category->name) ?></strong></h4>
+            <h4><strong>OFFRES SMART PROTECTION</strong></h4>
         </div>
         <?php foreach ($category->offres as $offres) : ?>
         <div class="span4">
