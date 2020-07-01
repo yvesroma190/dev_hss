@@ -1365,7 +1365,7 @@ ul.team-detail li ul.social-network li i {
 
 .pricing-box-alt {
   border: 1px solid #e6e6e6;
-  background: #fcfcfc;
+  background: #a00a0c;
   position: relative;
   margin: 0 0 20px 0;
   padding: 0;
@@ -1378,7 +1378,7 @@ ul.team-detail li ul.social-network li i {
 }
 
 .pricing-box-alt .pricing-heading {
-  background: #fcfcfc;
+  background: #a00a0c;
   text-align: center;
   padding: 40px 0 0px 0;
   display: block;
@@ -1401,6 +1401,7 @@ ul.team-detail li ul.social-network li i {
   font-size: 32px;
   font-weight: 700;
   letter-spacing: -1px;
+  color: #ffffff;
 }
 
 .pricing-box-alt .pricing-heading h3 {

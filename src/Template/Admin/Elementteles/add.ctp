@@ -53,7 +53,7 @@
             <h6 class="m-0 font-weight-bold text-primary">Ajouter un élément</h6>
         </div>
         <div class="card-body">
-            <?= $this->Form->create($elementsmart) ?>
+            <?= $this->Form->create($elementtele) ?>
                 <!--<div class="form-group">
                     <?= $this->Form->control('offretele_id', ['options' => $offreteles, 'empty' => true, 'class'=>'form-control', 'label'=>'Nom de l\'offre:']);?>
                 </div>-->

@@ -48,7 +48,7 @@ class ElementtelesController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($id = null)
     {
         $elementtele = $this->Elementteles->newEntity();
         if ($this->request->is('post')) {

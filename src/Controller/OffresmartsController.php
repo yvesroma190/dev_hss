@@ -19,9 +19,16 @@ class OffresmartsController extends AppController
      */
     public function index()
     {
-        $offresmarts = $this->paginate($this->Offresmarts);
+        $offresmarts = $this->paginate($this->Offresmarts, ['contain' => ['Elementsmarts']]);
 
         $this->set(compact('offresmarts'));
+
+        //Chargement des offres de télésurveillance
+        $this->loadModel('Offreteles');
+
+        $offreteles = $this->paginate($this->Offreteles, ['contain' => ['Elementteles']]);
+        $this->set(compact('offreteles'));
+
     }
 
     /**

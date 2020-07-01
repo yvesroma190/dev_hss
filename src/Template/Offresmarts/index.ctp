@@ -79,27 +79,24 @@
     <!-- end divider -->
     
     <div class="row">
-        <?php foreach ($categories as $category): ?>
+        
         <div class="span12">
             <h4><strong>OFFRES SMART PROTECTION</strong></h4>
         </div>
-        <?php foreach ($category->offres as $offres) : ?>
+        <?php foreach ($offresmarts as $offresmart): ?>
         <div class="span4">
             <div class="pricing-box-alt">
                 <div class="pricing-heading">
-                    <h3><strong><?= @h($offres->name) ?></strong></h3>
+                    <h3><strong><?= @h($offresmart->name) ?></strong></h3>
                 </div>
                 <div class="pricing-terms">
-                    <h6> <?= @h($offres->prix) ?> FCFA / Mois</h6>
+                    <h6> <?= @h($offresmart->prix) ?> FCFA / Mois</h6>
                 </div>
                 <div class="pricing-content">
                     <ul>
-                    <?php foreach ($offres as $offre) : ?>
-                        <?php foreach ($offre->elements as $elements) : ?>
-                        <li><i class="icon-ok"></i><?= @h($elements->name) ?></li>
-                        <?php endforeach; ?>
+                    <?php foreach ($offresmart->elementsmarts as $key => $elementsmart): ?>
+                        <li><i class="icon-ok"></i><?= @h($elementsmart->name) ?></li>
                     <?php endforeach; ?>
-                        
                     </ul>
                 </div>
                 <div class="pricing-action">
@@ -108,7 +105,44 @@
             </div>
         </div>
         <?php endforeach; ?>
+
+        <!-- divider -->
+    <div class="row">
+        <div class="span12">
+        <div class="solidline">
+        </div>
+        </div>
+    </div>
+    <!-- end divider -->
+
+    <!-- OFFRES TELESURVEILLANCE -->
+    <div class="span12">
+            <h4><strong>OFFRES TELESURVEILLANCE</strong></h4>
+        </div>
+        <?php foreach ($offreteles as $offretele): ?>
+        <div class="span4">
+            <div class="pricing-box-alt">
+                <div class="pricing-heading">
+                    <h3><strong><?= @h($offretele->name) ?></strong></h3>
+                </div>
+                <div class="pricing-terms">
+                    <h6> <?= @h($offretele->prix) ?> FCFA / Mois</h6>
+                </div>
+                <div class="pricing-content">
+                    <ul>
+                    <?php foreach ($offretele->elementteles as $key => $elementtele): ?>
+                        <li><i class="icon-ok"></i><?= @h($elementtele->name) ?></li>
+                    <?php endforeach; ?>
+                    </ul>
+                </div>
+                <div class="pricing-action">
+                    <a href="#" class="btn btn-medium btn-theme"><i class="icon-bolt"></i> Souscrire</a>
+                </div>
+            </div>
+        </div>
         <?php endforeach; ?>
+
+
     </div>
     <!-- divider -->
     <div class="row">
