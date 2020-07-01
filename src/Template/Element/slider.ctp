@@ -1,3 +1,3 @@
-<section id="featured">
-    <video controls src="video/exo.mp4" width="100%" height="400px" preload="auto" autoplay="true" loop></video>
-</section>
+<div class="video">
+    <iframe src="video/pub.mp4" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder="0"></iframe>
+</div>
