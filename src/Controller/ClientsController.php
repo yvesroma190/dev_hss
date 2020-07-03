@@ -47,6 +47,7 @@ class ClientsController extends AppController
      */
     public function add()
     {
+        //$this->viewBuilder()->setLayout('actionfront');
         $client = $this->Clients->newEntity();
         if ($this->request->is('post')) {
             $client = $this->Clients->patchEntity($client, $this->request->getData());

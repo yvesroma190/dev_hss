@@ -7,7 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-  <?= $this->Html->charset() ?>
 
   <!-- css -->
   <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,400italic,700|Open+Sans:300,400,600,700" rel="stylesheet">
@@ -17,13 +16,6 @@
   <link href="css/jcarousel.css" rel="stylesheet" />
   <link href="css/flexslider.css" rel="stylesheet" />
   <link href="css/style.css" rel="stylesheet" />
-
-  <?= $this->Html->css('bootstrap') ?>
-  <?= $this->Html->css('bootstrap-responsive') ?>
-  <?= $this->Html->css('jquery.fancybox') ?>
-  <?= $this->Html->css('jcarousel') ?>
-  <?= $this->Html->css('flexslider') ?>
-  <?= $this->Html->css('style.css') ?>
   
   <!-- Theme skin -->
   <link href="skins/default.css" rel="stylesheet" />
@@ -33,7 +25,6 @@
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png" />
   <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png" />
   <link rel="shortcut icon" href="ico/HSS_ico.jpg" />
-  <?= $this->Html->meta('ico/HSS_ico.jpg') ?>
 
 
   
@@ -70,26 +61,8 @@
   <script src="js/jquery.slitslider.js"></script>
   <script src="js/animate.js"></script>
 
-  <?= $this->Html->script('jquery') ?>
-  <?= $this->Html->script('jquery.easing.1.3') ?>
-  <?= $this->Html->script('bootstrap') ?>
-  <?= $this->Html->script('/jcarousel/jquery.jcarousel.min.js') ?>
-  <?= $this->Html->script('jquery.fancybox.pack') ?>
-  <?= $this->Html->script('jquery.fancybox-media.js') ?>
-  <?= $this->Html->script('/google-code-prettify/prettify.js') ?>
-  <?= $this->Html->script('/portfolio/jquery.quicksand.js') ?>
-  <?= $this->Html->script('/portfolio/setting.js') ?>
-  <?= $this->Html->script('jquery.flexslider') ?>
-  <?= $this->Html->script('jquery.nivo.slider') ?>
-  <?= $this->Html->script('modernizr.custom') ?>
-  <?= $this->Html->script('jquery.ba-cond.min') ?>
-  <?= $this->Html->script('jquery.slitslider') ?>
-  <?= $this->Html->script('animate') ?>
-
-
   <!-- Template Custom JavaScript File -->
   <script src="js/custom.js"></script>
-  <?= $this->Html->script('custom') ?>
 
 </body>
 </html>

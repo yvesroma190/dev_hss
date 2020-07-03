@@ -100,7 +100,7 @@
                     </ul>
                 </div>
                 <div class="pricing-action">
-                    <a href="#" class="btn btn-medium btn-theme"><i class="icon-bolt"></i> Souscrire</a>
+                    <a href="<?= $this->Url->build(['controller' => 'Clients', 'action' => 'add', $offresmart->id]); ?>" class="btn btn-medium btn-theme"><i class="icon-bolt"></i> Souscrire</a>
                 </div>
             </div>
         </div>
