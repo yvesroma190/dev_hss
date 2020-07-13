@@ -19,7 +19,7 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenTime|null $modified
  *
  * @property \App\Model\Entity\Commentaire[] $commentaires
- * @property \App\Model\Entity\Compte[] $comptes
+ * @property \App\Model\Entity\Compte $compte
  * @property \App\Model\Entity\Souscriptionsmart[] $souscriptionsmarts
  * @property \App\Model\Entity\Souscriptiontele[] $souscriptionteles
  */
@@ -46,7 +46,7 @@ class Client extends Entity
         'created' => true,
         'modified' => true,
         'commentaires' => true,
-        'comptes' => true,
+        'compte' => true,
         'souscriptionsmarts' => true,
         'souscriptionteles' => true,
     ];

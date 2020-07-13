@@ -53,8 +53,8 @@ class ClientsFixture extends TestFixture
                 'bp' => 'Lorem ipsum dolor sit amet',
                 'adresse' => 'Lorem ipsum dolor sit amet',
                 'localisation_site' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
-                'created' => '2020-06-30 08:59:53',
-                'modified' => '2020-06-30 08:59:53',
+                'created' => '2020-07-13 14:01:00',
+                'modified' => '2020-07-13 14:01:00',
             ],
         ];
         parent::init();
