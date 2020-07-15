@@ -16,8 +16,6 @@
         <li><?= $this->Html->link(__('List Clients'), ['action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('List Commentaires'), ['controller' => 'Commentaires', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Commentaire'), ['controller' => 'Commentaires', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Comptes'), ['controller' => 'Comptes', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Compte'), ['controller' => 'Comptes', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Souscriptionsmarts'), ['controller' => 'Souscriptionsmarts', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Souscriptionsmart'), ['controller' => 'Souscriptionsmarts', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Souscriptionteles'), ['controller' => 'Souscriptionteles', 'action' => 'index']) ?></li>
@@ -30,6 +28,8 @@
         <legend><?= __('Edit Client') ?></legend>
         <?php
             echo $this->Form->control('name');
+            echo $this->Form->control('pseudo');
+            echo $this->Form->control('password');
             echo $this->Form->control('cel');
             echo $this->Form->control('tel');
             echo $this->Form->control('email');

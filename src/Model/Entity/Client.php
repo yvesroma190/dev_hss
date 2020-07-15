@@ -8,6 +8,8 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property string|null $name
+ * @property string|null $pseudo
+ * @property string|null $password
  * @property string|null $cel
  * @property string|null $tel
  * @property string|null $email
@@ -19,7 +21,6 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenTime|null $modified
  *
  * @property \App\Model\Entity\Commentaire[] $commentaires
- * @property \App\Model\Entity\Compte $compte
  * @property \App\Model\Entity\Souscriptionsmart[] $souscriptionsmarts
  * @property \App\Model\Entity\Souscriptiontele[] $souscriptionteles
  */
@@ -36,6 +37,8 @@ class Client extends Entity
      */
     protected $_accessible = [
         'name' => true,
+        'pseudo' => true,
+        'password' => true,
         'cel' => true,
         'tel' => true,
         'email' => true,
@@ -46,8 +49,16 @@ class Client extends Entity
         'created' => true,
         'modified' => true,
         'commentaires' => true,
-        'compte' => true,
         'souscriptionsmarts' => true,
         'souscriptionteles' => true,
+    ];
+
+    /**
+     * Fields that are excluded from JSON versions of the entity.
+     *
+     * @var array
+     */
+    protected $_hidden = [
+        'password',
     ];
 }

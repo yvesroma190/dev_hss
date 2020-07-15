@@ -13,8 +13,6 @@
         <li><?= $this->Html->link(__('New Client'), ['action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Commentaires'), ['controller' => 'Commentaires', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Commentaire'), ['controller' => 'Commentaires', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Comptes'), ['controller' => 'Comptes', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Compte'), ['controller' => 'Comptes', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Souscriptionsmarts'), ['controller' => 'Souscriptionsmarts', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Souscriptionsmart'), ['controller' => 'Souscriptionsmarts', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Souscriptionteles'), ['controller' => 'Souscriptionteles', 'action' => 'index']) ?> </li>
@@ -27,6 +25,14 @@
         <tr>
             <th scope="row"><?= __('Name') ?></th>
             <td><?= h($client->name) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Pseudo') ?></th>
+            <td><?= h($client->pseudo) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Password') ?></th>
+            <td><?= h($client->password) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Cel') ?></th>
@@ -94,37 +100,6 @@
                     <?= $this->Html->link(__('View'), ['controller' => 'Commentaires', 'action' => 'view', $commentaires->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Commentaires', 'action' => 'edit', $commentaires->id]) ?>
                     <?= $this->Form->postLink(__('Delete'), ['controller' => 'Commentaires', 'action' => 'delete', $commentaires->id], ['confirm' => __('Are you sure you want to delete # {0}?', $commentaires->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
-        <?php endif; ?>
-    </div>
-    <div class="related">
-        <h4><?= __('Related Comptes') ?></h4>
-        <?php if (!empty($client->comptes)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Login') ?></th>
-                <th scope="col"><?= __('Password') ?></th>
-                <th scope="col"><?= __('Created') ?></th>
-                <th scope="col"><?= __('Modified') ?></th>
-                <th scope="col"><?= __('Client Id') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-            <?php foreach ($client->comptes as $comptes): ?>
-            <tr>
-                <td><?= h($comptes->id) ?></td>
-                <td><?= h($comptes->login) ?></td>
-                <td><?= h($comptes->password) ?></td>
-                <td><?= h($comptes->created) ?></td>
-                <td><?= h($comptes->modified) ?></td>
-                <td><?= h($comptes->client_id) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Comptes', 'action' => 'view', $comptes->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Comptes', 'action' => 'edit', $comptes->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Comptes', 'action' => 'delete', $comptes->id], ['confirm' => __('Are you sure you want to delete # {0}?', $comptes->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

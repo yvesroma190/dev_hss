@@ -34,7 +34,7 @@ class ClientsController extends AppController
     public function view($id = null)
     {
         $client = $this->Clients->get($id, [
-            'contain' => ['Commentaires', 'Comptes', 'Souscriptionsmarts', 'Souscriptionteles'],
+            'contain' => ['Commentaires', 'Souscriptionsmarts', 'Souscriptionteles'],
         ]);
 
         $this->set('client', $client);
@@ -47,7 +47,6 @@ class ClientsController extends AppController
      */
     public function add()
     {
-        //$this->viewBuilder()->setLayout('actionfront');
         $client = $this->Clients->newEntity();
         if ($this->request->is('post')) {
             $client = $this->Clients->patchEntity($client, $this->request->getData());

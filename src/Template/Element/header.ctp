@@ -108,7 +108,7 @@
     <div class="row">
         <div class="span4">
         <div class="logo">
-            <a href="<?= $this->Url->build(['controller' => 'Categories', 'action' => 'index']); ?>"><?= $this->Html->image('logo.jpg', ['class' => 'logo', 'width' => '200', 'height' => '21']); ?></a>
+            <a href="<?= $this->Url->build(['controller' => 'Offresmarts', 'action' => 'index']); ?>"><?= $this->Html->image('logo.jpg', ['class' => 'logo', 'width' => '200', 'height' => '21']); ?></a>
             <!--<h1>Flat and trendy bootstrap template</h1>-->
         </div>
         </div>

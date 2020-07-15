@@ -130,9 +130,9 @@ class SouscriptionsmartsController extends AppController
                 //Reccuperation de l'ID de l'offre smart associée à la souscription
                 //$this->loadModel('Offresmarts');
                 //$offresmart = $this->Offresmarts->get($id);
-                //$souscriptionsmart->offresmart_id =  $offresmart->id;
+                //$souscriptionsmart->offresmart_id = $offresmart->id;
 
-                $this->Flash->success(__('Les informations ont bien été enrégistrées.'));
+                $this->Flash->success(__('Le compte a bien été enrégistré.'));
 
                 return $this->redirect(['action' => 'etape2',$client->id]);
             }

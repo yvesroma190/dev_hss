@@ -10,7 +10,6 @@ use Cake\Validation\Validator;
  * Clients Model
  *
  * @property \App\Model\Table\CommentairesTable&\Cake\ORM\Association\HasMany $Commentaires
- * @property \App\Model\Table\ComptesTable&\Cake\ORM\Association\HasMany $Comptes
  * @property \App\Model\Table\SouscriptionsmartsTable&\Cake\ORM\Association\HasMany $Souscriptionsmarts
  * @property \App\Model\Table\SouscriptiontelesTable&\Cake\ORM\Association\HasMany $Souscriptionteles
  *
@@ -46,9 +45,6 @@ class ClientsTable extends Table
         $this->hasMany('Commentaires', [
             'foreignKey' => 'client_id',
         ]);
-        $this->hasMany('Comptes', [
-            'foreignKey' => 'client_id',
-        ]);
         $this->hasMany('Souscriptionsmarts', [
             'foreignKey' => 'client_id',
         ]);
@@ -73,6 +69,16 @@ class ClientsTable extends Table
             ->scalar('name')
             ->maxLength('name', 255)
             ->allowEmptyString('name');
+
+        $validator
+            ->scalar('pseudo')
+            ->maxLength('pseudo', 45)
+            ->allowEmptyString('pseudo');
+
+        $validator
+            ->scalar('password')
+            ->maxLength('password', 45)
+            ->allowEmptyString('password');
 
         $validator
             ->scalar('cel')

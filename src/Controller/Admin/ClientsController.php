@@ -1,7 +1,7 @@
 <?php
 namespace App\Controller\Admin;
 
-use App\Controller\Admin\AppController;
+use App\Controller\AppController;
 
 /**
  * Clients Controller
@@ -34,7 +34,7 @@ class ClientsController extends AppController
     public function view($id = null)
     {
         $client = $this->Clients->get($id, [
-            'contain' => ['Commentaires', 'Comptes', 'Souscriptionsmarts', 'Souscriptionteles'],
+            'contain' => ['Commentaires', 'Souscriptionsmarts', 'Souscriptionteles'],
         ]);
 
         $this->set('client', $client);

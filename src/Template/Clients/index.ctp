@@ -10,8 +10,6 @@
         <li><?= $this->Html->link(__('New Client'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Commentaires'), ['controller' => 'Commentaires', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Commentaire'), ['controller' => 'Commentaires', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Comptes'), ['controller' => 'Comptes', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Compte'), ['controller' => 'Comptes', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Souscriptionsmarts'), ['controller' => 'Souscriptionsmarts', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Souscriptionsmart'), ['controller' => 'Souscriptionsmarts', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Souscriptionteles'), ['controller' => 'Souscriptionteles', 'action' => 'index']) ?></li>
@@ -25,6 +23,8 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('pseudo') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('password') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('cel') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('tel') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('email') ?></th>
@@ -41,6 +41,8 @@
             <tr>
                 <td><?= $this->Number->format($client->id) ?></td>
                 <td><?= h($client->name) ?></td>
+                <td><?= h($client->pseudo) ?></td>
+                <td><?= h($client->password) ?></td>
                 <td><?= h($client->cel) ?></td>
                 <td><?= h($client->tel) ?></td>
                 <td><?= h($client->email) ?></td>

@@ -25,7 +25,7 @@
     <div class="container">
     <div class="row">
     <div class="span12">
-        <h4><strong>Enrégistrez vos informations</strong></h4>
+        <h4><strong>Créez votre compte</strong></h4>
         </div>
     </div>
 
@@ -42,14 +42,17 @@
         <div class="row">
             
                 <?= $this->Form->create($client, ['class'=> '']) ?>
-                    <div class="span3">
+                    <div class="span4">
                         <?= $this->Form->control('name', ['type'=> 'text', 'name'=> 'name', 'class'=> 'form-group', 'label'=> 'Nom et prénoms:']); ?>
+                        <?= $this->Form->control('pseudo', ['type'=> 'text', 'name'=> 'pseudo', 'class'=> 'form-group', 'label'=> 'Pseudo:']); ?>
+                        <?= $this->Form->control('password', ['type'=> 'password', 'name'=> 'password', 'class'=> 'form-group', 'label'=> 'Mot de passe:']); ?>
                         <?= $this->Form->control('cel', ['type'=> 'text', 'name'=> 'cel', 'class'=> 'form-group', 'label'=> 'N° Cellulaire:']); ?>
                         <?= $this->Form->control('tel', ['type'=> 'text', 'name'=> 'tel', 'class'=> 'form-group', 'label'=> 'N° Téléphone fixe:']); ?>
                         <?= $this->Form->control('email', ['type'=> 'email', 'name'=> 'email', 'class'=> 'form-group', 'label'=> 'Email:']); ?>
-                        <?= $this->Form->control('web', ['type'=> 'text', 'name'=> 'web', 'class'=> 'form-group', 'label'=> 'Site Web:']); ?>
                     </div>
                     <div class="span4">
+                    
+                    <?= $this->Form->control('web', ['type'=> 'text', 'name'=> 'web', 'class'=> 'form-group', 'label'=> 'Site Web:']); ?>
                     <?= $this->Form->control('bp', ['type'=> 'text', 'name'=> 'bp', 'class'=> 'form-group', 'label'=> 'Boîte postale:']); ?>
                     <?= $this->Form->control('adresse', ['type'=> 'text', 'name'=> 'adresse', 'class'=> 'form-group', 'label'=> 'Adresse:']); ?>
                     <?= $this->Form->control('localisation_site', ['type'=> 'textarea', 'name'=> 'localisation_site', 'class'=> 'form-group', 'label'=> 'Localisation du site:']); ?>
@@ -58,7 +61,7 @@
                     </div>
                 <?= $this->Form->end() ?>
 
-                    <div class='span5'>
+                    <div class='span4'>
                     <?= $this->Html->image('client-infos.jpg') ?>
                     </div>
             
