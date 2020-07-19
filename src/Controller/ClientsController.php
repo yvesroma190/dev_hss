@@ -53,7 +53,7 @@ class ClientsController extends AppController
             if ($this->Clients->save($client)) {
                 $this->Flash->success(__('The client has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'login']);
             }
             $this->Flash->error(__('The client could not be saved. Please, try again.'));
         }
@@ -103,4 +103,27 @@ class ClientsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+    //Login
+    public function login()
+    {
+        if ($this->request->is('post')) {
+            $client = $this->Auth->identify();
+            if ($client) {
+                $this->Auth->setUser($client);
+                return $this->redirect(['controller' => 'Souscriptionsmarts', 'action' => 'index']);
+            } else {
+                $this->Flash->error(__("L'email ou mot de passe incorrect"));
+            }
+        }
+
+    }
+
+    //Logout
+    public function logout()
+    {
+        $this->redirect($this->Auth->logout());
+    }
+
+
 }

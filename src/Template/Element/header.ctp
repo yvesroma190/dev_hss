@@ -4,7 +4,8 @@
         <div class="span12">
         <div class="headnav">
             <ul>
-            <li><a href="#mySignin" data-toggle="modal">Connexion</a></li>
+            <!--<li><a href="#mySignin" data-toggle="modal">Connexion</a></li>-->
+            <li><a href="<?= $this->Url->build(['controller' => 'Clients', 'action' => 'login']); ?>" data-toggle="modal">Connexion</a></li>
             </ul>
         </div>
         <!-- Signup Modal -->

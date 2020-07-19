@@ -25,6 +25,7 @@ class SouscriptionsmartsController extends AppController
         $souscriptionsmarts = $this->paginate($this->Souscriptionsmarts);
 
         $this->set(compact('souscriptionsmarts'));
+
     }
 
     /**
@@ -50,17 +51,29 @@ class SouscriptionsmartsController extends AppController
      */
     public function add($id = null)
     {
+
+        //Reccuperation de l'ID de l'offre associé à l'élément ajoutée
+        $this->loadModel('Offresmarts');
+        //$offresmart = $this->Offresmarts->get($id);
+        //$souscriptionsmart->offresmart_id =  $offresmart->id;
+        $offresmart = $this->request->session()->read('Offresmart.id');
+        echo $offresmart;
+
+        //recherche du dernier client enrégistré
+        $this->loadModel('Clients');
+        $query = $this->Clients->find('all', [
+            'order' => ['Clients.id' => 'DESC']
+        ]);
+        $client = $query->first();
+        //$souscriptionsmart->client_id =  $client;
+        $this->set(compact('client'));
+//debug($client);
+//exit;
+
         $souscriptionsmart = $this->Souscriptionsmarts->newEntity();
         if ($this->request->is('post')) {
+
             $souscriptionsmart = $this->Souscriptionsmarts->patchEntity($souscriptionsmart, $this->request->getData());
-
-            //Reccuperation de l'ID de l'offre smart associée à la souscription
-            $this->loadModel('Offresmarts');
-            $offresmart = $this->Offresmarts->get($id);
-            $souscriptionsmart->offresmart_id =  $offresmart->id;
-
-
-
             if ($this->Souscriptionsmarts->save($souscriptionsmart)) {
                 $this->Flash->success(__('The souscriptionsmart has been saved.'));
 
@@ -118,57 +131,60 @@ class SouscriptionsmartsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
-
+    
     //Etape 1 enrégistrement CLient
-    public function etape1($id = null){
+    public function souscrire($id = null){
+
+        //Reccuperation de l'ID de l'offre associé à l'élément ajoutée
+        $this->loadModel('Offresmarts');
+        $offresmart = $this->Offresmarts->get($id);
+        //$souscriptionsmart->offresmart_id =  $offresmart->id;
+        //debug($offresmart);
+        //exit;
+        $this->set(compact('offresmart'));
+
+        // Verification de l'état de connexion du client
+        if(!$this->Auth->user('id')){
+            $this->Flash->error(__('Attention, vous devez créer un compte avant de souscrire à une offre.'));
+            return $this->redirect(['controller' => 'Clients', 'action' => 'add']);
+        }
+
+
+        // Enrégistrement du client
         $this->loadModel('Clients');
         $client = $this->Clients->newEntity();
         if ($this->request->is('post')) {
-            $client = $this->Clients->patchEntity($client, $this->request->getData());
-
+            $d = $this->request->getData();
+            $client = $this->Clients->patchEntity($client, $d);
             if ($this->Clients->save($client)) {
-                //Reccuperation de l'ID de l'offre smart associée à la souscription
-                //$this->loadModel('Offresmarts');
-                //$offresmart = $this->Offresmarts->get($id);
-                //$souscriptionsmart->offresmart_id = $offresmart->id;
+                //debug($d);
+                //exit;
 
-                $this->Flash->success(__('Le compte a bien été enrégistré.'));
+                $this->Flash->success(__('Vos informations ont bien été enrégistrées.'));
 
-                return $this->redirect(['action' => 'etape2',$client->id]);
-            }
-            $this->Flash->error(__('Les informations n\'ont pas été sauvegardées. Veuillez reprendre svp!'));
-        }
-        $this->set(compact('client'));
-    }
-
-    //Etape 2 enrégistrement Compte client
-    public function etape2($id = null){
-        $this->loadModel('Comptes');
-        $compte = $this->Comptes->newEntity();
-        if ($this->request->is('post')) {
-            $compte = $this->Comptes->patchEntity($compte, $this->request->getData());
-
-            //Reccuperation de l'ID du client associé au compte
-            $this->loadModel('Clients');
-            $client = $this->Clients->get($id);
-            $compte->Client_id =  $client->id;
-
-
-            if ($this->Comptes->save($compte)) {
-
-                //Reccuperation de l'ID de l'offre smart associée à la souscription
-                //$this->loadModel('Offresmarts');
-                //$offresmart = $this->Offresmarts->get($id);
-                //$souscriptionsmart->offresmart_id =  $offresmart->id;
-
-                $this->Flash->success(__('Votre compte a été créé.'));
+                //Recuperation du client
+                //$idClient = $this->Clients->getInsertID();
+                //$email = $this->request->getData('email');
+                /*$query = $this->Clients->find('all', [
+                    'order' => ['Clients.id' => 'DESC']
+                ]);
+                $client = $query->first();
+                $this->set(compact('client'));*/
 
                 return $this->redirect(['action' => 'add']);
             }
-            $this->Flash->error(__('Votre compte n\'a pas été créé. Veuillez reprendre svp.'));
+            $this->Flash->error(__('The client could not be saved. Please, try again.'));
         }
-        $clients = $this->Comptes->Clients->find('list', ['limit' => 200]);
-        $this->set(compact('compte', 'clients'));
+
+        $this->set(compact('client'));
+
+
+    }
+
+    //Etape 2 validation de la souscription
+    public function validation(){
+
+
     }
 
 }

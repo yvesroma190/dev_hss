@@ -25,7 +25,7 @@
     <div class="container">
     <div class="row">
     <div class="span12">
-        <h4><strong>Créez votre compte</strong></h4>
+        <h4><strong>Enrégistrer votre compte</strong></h4>
         </div>
     </div>
 
@@ -38,6 +38,7 @@
     </div>
     <!-- end divider -->
 
+
     <div class="container">
         <div class="row">
             
@@ -45,10 +46,10 @@
                     <div class="span4">
                         <?= $this->Form->control('name', ['type'=> 'text', 'name'=> 'name', 'class'=> 'form-group', 'label'=> 'Nom et prénoms:']); ?>
                         <?= $this->Form->control('pseudo', ['type'=> 'text', 'name'=> 'pseudo', 'class'=> 'form-group', 'label'=> 'Pseudo:']); ?>
+                        <?= $this->Form->control('email', ['type'=> 'email', 'name'=> 'email', 'class'=> 'form-group', 'label'=> 'Email:']); ?>
                         <?= $this->Form->control('password', ['type'=> 'password', 'name'=> 'password', 'class'=> 'form-group', 'label'=> 'Mot de passe:']); ?>
                         <?= $this->Form->control('cel', ['type'=> 'text', 'name'=> 'cel', 'class'=> 'form-group', 'label'=> 'N° Cellulaire:']); ?>
                         <?= $this->Form->control('tel', ['type'=> 'text', 'name'=> 'tel', 'class'=> 'form-group', 'label'=> 'N° Téléphone fixe:']); ?>
-                        <?= $this->Form->control('email', ['type'=> 'email', 'name'=> 'email', 'class'=> 'form-group', 'label'=> 'Email:']); ?>
                     </div>
                     <div class="span4">
                     
@@ -56,15 +57,27 @@
                     <?= $this->Form->control('bp', ['type'=> 'text', 'name'=> 'bp', 'class'=> 'form-group', 'label'=> 'Boîte postale:']); ?>
                     <?= $this->Form->control('adresse', ['type'=> 'text', 'name'=> 'adresse', 'class'=> 'form-group', 'label'=> 'Adresse:']); ?>
                     <?= $this->Form->control('localisation_site', ['type'=> 'textarea', 'name'=> 'localisation_site', 'class'=> 'form-group', 'label'=> 'Localisation du site:']); ?>
-                    
-                    <?= $this->Form->button(__('Suivant'), ['type'=> 'submit','class'=> 'btn btn-danger']) ?>
+
+                    <?= $this->Form->button(__('Valider'), ['type'=> 'submit','class'=> 'btn btn-danger']) ?>
                     </div>
                 <?= $this->Form->end() ?>
 
                     <div class='span4'>
-                    <?= $this->Html->image('client-infos.jpg') ?>
+                        <div><h6>OFFRE SMART PROTECTION</h6></div>
+                        <div class="pricing-box-alt">
+                        
+                            <div class="pricing-heading">
+                                <h3><strong><?= @h($offresmart->name) ?></strong></h3>
+                            </div>
+                            <div class="pricing-terms">
+                                <h6> <?= @h($offresmart->prix) ?> FCFA / Mois</h6>
+                            </div>
+                            <!--<div class="pricing-action">
+                                <a href="<?= $this->Url->build(['controller' => 'Souscriptionsmarts', 'action' => 'souscrire', $offresmart->id]); ?>" class="btn btn-medium btn-theme"><i class="icon-bolt"></i>Souscrire</a>
+                                <?= $this->Form->button(__('Valider'), ['type'=> 'submit','class'=> 'btn btn-danger']) ?>
+                            </div>-->
+                        </div>
                     </div>
-            
         </div>
     </div>
 

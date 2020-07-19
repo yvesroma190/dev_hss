@@ -26,6 +26,8 @@ use Cake\Validation\Validator;
  */
 class ClientsTable extends Table
 {
+
+    public $useTable = 'Utilisateur';
     /**
      * Initialize method
      *
