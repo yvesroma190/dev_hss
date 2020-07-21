@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Client[]|\Cake\Collection\CollectionInterface $clients
@@ -10,8 +11,6 @@
         <li><?= $this->Html->link(__('New Client'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Commentaires'), ['controller' => 'Commentaires', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Commentaire'), ['controller' => 'Commentaires', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Comptes'), ['controller' => 'Comptes', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Compte'), ['controller' => 'Comptes', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Souscriptionsmarts'), ['controller' => 'Souscriptionsmarts', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Souscriptionsmart'), ['controller' => 'Souscriptionsmarts', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Souscriptionteles'), ['controller' => 'Souscriptionteles', 'action' => 'index']) ?></li>
@@ -25,6 +24,8 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('pseudo') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('password') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('cel') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('tel') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('email') ?></th>
@@ -37,10 +38,12 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($clients as $client): ?>
+            <?php foreach ($clients as $client) : ?>
             <tr>
                 <td><?= $this->Number->format($client->id) ?></td>
                 <td><?= h($client->name) ?></td>
+                <td><?= h($client->pseudo) ?></td>
+                <td><?= h($client->password) ?></td>
                 <td><?= h($client->cel) ?></td>
                 <td><?= h($client->tel) ?></td>
                 <td><?= h($client->email) ?></td>
@@ -72,107 +75,107 @@
 
 
 
+
 <div class="container-fluid">
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Gestion des clients</h1>
+        <h1 class="h3 mb-0 text-gray-800">Gestion des Clients</h1>
     </div>
     <hr class="sidebar-divider d-none d-md-block">
 
-        <!-- Sous Menu -->
-        <div class="row">
-            <div class="lg-12"> 
-                       
-                <a href=<?= $this->Url->build(['controller'=>'Clients', 'action'=>'add']) ?> class="btn btn-primary btn-icon-split">
-                    <span class="icon text-white-50">
-                        <i class="fas fa-plus"></i>
-                    </span>
-                    <span class="text">Ajouter un client</span>
-                </a>
-                <a href=<?= $this->Url->build(['controller'=>'Comptes', 'action'=>'index']) ?> class="btn btn-success btn-icon-split">
-                    <span class="icon text-white-50">
-                        <i class="fas fa-list"></i>
-                    </span>
-                    <span class="text">Comptes des clients</span>
-                </a>
-            </div>
+    <!-- Sous Menu -->
+    <div class="row">
+        <div class="lg-12">
+
+            <a href="<?= $this->Url->build(['controller' => 'Clients', 'action' => '']) ?>" class="btn btn-primary btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="fas fa-plus"></i>
+                </span>
+                <span class="text">Ajouter un client</span>
+            </a>
         </div>
+    </div>
     <hr class="sidebar-divider d-none d-md-block">
 
-    
-    
+
+
 
     <!-- Content Row -->
 
 
-        <!-- DataTales Example -->
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Liste des clients</h6>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Liste des clients</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                        <th><?= $this->Paginator->sort('id') ?></th>
-                        <th><?= $this->Paginator->sort('Nom') ?></th>
-                        <th><?= $this->Paginator->sort('cel') ?></th>
-                        <th><?= $this->Paginator->sort('tel') ?></th>
-                        <th><?= $this->Paginator->sort('email') ?></th>
-                        <th><?= $this->Paginator->sort('web') ?></th>
-                        <th><?= $this->Paginator->sort('bp') ?></th>
-                        <th><?= $this->Paginator->sort('adresse') ?></th>
-                        <th><?= $this->Paginator->sort('created') ?></th>
-                        <th><?= $this->Paginator->sort('modified') ?></th>
-                        <th class="actions"><?= __('Actions') ?></th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
-                        <th><?= $this->Paginator->sort('id') ?></th>
-                        <th><?= $this->Paginator->sort('Nom') ?></th>
-                        <th><?= $this->Paginator->sort('cel') ?></th>
-                        <th><?= $this->Paginator->sort('tel') ?></th>
-                        <th><?= $this->Paginator->sort('email') ?></th>
-                        <th><?= $this->Paginator->sort('web') ?></th>
-                        <th><?= $this->Paginator->sort('bp') ?></th>
-                        <th><?= $this->Paginator->sort('adresse') ?></th>
-                        <th><?= $this->Paginator->sort('created') ?></th>
-                        <th><?= $this->Paginator->sort('modified') ?></th>
-                        <th class="actions"><?= __('Actions') ?></th>
-                    </tr>
-                  </tfoot>
-                  <tbody>
-                    <?php foreach ($clients as $client): ?>
-                    <tr>
-                        <td><?= $this->Number->format($client->id) ?></td>
-                        <td><?= h($client->name) ?></td>
-                        <td><?= h($client->cel) ?></td>
-                        <td><?= h($client->tel) ?></td>
-                        <td><?= h($client->email) ?></td>
-                        <td><?= h($client->web) ?></td>
-                        <td><?= h($client->bp) ?></td>
-                        <td><?= h($client->adresse) ?></td>
-                        <td><?= h($client->created) ?></td>
-                        <td><?= h($client->modified) ?></td>
-                        <td class="actions">
-                            <?= $this->Html->link(__(''), ['action' => 'view', $client->id],['class' => 'btn btn-primary fas fa-list btn-circle btn-sm']) ?>
-                            <?= $this->Html->link(__(''), ['action' => 'edit', $client->id],['class' => 'btn btn-success fas fa-pencil-alt btn-circle btn-sm']) ?>
-                            <?= $this->Form->postLink(__(''), ['action' => 'delete', $client->id], ['confirm' => __('Voulez-vous supprimer cet client? # {0}?', $client->id), 'class' => 'btn btn-danger fas fa-trash btn-circle btn-sm']) ?>
-                        </td>
-                    </tr>
-                    <?php endforeach; ?>
-                  </tbody>
+                    <thead>
+                        <tr>
+                            <th scope="col"><?= $this->Paginator->sort('id') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('name') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('pseudo') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('password') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('cel') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('tel') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('email') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('web') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('bp') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('adresse') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('created') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
+                            <th scope="col" class="actions"><?= __('Actions') ?></th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th scope="col"><?= $this->Paginator->sort('id') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('name') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('pseudo') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('password') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('cel') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('tel') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('email') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('web') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('bp') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('adresse') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('created') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
+                            <th scope="col" class="actions"><?= __('Actions') ?></th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        <?php foreach ($clients as $client) : ?>
+                            <tr>
+                                <td><?= $this->Number->format($client->id) ?></td>
+                                <td><?= h($client->name) ?></td>
+                                <td><?= h($client->pseudo) ?></td>
+                                <td><?= h($client->password) ?></td>
+                                <td><?= h($client->cel) ?></td>
+                                <td><?= h($client->tel) ?></td>
+                                <td><?= h($client->email) ?></td>
+                                <td><?= h($client->web) ?></td>
+                                <td><?= h($client->bp) ?></td>
+                                <td><?= h($client->adresse) ?></td>
+                                <td><?= h($client->created) ?></td>
+                                <td><?= h($client->modified) ?></td>
+                                <td class="actions">
+                                    <?= $this->Html->link(__('Détails'), ['action' => 'view', $client->id], ['class' => 'btn btn-primary btn-circle btn-sm']) ?>
+                                    <?= $this->Html->link(__('Modifier'), ['action' => 'edit', $client->id], ['class' => 'btn btn-success btn-circle btn-sm']) ?>
+                                    <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $client->id], ['confirm' => __('Are you sure you want to delete # {0}?', $client->id), 'class' => 'btn btn-danger btn-circle btn-sm']) ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
                 </table>
-              </div>
             </div>
-          </div>
+        </div>
+    </div>
 
     <!-- Content Row -->
     <div class="row">
     </div>
 
 </div>
-

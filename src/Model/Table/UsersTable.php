@@ -63,23 +63,22 @@ class UsersTable extends Table
             ->add('id', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         $validator
-            ->scalar('username')
-            ->maxLength('username', 45)
-            ->allowEmptyString('username');
-
-        $validator
-            ->scalar('password')
-            ->maxLength('password', 45)
-            ->allowEmptyString('password');
-
-        $validator
             ->scalar('name')
             ->maxLength('name', 45)
             ->allowEmptyString('name');
 
         $validator
             ->email('email')
-            ->allowEmptyString('email');
+            //->allowEmptyString('email');
+            ->requirePresence('email', 'create')
+            ->notEmptyString('email');
+
+        $validator
+            ->scalar('password')
+            ->maxLength('password', 45)
+            //->allowEmptyString('password');
+            ->requirePresence('password', 'create')
+            ->notEmptyString('password');
 
         $validator
             ->scalar('tel')
@@ -98,7 +97,6 @@ class UsersTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['username']));
         $rules->add($rules->isUnique(['email']));
         $rules->add($rules->isUnique(['id']));
         $rules->add($rules->existsIn(['usergroup_id'], 'Usergroups'));

@@ -26,10 +26,9 @@
         <legend><?= __('Edit User') ?></legend>
         <?php
             echo $this->Form->control('usergroup_id', ['options' => $usergroups, 'empty' => true]);
-            echo $this->Form->control('username');
-            echo $this->Form->control('password');
             echo $this->Form->control('name');
             echo $this->Form->control('email');
+            echo $this->Form->control('password');
             echo $this->Form->control('tel');
         ?>
     </fieldset>

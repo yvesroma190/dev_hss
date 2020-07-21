@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\User $user
@@ -19,12 +20,11 @@
     <fieldset>
         <legend><?= __('Add User') ?></legend>
         <?php
-            echo $this->Form->control('usergroup_id', ['options' => $usergroups, 'empty' => true]);
-            echo $this->Form->control('username');
-            echo $this->Form->control('password');
-            echo $this->Form->control('name');
-            echo $this->Form->control('email');
-            echo $this->Form->control('tel');
+        echo $this->Form->control('usergroup_id', ['options' => $usergroups, 'empty' => true]);
+        echo $this->Form->control('name');
+        echo $this->Form->control('email');
+        echo $this->Form->control('password');
+        echo $this->Form->control('tel');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
@@ -36,22 +36,22 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Gestion des utilisateurs</h1>
+        <h1 class="h3 mb-0 text-gray-800">Gestion des utilisateurs</h1>
     </div>
     <hr class="sidebar-divider d-none d-md-block">
 
-        <!-- Sous Menu -->
-        <div class="row">
-            <div class="lg-12"> 
-                       
-                <a href=<?= $this->Url->build(['controller'=>'Users', 'action'=>'index']) ?> class="btn btn-success btn-icon-split">
-                    <span class="icon text-white-50">
-                        <i class="fas fa-list"></i>
-                    </span>
-                    <span class="text">Liste des utilisateurs</span>
-                </a>
-            </div>
+    <!-- Sous Menu -->
+    <div class="row">
+        <div class="lg-12">
+
+            <a href=<?= $this->Url->build(['controller' => 'Users', 'action' => 'index']) ?> class="btn btn-success btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="fas fa-list"></i>
+                </span>
+                <span class="text">Liste des utilisateurs</span>
+            </a>
         </div>
+    </div>
     <hr class="sidebar-divider d-none d-md-block">
 
     <div class="card shadow mb-6">
@@ -60,38 +60,35 @@
         </div>
         <div class="card-body">
             <?= $this->Form->create($user) ?>
-                <div class="form-group">
-                    <?= $this->Form->control('usergroup_id', ['options' => $usergroups, 'empty' => true, 'class'=>'form-control', 'label'=>'Nom du groupe:']);?>
-                </div>
-                <div class="form-group">
-                    <?= $this->Form->control('username', ['type'=>'text', 'class'=>'form-control', 'label'=>'Nom d\'utilisateur:']);?>
-                </div>
-                <div class="form-group">
-                    <?= $this->Form->control('password', ['type'=>'password', 'class'=>'form-control', 'label'=>'Mot de passe:']);?>
-                </div>
-                <div class="form-group">
-                    <?= $this->Form->control('name', ['type'=>'text', 'class'=>'form-control', 'label'=>'Nom et prénoms:']);?>
-                </div>
-                <div class="form-group">
-                    <?= $this->Form->control('email', ['type'=>'email', 'class'=>'form-control', 'label'=>'Email:']);?>
-                </div>
-                <div class="form-group">
-                    <?= $this->Form->control('tel', ['type'=>'text', 'class'=>'form-control', 'label'=>'N° Tel:']);?>
-                </div> 
+            <div class="form-group">
+                <?= $this->Form->control('usergroup_id', ['options' => $usergroups, 'empty' => true, 'class' => 'form-control', 'label' => 'Nom du groupe:']); ?>
+            </div>
+            <div class="form-group">
+                <?= $this->Form->control('name', ['type' => 'text', 'class' => 'form-control', 'label' => 'Nom et prénoms:']); ?>
+            </div>
+            <div class="form-group">
+                <?= $this->Form->control('email', ['type' => 'email', 'class' => 'form-control', 'label' => 'Email:']); ?>
+            </div>
+            <div class="form-group">
+                <?= $this->Form->control('password', ['type' => 'password', 'class' => 'form-control', 'label' => 'Mot de passe:']); ?>
+            </div>
+            <div class="form-group">
+                <?= $this->Form->control('tel', ['type' => 'text', 'class' => 'form-control', 'label' => 'N° Tel:']); ?>
+            </div>
 
-                <button class="btn btn-primary btn-icon-split">
+            <button class="btn btn-primary btn-icon-split">
                 <span class="icon text-white-50">
                     <i class="fas fa-plus-circle"></i>
                 </span>
                 <span class="text">Ajouter</span>
-                </button>
+            </button>
 
-                <button class="btn btn-danger btn-icon-split">
+            <button class="btn btn-danger btn-icon-split">
                 <span class="icon text-white-50">
                     <i class="fas fa-times-circle "></i>
                 </span>
                 <span class="text">Annuler</span>
-                </button>
+            </button>
             <?= $this->Form->end() ?>
         </div>
     </div>

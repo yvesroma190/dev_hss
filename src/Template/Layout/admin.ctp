@@ -62,7 +62,7 @@
       <hr class="sidebar-divider">
 
       <li class="nav-item">
-        <a class="nav-link" href=<?= $this->Url->build(['controller'=>'Souscriptions', 'action'=>'index']) ?> >
+        <a class="nav-link" href=<?= $this->Url->build(['controller'=>'Souscriptionsmarts', 'action'=>'index']) ?> >
           <i class="fas fa-fw fa-bolt"></i>
           <span>Souscriptions</span></a>
       </li>
