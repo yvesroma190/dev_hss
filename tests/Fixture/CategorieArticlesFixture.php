@@ -40,8 +40,8 @@ class CategorieArticlesFixture extends TestFixture
             [
                 'id' => 1,
                 'name' => 'Lorem ipsum dolor sit amet',
-                'created' => '2020-06-30 08:59:52',
-                'modified' => '2020-06-30 08:59:52',
+                'created' => '2020-07-24 11:17:53',
+                'modified' => '2020-07-24 11:17:53',
             ],
         ];
         parent::init();

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\User $user
@@ -20,17 +19,18 @@
     <fieldset>
         <legend><?= __('Add User') ?></legend>
         <?php
-        echo $this->Form->control('usergroup_id', ['options' => $usergroups, 'empty' => true]);
-        echo $this->Form->control('name');
-        echo $this->Form->control('email');
-        echo $this->Form->control('password');
-        echo $this->Form->control('tel');
+            echo $this->Form->control('usergroup_id', ['options' => $usergroups, 'empty' => true]);
+            echo $this->Form->control('name');
+            echo $this->Form->control('username');
+            echo $this->Form->control('email');
+            echo $this->Form->control('password');
+            echo $this->Form->control('cel');
+            echo $this->Form->control('tel');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
 </div>-->
-
 
 <div class="container-fluid">
 
@@ -67,13 +67,19 @@
                 <?= $this->Form->control('name', ['type' => 'text', 'class' => 'form-control', 'label' => 'Nom et prénoms:']); ?>
             </div>
             <div class="form-group">
+                <?= $this->Form->control('username', ['type' => 'text', 'class' => 'form-control', 'label' => 'Nom d\'utilisateur:']); ?>
+            </div>
+            <div class="form-group">
                 <?= $this->Form->control('email', ['type' => 'email', 'class' => 'form-control', 'label' => 'Email:']); ?>
             </div>
             <div class="form-group">
                 <?= $this->Form->control('password', ['type' => 'password', 'class' => 'form-control', 'label' => 'Mot de passe:']); ?>
             </div>
             <div class="form-group">
-                <?= $this->Form->control('tel', ['type' => 'text', 'class' => 'form-control', 'label' => 'N° Tel:']); ?>
+                <?= $this->Form->control('cel', ['type' => 'text', 'class' => 'form-control', 'label' => 'N° Cellulaire:']); ?>
+            </div>
+            <div class="form-group">
+                <?= $this->Form->control('tel', ['type' => 'text', 'class' => 'form-control', 'label' => 'N° Fixe:']); ?>
             </div>
 
             <button class="btn btn-primary btn-icon-split">
@@ -81,13 +87,6 @@
                     <i class="fas fa-plus-circle"></i>
                 </span>
                 <span class="text">Ajouter</span>
-            </button>
-
-            <button class="btn btn-danger btn-icon-split">
-                <span class="icon text-white-50">
-                    <i class="fas fa-times-circle "></i>
-                </span>
-                <span class="text">Annuler</span>
             </button>
             <?= $this->Form->end() ?>
         </div>

@@ -12,32 +12,27 @@ use App\Controller\Admin\AppController;
  */
 class UsersController extends AppController
 {
-    //login
-    public function login()
-    {
+
+  public function login(){
+      $this->viewBuilder()->setLayout('adminlogin');
+      if ($this->request->is('post')) {
+          $user = $this->Auth->identify();
+          //debug($user);
+          //exit;
+          if ($user) {
+              $this->Auth->setUser($user);
+              return $this->redirect($this->Auth->redirectUrl());
+              //return $this->redirect(['action' => 'index']);
+          } else {
+              $this->Flash->error(__("Nom d'utilisateur ou mot de passe incorrect"));
+          }
+      }
+  }
+
+  public function logout(){
         $this->viewBuilder()->setLayout('adminlogin');
-        if ($this->request->is('post')) {
-            $user = $this->Auth->identify();
-            //debug($user);
-            //exit;
-            if ($user) {
-                $this->Auth->setUser($user);
-                //return $this->redirect(['controller' => 'Souscriptionsmarts', 'action' => 'index']);
-                return $this->redirect($this->Auth->redirectUrl());
-            } else {
-                $this->Flash->error(__("Email ou mot de passe incorrect"));
-            }
-        }
 
-    }
-
-    //Logout
-    public function logout()
-    {
-        $this->viewBuilder()->setLayout('adminlogin');
-        return $this->redirect($this->Auth->logout());
-    }
-
+  }
 
 
     /**

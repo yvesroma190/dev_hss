@@ -1,21 +1,17 @@
 <?php
 namespace App\Model\Entity;
 
-use Cake\Auth\DefaultPasswordHasher;
 use Cake\ORM\Entity;
-
-
 
 /**
  * Client Entity
  *
  * @property int $id
  * @property string|null $name
- * @property string|null $pseudo
+ * @property string|null $email
  * @property string|null $password
  * @property string|null $cel
  * @property string|null $tel
- * @property string|null $email
  * @property string|null $web
  * @property string|null $bp
  * @property string|null $adresse
@@ -40,11 +36,10 @@ class Client extends Entity
      */
     protected $_accessible = [
         'name' => true,
-        'pseudo' => true,
+        'email' => true,
         'password' => true,
         'cel' => true,
         'tel' => true,
-        'email' => true,
         'web' => true,
         'bp' => true,
         'adresse' => true,
@@ -64,12 +59,4 @@ class Client extends Entity
     protected $_hidden = [
         'password',
     ];
-
-
-    protected function _setPassword($password)
-    {
-        if (strlen($password) > 0) {
-          return (new DefaultPasswordHasher)->hash($password);
-        }
-    }
 }

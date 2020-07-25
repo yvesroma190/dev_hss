@@ -22,8 +22,10 @@
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('usergroup_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('username') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('email') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('password') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('cel') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('tel') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
@@ -36,8 +38,10 @@
                 <td><?= $this->Number->format($user->id) ?></td>
                 <td><?= $user->has('usergroup') ? $this->Html->link($user->usergroup->name, ['controller' => 'Usergroups', 'action' => 'view', $user->usergroup->id]) : '' ?></td>
                 <td><?= h($user->name) ?></td>
+                <td><?= h($user->username) ?></td>
                 <td><?= h($user->email) ?></td>
                 <td><?= h($user->password) ?></td>
+                <td><?= h($user->cel) ?></td>
                 <td><?= h($user->tel) ?></td>
                 <td><?= h($user->created) ?></td>
                 <td><?= h($user->modified) ?></td>

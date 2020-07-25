@@ -40,8 +40,8 @@ class UsergroupsFixture extends TestFixture
             [
                 'id' => 1,
                 'name' => 'Lorem ipsum dolor sit amet',
-                'created' => '2020-06-30 08:59:57',
-                'modified' => '2020-06-30 08:59:57',
+                'created' => '2020-07-24 11:17:59',
+                'modified' => '2020-07-24 11:17:59',
             ],
         ];
         parent::init();

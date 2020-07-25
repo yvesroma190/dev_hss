@@ -35,14 +35,14 @@
                                 <h1 class="h4 text-gray-900 mb-4">Bienvenue - Connexion </h1>
                             </div>
                             <div class="users form">
-                                <?= $this->Flash->render('Auth') ?>
-                                <?= $this->Form->create('', ['class' => 'user']) ?>
+                                <?= $this->Flash->render() ?>
+                                <?= $this->Form->create() ?>
                                 <div class="form-group">
-                                    <?= $this->Form->control('email', ['class' => 'form-control form-control-user', 'label' => '', 'placeholder' => 'Entrer votre email...']) ?>
+                                    <?= $this->Form->control('username', ['type'=>'text', 'class' => 'form-control form-control-user', 'label' => '', 'placeholder' => 'Entrer votre email...']) ?>
                                 </div>
 
                                 <div>
-                                    <?= $this->Form->control('password', ['class' => 'form-control form-control-user', 'label' => '', 'placeholder' => 'Entrer votre mot de passe...']) ?>
+                                    <?= $this->Form->control('password', ['type'=>'password', 'class' => 'form-control form-control-user', 'label' => '', 'placeholder' => 'Entrer votre mot de passe...']) ?>
                                 </div>
 
                                 <?= $this->Form->button(__('Se connecter'), ['type' => 'submit', 'class' => 'btn btn-primary btn-user btn-block']); ?>

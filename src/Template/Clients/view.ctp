@@ -13,10 +13,6 @@
         <li><?= $this->Html->link(__('New Client'), ['action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Commentaires'), ['controller' => 'Commentaires', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Commentaire'), ['controller' => 'Commentaires', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Souscriptionsmarts'), ['controller' => 'Souscriptionsmarts', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Souscriptionsmart'), ['controller' => 'Souscriptionsmarts', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Souscriptionteles'), ['controller' => 'Souscriptionteles', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Souscriptiontele'), ['controller' => 'Souscriptionteles', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
 <div class="clients view large-9 medium-8 columns content">
@@ -27,8 +23,8 @@
             <td><?= h($client->name) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Pseudo') ?></th>
-            <td><?= h($client->pseudo) ?></td>
+            <th scope="row"><?= __('Email') ?></th>
+            <td><?= h($client->email) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Password') ?></th>
@@ -41,10 +37,6 @@
         <tr>
             <th scope="row"><?= __('Tel') ?></th>
             <td><?= h($client->tel) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Email') ?></th>
-            <td><?= h($client->email) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Web') ?></th>
@@ -100,64 +92,6 @@
                     <?= $this->Html->link(__('View'), ['controller' => 'Commentaires', 'action' => 'view', $commentaires->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Commentaires', 'action' => 'edit', $commentaires->id]) ?>
                     <?= $this->Form->postLink(__('Delete'), ['controller' => 'Commentaires', 'action' => 'delete', $commentaires->id], ['confirm' => __('Are you sure you want to delete # {0}?', $commentaires->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
-        <?php endif; ?>
-    </div>
-    <div class="related">
-        <h4><?= __('Related Souscriptionsmarts') ?></h4>
-        <?php if (!empty($client->souscriptionsmarts)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Offresmart Id') ?></th>
-                <th scope="col"><?= __('Client Id') ?></th>
-                <th scope="col"><?= __('Created') ?></th>
-                <th scope="col"><?= __('Modified') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-            <?php foreach ($client->souscriptionsmarts as $souscriptionsmarts): ?>
-            <tr>
-                <td><?= h($souscriptionsmarts->id) ?></td>
-                <td><?= h($souscriptionsmarts->offresmart_id) ?></td>
-                <td><?= h($souscriptionsmarts->client_id) ?></td>
-                <td><?= h($souscriptionsmarts->created) ?></td>
-                <td><?= h($souscriptionsmarts->modified) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Souscriptionsmarts', 'action' => 'view', $souscriptionsmarts->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Souscriptionsmarts', 'action' => 'edit', $souscriptionsmarts->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Souscriptionsmarts', 'action' => 'delete', $souscriptionsmarts->id], ['confirm' => __('Are you sure you want to delete # {0}?', $souscriptionsmarts->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
-        <?php endif; ?>
-    </div>
-    <div class="related">
-        <h4><?= __('Related Souscriptionteles') ?></h4>
-        <?php if (!empty($client->souscriptionteles)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Offretele Id') ?></th>
-                <th scope="col"><?= __('Client Id') ?></th>
-                <th scope="col"><?= __('Created') ?></th>
-                <th scope="col"><?= __('Modified') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-            <?php foreach ($client->souscriptionteles as $souscriptionteles): ?>
-            <tr>
-                <td><?= h($souscriptionteles->id) ?></td>
-                <td><?= h($souscriptionteles->offretele_id) ?></td>
-                <td><?= h($souscriptionteles->client_id) ?></td>
-                <td><?= h($souscriptionteles->created) ?></td>
-                <td><?= h($souscriptionteles->modified) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Souscriptionteles', 'action' => 'view', $souscriptionteles->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Souscriptionteles', 'action' => 'edit', $souscriptionteles->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Souscriptionteles', 'action' => 'delete', $souscriptionteles->id], ['confirm' => __('Are you sure you want to delete # {0}?', $souscriptionteles->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

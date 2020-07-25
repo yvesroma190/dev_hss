@@ -109,7 +109,7 @@
     <div class="row">
         <div class="span4">
         <div class="logo">
-            <a href="<?= $this->Url->build(['controller' => 'Offresmarts', 'action' => 'index']); ?>"><?= $this->Html->image('logo.jpg', ['class' => 'logo', 'width' => '200', 'height' => '21']); ?></a>
+            <a href="<?= $this->Url->build(['controller' => 'Offres', 'action' => 'index']); ?>"><?= $this->Html->image('logo.jpg', ['class' => 'logo', 'width' => '200', 'height' => '21']); ?></a>
             <!--<h1>Flat and trendy bootstrap template</h1>-->
         </div>
         </div>
@@ -119,19 +119,19 @@
             <nav>
                 <ul class="nav topnav">
                 <li class="active">
-                    <a href="<?= $this->Url->build(['controller' => 'Offresmarts', 'action' => 'index']); ?>">Accueil</a>
+                    <a href="<?= $this->Url->build(['controller' => 'Offres', 'action' => 'index']); ?>">Accueil</a>
                 </li>
                 <li>
-                    <a href="<?= $this->Url->build(['controller' => 'Offresmarts', 'action' => 'prestation']); ?>">Nos prestations</a>
+                    <a href="<?= $this->Url->build(['controller' => 'Offres', 'action' => 'prestation']); ?>">Nos prestations</a>
                 </li>
                 <li>
-                    <a href="<?= $this->Url->build(['controller' => 'Offresmarts', 'action' => 'index']); ?>">Nos Offres</a>
+                    <a href="<?= $this->Url->build(['controller' => 'Offres', 'action' => 'index']); ?>">Nos Offres</a>
                 </li>
                 <li>
                     <a href="<?= $this->Url->build(['controller' => 'Articles', 'action' => 'index']); ?>">Blog</a>
                 </li>
                 <li>
-                    <a href="<?= $this->Url->build(['controller' => 'Offresmarts', 'action' => 'contact']); ?>">Contacts </a>
+                    <a href="<?= $this->Url->build(['controller' => 'Offres', 'action' => 'contact']); ?>">Contacts </a>
                 </li>
                 </ul>
             </nav>

@@ -5,11 +5,11 @@
         <div class="widget">
             <h5 class="widgetheading">Pages</h5>
             <ul class="link-list">
-            <li><a href="<?= $this->Url->build(['controller' => 'Offresmarts', 'action' => 'index']); ?>">Accueil</a></li>
-            <li><a href="<?= $this->Url->build(['controller' => 'Offresmarts', 'action' => 'prestation']); ?>">Nos prestations</a></li>
-            <li><a href="<?= $this->Url->build(['controller' => 'Offresmarts', 'action' => 'index']); ?>">Nos offres</a></li>
+            <li><a href="<?= $this->Url->build(['controller' => 'Offres', 'action' => 'index']); ?>">Accueil</a></li>
+            <li><a href="<?= $this->Url->build(['controller' => 'Offres', 'action' => 'prestation']); ?>">Nos prestations</a></li>
+            <li><a href="<?= $this->Url->build(['controller' => 'Offres', 'action' => 'index']); ?>">Nos offres</a></li>
             <li><a href="<?= $this->Url->build(['controller' => 'Articles', 'action' => 'index']); ?>">Notre blog</a></li>
-            <li><a href="<?= $this->Url->build(['controller' => 'Offresmarts', 'action' => 'contact']); ?>">Nos contacts</a></li>
+            <li><a href="<?= $this->Url->build(['controller' => 'Offres', 'action' => 'contact']); ?>">Nos contacts</a></li>
             </ul>
         </div>
         </div>
@@ -17,9 +17,9 @@
         <div class="widget">
             <h5 class="widgetheading">Clauses</h5>
             <ul class="link-list">
-            <li><a href="<?= $this->Url->build(['controller' => 'Offresmarts', 'action' => 'reference']); ?>">Références</a></li>
-            <li><a href="<?= $this->Url->build(['controller' => 'Offresmarts', 'action' => 'termecondition']); ?>">Termes et conditions</a></li>
-            <li><a href="<?= $this->Url->build(['controller' => 'Offresmarts', 'action' => 'contrat']); ?>">Contrats de sousription</a></li>
+            <li><a href="<?= $this->Url->build(['controller' => 'Offres', 'action' => 'reference']); ?>">Références</a></li>
+            <li><a href="#">Termes et conditions</a></li>
+            <li><a href="<?= $this->Url->build(['controller' => 'Offres', 'action' => 'contrat']); ?>">Contrats de sousription</a></li>
             </ul>
         </div>
         </div>
@@ -46,10 +46,11 @@
             <div class="copyright">
             <p>
                 <span>&copy; High Star Security - Tout droit réservé.</span>
-            </p>
-            <div class="credits">
                 Développé par <a href="#">KENLO Business And Technologies</a>
-            </div>
+            </p>
+            <!--<div class="credits">
+                Développé par <a href="#">KENLO Business And Technologies</a>
+            </div>-->
             </div>
         </div>
         <!--<div class="span6">

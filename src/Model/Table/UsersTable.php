@@ -68,17 +68,23 @@ class UsersTable extends Table
             ->allowEmptyString('name');
 
         $validator
+            ->scalar('username')
+            ->maxLength('username', 45)
+            ->allowEmptyString('username');
+
+        $validator
             ->email('email')
-            //->allowEmptyString('email');
-            ->requirePresence('email', 'create')
-            ->notEmptyString('email');
+            ->allowEmptyString('email');
 
         $validator
             ->scalar('password')
             ->maxLength('password', 45)
-            //->allowEmptyString('password');
-            ->requirePresence('password', 'create')
-            ->notEmptyString('password');
+            ->allowEmptyString('password');
+
+        $validator
+            ->scalar('cel')
+            ->maxLength('cel', 45)
+            ->allowEmptyString('cel');
 
         $validator
             ->scalar('tel')
@@ -97,6 +103,7 @@ class UsersTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
+        $rules->add($rules->isUnique(['username']));
         $rules->add($rules->isUnique(['email']));
         $rules->add($rules->isUnique(['id']));
         $rules->add($rules->existsIn(['usergroup_id'], 'Usergroups'));

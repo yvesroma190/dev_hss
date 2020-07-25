@@ -48,8 +48,8 @@ class ArticlesFixture extends TestFixture
                 'title' => 'Lorem ipsum dolor sit amet',
                 'body' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
                 'published' => 'Lorem ipsum dolor sit amet',
-                'created' => '2020-06-30 08:59:52',
-                'modified' => '2020-06-30 08:59:52',
+                'created' => '2020-07-24 11:17:52',
+                'modified' => '2020-07-24 11:17:52',
             ],
         ];
         parent::init();

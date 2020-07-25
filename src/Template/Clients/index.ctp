@@ -10,10 +10,6 @@
         <li><?= $this->Html->link(__('New Client'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Commentaires'), ['controller' => 'Commentaires', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Commentaire'), ['controller' => 'Commentaires', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Souscriptionsmarts'), ['controller' => 'Souscriptionsmarts', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Souscriptionsmart'), ['controller' => 'Souscriptionsmarts', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Souscriptionteles'), ['controller' => 'Souscriptionteles', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Souscriptiontele'), ['controller' => 'Souscriptionteles', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="clients index large-9 medium-8 columns content">
@@ -23,11 +19,10 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('pseudo') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('email') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('password') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('cel') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('tel') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('email') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('web') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('bp') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('adresse') ?></th>
@@ -41,11 +36,10 @@
             <tr>
                 <td><?= $this->Number->format($client->id) ?></td>
                 <td><?= h($client->name) ?></td>
-                <td><?= h($client->pseudo) ?></td>
+                <td><?= h($client->email) ?></td>
                 <td><?= h($client->password) ?></td>
                 <td><?= h($client->cel) ?></td>
                 <td><?= h($client->tel) ?></td>
-                <td><?= h($client->email) ?></td>
                 <td><?= h($client->web) ?></td>
                 <td><?= h($client->bp) ?></td>
                 <td><?= h($client->adresse) ?></td>

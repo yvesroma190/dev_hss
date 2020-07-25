@@ -10,8 +10,8 @@ use Cake\Validation\Validator;
  * Clients Model
  *
  * @property \App\Model\Table\CommentairesTable&\Cake\ORM\Association\HasMany $Commentaires
- * @property \App\Model\Table\SouscriptionsmartsTable&\Cake\ORM\Association\HasMany $Souscriptionsmarts
- * @property \App\Model\Table\SouscriptiontelesTable&\Cake\ORM\Association\HasMany $Souscriptionteles
+ * @property &\Cake\ORM\Association\HasMany $Paiements
+ * @property &\Cake\ORM\Association\HasMany $Souscriptions
  *
  * @method \App\Model\Entity\Client get($primaryKey, $options = [])
  * @method \App\Model\Entity\Client newEntity($data = null, array $options = [])
@@ -26,8 +26,6 @@ use Cake\Validation\Validator;
  */
 class ClientsTable extends Table
 {
-
-    public $useTable = 'Utilisateur';
     /**
      * Initialize method
      *
@@ -47,10 +45,10 @@ class ClientsTable extends Table
         $this->hasMany('Commentaires', [
             'foreignKey' => 'client_id',
         ]);
-        $this->hasMany('Souscriptionsmarts', [
+        $this->hasMany('Paiements', [
             'foreignKey' => 'client_id',
         ]);
-        $this->hasMany('Souscriptionteles', [
+        $this->hasMany('Souscriptions', [
             'foreignKey' => 'client_id',
         ]);
     }
@@ -73,9 +71,8 @@ class ClientsTable extends Table
             ->allowEmptyString('name');
 
         $validator
-            ->scalar('pseudo')
-            ->maxLength('pseudo', 45)
-            ->allowEmptyString('pseudo');
+            ->email('email')
+            ->allowEmptyString('email');
 
         $validator
             ->scalar('password')
@@ -91,10 +88,6 @@ class ClientsTable extends Table
             ->scalar('tel')
             ->maxLength('tel', 45)
             ->allowEmptyString('tel');
-
-        $validator
-            ->email('email')
-            ->allowEmptyString('email');
 
         $validator
             ->scalar('web')

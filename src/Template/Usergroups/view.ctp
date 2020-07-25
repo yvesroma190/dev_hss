@@ -42,10 +42,11 @@
             <tr>
                 <th scope="col"><?= __('Id') ?></th>
                 <th scope="col"><?= __('Usergroup Id') ?></th>
-                <th scope="col"><?= __('Username') ?></th>
-                <th scope="col"><?= __('Password') ?></th>
                 <th scope="col"><?= __('Name') ?></th>
+                <th scope="col"><?= __('Username') ?></th>
                 <th scope="col"><?= __('Email') ?></th>
+                <th scope="col"><?= __('Password') ?></th>
+                <th scope="col"><?= __('Cel') ?></th>
                 <th scope="col"><?= __('Tel') ?></th>
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
@@ -55,10 +56,11 @@
             <tr>
                 <td><?= h($users->id) ?></td>
                 <td><?= h($users->usergroup_id) ?></td>
-                <td><?= h($users->username) ?></td>
-                <td><?= h($users->password) ?></td>
                 <td><?= h($users->name) ?></td>
+                <td><?= h($users->username) ?></td>
                 <td><?= h($users->email) ?></td>
+                <td><?= h($users->password) ?></td>
+                <td><?= h($users->cel) ?></td>
                 <td><?= h($users->tel) ?></td>
                 <td><?= h($users->created) ?></td>
                 <td><?= h($users->modified) ?></td>

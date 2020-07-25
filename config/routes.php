@@ -64,7 +64,7 @@ Router::scope('/', function (RouteBuilder $routes) {
      * to use (in this case, src/Template/Pages/home.ctp)...
      */
     //$routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
-    $routes->connect('/', ['controller' => 'Offresmarts', 'action' => 'index']);
+    $routes->connect('/', ['controller' => 'Offres', 'action' => 'index']);
 
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
@@ -94,7 +94,7 @@ Router::scope('/', function (RouteBuilder $routes) {
 });
 
 Router::prefix('admin', function (RouteBuilder $routes) {
-    $routes->connect('/', ['controller' => 'Users', 'action' => 'login']);
+    $routes->connect('/', ['controller' => 'Users', 'action' => 'index']);
     $routes->fallbacks(DashedRoute::class);
 });
 

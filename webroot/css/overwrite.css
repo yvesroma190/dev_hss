@@ -1,9 +1,9 @@
 /* === Typography === */
 h1, h2, h3, h4, h5, h6{
 	font-family: 'Open Sans', sans-serif;
-	color:#353535;
+	color:#ffffff;
 	font-weight:300;
-	line-height:1.5em;
+	line-height:1.0em;
 	margin-top:0;
 }
 
@@ -19,7 +19,7 @@ h2{
 
 h3{
 	font-size:34px;
-	margin-bottom:22px;
+	margin-bottom:20px;
 }
 
 h4{
@@ -33,12 +33,13 @@ h5{
 }
 
 h6{
-	font-size:22px;
-	margin-bottom:20px;
+	font-size:20px;
+	/*margin-bottom:20px;*/
 }
 
 h1 strong,h2 strong,h3 strong,h4 strong,h5 strong,h6 strong {
-	font-weight:700;
+  font-weight:700;
+  color: #000000;
 }
 
 .widget h4,.widget h5 {

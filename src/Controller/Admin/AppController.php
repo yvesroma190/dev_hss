@@ -3,7 +3,7 @@
 namespace App\Controller\Admin;
 
 use Cake\Controller\Controller;
-//use Cake\Event\Event;
+use Cake\Event\Event;
 use Cake\Event\EventInterface;
 
 //use Cake\Core\InstanceConfigTrait;
@@ -22,8 +22,8 @@ class AppController extends Controller
         $this->loadComponent('Flash');
 
         // Authentification utilisateurs
-        //$this->loadComponent('Auth');
-        /*$this->loadComponent('Auth', [
+        $this->loadComponent('Auth');
+        $this->loadComponent('Auth', [
             'loginAction' => [
                 'controller' => 'Users',
                 'action' => 'login',
@@ -32,7 +32,7 @@ class AppController extends Controller
             'authenticate' => [
                 'Form' => [
                     'fields' => [
-                        'username' => 'email', 
+                        'username' => 'username',
                         'password' => 'password'
                     ],
                     'userModel' => 'Users'
@@ -47,8 +47,8 @@ class AppController extends Controller
                 'action' => 'login'
             ],
             'storage' => 'Session'
-        ]);*/
-        $this->loadComponent('Auth', [
+        ]);
+        /*$this->loadComponent('Auth', [
             'authenticate' => [
                 'Form' => [
                     'fields' => [
@@ -65,8 +65,8 @@ class AppController extends Controller
                 'unauthorizedRedirect' => $this->referer()
             ]);
 
-        $this->Auth->allow(['login', 'logout']);
-        
+        $this->Auth->allow(['login', 'logout']);*/
+
 
 
         /*
@@ -82,6 +82,6 @@ class AppController extends Controller
     {
         $this->viewBuilder()->setLayout('admin');
         //$this->Auth->allow(['login', 'index', 'add']);
-        //$this->Auth->allow(['login', 'logout']);
+        $this->Auth->allow(['login', 'logout']);
     }
 }

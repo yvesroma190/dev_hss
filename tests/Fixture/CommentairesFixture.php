@@ -44,8 +44,8 @@ class CommentairesFixture extends TestFixture
                 'comment' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
                 'article_id' => 'Lorem ipsum dolor sit amet',
                 'client_id' => 'Lorem ipsum dolor sit amet',
-                'created' => '2020-06-30 08:59:53',
-                'modified' => '2020-06-30 08:59:53',
+                'created' => '2020-07-24 11:17:55',
+                'modified' => '2020-07-24 11:17:55',
             ],
         ];
         parent::init();

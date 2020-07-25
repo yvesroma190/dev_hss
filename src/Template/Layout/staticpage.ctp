@@ -16,8 +16,16 @@
   <link href="../css/jcarousel.css" rel="stylesheet" />
   <link href="../css/flexslider.css" rel="stylesheet" />
   <link href="../css/style.css" rel="stylesheet" />
+
+  <?= $this->Html->css('bootstrap') ?>
+  <?= $this->Html->css('bootstrap-responsive') ?>
+  <?= $this->Html->css('jquery.fancybox') ?>
+  <?= $this->Html->css('jcarousel') ?>
+  <?= $this->Html->css('flexslider.css') ?>
+  <?= $this->Html->css('style.css') ?>
   <!-- Theme skin -->
   <link href="../skins/default.css" rel="stylesheet" />
+  <?= $this->Html->css('default.css') ?>
   <!-- Fav and touch icons -->
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../ico/apple-touch-icon-144-precomposed.png" />
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../ico/apple-touch-icon-114-precomposed.png" />
@@ -140,7 +148,7 @@
     <div class="row">
         <div class="span4">
         <div class="logo">
-            <a href="<?= $this->Url->build(['controller' => 'Offresmarts', 'action' => 'index']); ?>"><img src="../img/logo.jpg" alt="" class="logo" width="200" height="21" /></a>
+            <a href="<?= $this->Url->build(['controller' => 'Offres', 'action' => 'index']); ?>"><img src="../img/logo.jpg" alt="" class="logo" width="200" height="21" /></a>
             <!--<h1>Flat and trendy bootstrap template</h1>-->
         </div>
         </div>
@@ -150,19 +158,19 @@
             <nav>
                 <ul class="nav topnav">
                 <li class="active">
-                    <a href="<?= $this->Url->build(['controller' => 'Offresmarts', 'action' => 'index']); ?>">Accueil</a>
+                    <a href="<?= $this->Url->build(['controller' => 'Offres', 'action' => 'index']); ?>">Accueil</a>
                 </li>
                 <li>
-                    <a href="<?= $this->Url->build(['controller' => 'Offresmarts', 'action' => 'prestation']); ?>">Nos prestations</a>
+                    <a href="<?= $this->Url->build(['controller' => 'Offres', 'action' => 'prestation']); ?>">Nos prestations</a>
                 </li>
                 <li>
-                    <a href="<?= $this->Url->build(['controller' => 'Offresmarts', 'action' => 'index']); ?>">Nos Offres</a>
+                    <a href="<?= $this->Url->build(['controller' => 'Offres', 'action' => 'index']); ?>">Nos Offres</a>
                 </li>
                 <li>
                     <a href="<?= $this->Url->build(['controller' => 'Articles', 'action' => 'index']); ?>">Blog</a>
                 </li>
                 <li>
-                    <a href="<?= $this->Url->build(['controller' => 'Offresmarts', 'action' => 'contact']); ?>">Contacts </a>
+                    <a href="<?= $this->Url->build(['controller' => 'Offres', 'action' => 'contact']); ?>">Contacts </a>
                 </li>
                 </ul>
             </nav>
@@ -196,8 +204,26 @@
   <script src="../js/jquery.slitslider.js"></script>
   <script src="../js/animate.js"></script>
 
+  <?= $this->Html->script('jquery') ?>
+  <?= $this->Html->script('jquery.easing.1.3') ?>
+  <?= $this->Html->script('bootstrap') ?>
+  <?= $this->Html->script('jquery.jcarousel.min.js') ?>
+  <?= $this->Html->script('jquery.fancybox.pack') ?>
+  <?= $this->Html->script('jquery.fancybox-media.js') ?>
+  <?= $this->Html->script('prettify.js') ?>
+  <?= $this->Html->script('jquery.quicksand.js') ?>
+  <?= $this->Html->script('setting.js') ?>
+  <?= $this->Html->script('jquery.flexslider') ?>
+  <?= $this->Html->script('jquery.nivo.slider') ?>
+  <?= $this->Html->script('modernizr.custom') ?>
+  <?= $this->Html->script('jquery.ba-cond.min') ?>
+  <?= $this->Html->script('jquery.slitslider') ?>
+  <?= $this->Html->script('animate') ?>
+
+
   <!-- Template Custom JavaScript File -->
   <script src="../js/custom.js"></script>
+  <?= $this->Html->script('custom') ?>
 
 </body>
 </html>
