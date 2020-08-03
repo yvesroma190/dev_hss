@@ -1,10 +1,11 @@
 <?php
+
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Souscription[]|\Cake\Collection\CollectionInterface $souscriptions
  */
 ?>
-<!--<nav class="large-3 medium-4 columns" id="actions-sidebar">
+<!-- <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Souscription'), ['action' => 'add']) ?></li>
@@ -17,8 +18,8 @@
         <li><?= $this->Html->link(__('List Paiements'), ['controller' => 'Paiements', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Paiement'), ['controller' => 'Paiements', 'action' => 'add']) ?></li>
     </ul>
-</nav>
-<div class="souscriptions index large-9 medium-8 columns content">
+</nav> -->
+<!-- <div class="souscriptions index large-9 medium-8 columns content">
     <h3><?= __('Souscriptions') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
@@ -36,7 +37,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($souscriptions as $souscription): ?>
+            <?php foreach ($souscriptions as $souscription) : ?>
             <tr>
                 <td><?= $this->Number->format($souscription->id) ?></td>
                 <td><?= $souscription->has('client') ? $this->Html->link($souscription->client->name, ['controller' => 'Clients', 'action' => 'view', $souscription->client->id]) : '' ?></td>
@@ -66,7 +67,7 @@
         </ul>
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
-</div>-->
+</div> -->
 
 
 <div class="container-fluid">
@@ -184,30 +185,30 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th><?= $this->Paginator->sort('id') ?></th>
-                            <th><?= $this->Paginator->sort('client_id') ?></th>
-                            <th><?= $this->Paginator->sort('offre_id') ?></th>
-                            <th><?= $this->Paginator->sort('periode_id') ?></th>
-                            <th><?= $this->Paginator->sort('montant total') ?></th>
-                            <th><?= $this->Paginator->sort('date debut') ?></th>
-                            <th><?= $this->Paginator->sort('date fin') ?></th>
-                            <th><?= $this->Paginator->sort('created') ?></th>
-                            <th><?= $this->Paginator->sort('modified') ?></th>
-                            <th class="actions"><?= __('Actions') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('id') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('client_id') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('offre_id') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('periode_id') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('montanttotal') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('datedebut') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('datefin') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('created') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
+                            <th scope="col" class="actions"><?= __('Actions') ?></th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                            <th><?= $this->Paginator->sort('id') ?></th>
-                            <th><?= $this->Paginator->sort('client_id') ?></th>
-                            <th><?= $this->Paginator->sort('offre_id') ?></th>
-                            <th><?= $this->Paginator->sort('periode_id') ?></th>
-                            <th><?= $this->Paginator->sort('montant total') ?></th>
-                            <th><?= $this->Paginator->sort('date debut') ?></th>
-                            <th><?= $this->Paginator->sort('date fin') ?></th>
-                            <th><?= $this->Paginator->sort('created') ?></th>
-                            <th><?= $this->Paginator->sort('modified') ?></th>
-                            <th class="actions"><?= __('Actions') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('id') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('client_id') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('offre_id') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('periode_id') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('montanttotal') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('datedebut') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('datefin') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('created') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
+                            <th scope="col" class="actions"><?= __('Actions') ?></th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -223,9 +224,9 @@
                                 <td><?= h($souscription->created) ?></td>
                                 <td><?= h($souscription->modified) ?></td>
                                 <td class="actions">
-                                    <?= $this->Html->link(__('Détails'), ['action' => 'view', $souscription->id]) ?>
-                                    <!--<?= $this->Html->link(__('Modifier'), ['action' => 'edit', $souscription->id]) ?>-->
-                                    <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $souscription->id], ['confirm' => __('Are you sure you want to delete # {0}?', $souscription->id)]) ?>
+                                    <?= $this->Html->link(__('View'), ['action' => 'view', $souscription->id]) ?>
+                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $souscription->id]) ?>
+                                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $souscription->id], ['confirm' => __('Are you sure you want to delete # {0}?', $souscription->id)]) ?>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

@@ -75,12 +75,12 @@ class SouscriptionsTable extends Table
             ->allowEmptyString('montanttotal');
 
         $validator
-            ->date('datedebut')
-            ->allowEmptyDate('datedebut');
+            ->dateTime('datedebut')
+            ->allowEmptyDateTime('datedebut');
 
         $validator
-            ->date('datefin')
-            ->allowEmptyDate('datefin');
+            ->dateTime('datefin')
+            ->allowEmptyDateTime('datefin');
 
         return $validator;
     }

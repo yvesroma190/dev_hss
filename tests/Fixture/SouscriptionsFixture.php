@@ -20,8 +20,8 @@ class SouscriptionsFixture extends TestFixture
         'offre_id' => ['type' => 'string', 'length' => 45, 'null' => true, 'default' => null, 'collate' => 'utf8mb4_general_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'periode_id' => ['type' => 'string', 'length' => 45, 'null' => true, 'default' => null, 'collate' => 'utf8mb4_general_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'montanttotal' => ['type' => 'float', 'length' => null, 'precision' => null, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => ''],
-        'datedebut' => ['type' => 'date', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
-        'datefin' => ['type' => 'date', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
+        'datedebut' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
+        'datefin' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         'modified' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         '_constraints' => [
@@ -48,10 +48,10 @@ class SouscriptionsFixture extends TestFixture
                 'offre_id' => 'Lorem ipsum dolor sit amet',
                 'periode_id' => 'Lorem ipsum dolor sit amet',
                 'montanttotal' => 1,
-                'datedebut' => '2020-07-24',
-                'datefin' => '2020-07-24',
-                'created' => '2020-07-24 11:17:59',
-                'modified' => '2020-07-24 11:17:59',
+                'datedebut' => '2020-08-03 00:02:28',
+                'datefin' => '2020-08-03 00:02:28',
+                'created' => '2020-08-03 00:02:28',
+                'modified' => '2020-08-03 00:02:28',
             ],
         ];
         parent::init();

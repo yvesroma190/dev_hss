@@ -11,8 +11,8 @@ use Cake\ORM\Entity;
  * @property string|null $offre_id
  * @property string|null $periode_id
  * @property float|null $montanttotal
- * @property \Cake\I18n\FrozenDate|null $datedebut
- * @property \Cake\I18n\FrozenDate|null $datefin
+ * @property \Cake\I18n\FrozenTime|null $datedebut
+ * @property \Cake\I18n\FrozenTime|null $datefin
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
  *

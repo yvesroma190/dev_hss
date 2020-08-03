@@ -3,10 +3,10 @@
 namespace App\Controller\Admin;
 
 use Cake\Controller\Controller;
-use Cake\Event\Event;
+// use Cake\Event\Event;
 use Cake\Event\EventInterface;
 
-//use Cake\Core\InstanceConfigTrait;
+
 
 
 class AppController extends Controller
@@ -19,53 +19,122 @@ class AppController extends Controller
         $this->loadComponent('RequestHandler', [
             'enableBeforeRedirect' => false,
         ]);
-        $this->loadComponent('Flash');
+        // $this->loadComponent('Flash');
 
-        // Authentification utilisateurs
-        $this->loadComponent('Auth');
-        $this->loadComponent('Auth', [
-            'loginAction' => [
-                'controller' => 'Users',
-                'action' => 'login',
-            ],
-            'authError' => 'Vous croyez vraiment que vous pouvez faire cela?',
-            'authenticate' => [
-                'Form' => [
-                    'fields' => [
-                        'username' => 'username',
-                        'password' => 'password'
-                    ],
-                    'userModel' => 'Users'
-                ],
-            ],
-            'loginRedirect' => [
-                'controller' => 'Users',
-                'action' => 'index'
-            ],
-            'logoutRedirect' => [
-                'controller' => 'Users',
-                'action' => 'login'
-            ],
-            'storage' => 'Session'
-        ]);
-        /*$this->loadComponent('Auth', [
-            'authenticate' => [
-                'Form' => [
-                    'fields' => [
-                        'username' => 'email',
-                        'password' => 'password'
-                        ]
-                    ]
-                ],
-                'loginAction' => [
-                    'controller' => 'Users',
-                    'action' => 'login'
-                ],
-                // Si pas autorisé, on renvoit sur la page précédente
-                'unauthorizedRedirect' => $this->referer()
-            ]);
+        // // Authentification utilisateurs
+        // $this->loadComponent('Auth', [
+        //     'loginAction' => [
+        //         'controller' => 'Users',
+        //         'action' => 'login',
+        //     ],
+        //     'authError' => 'Vous croyez vraiment que vous pouvez faire cela?',
+        //     'authenticate' => [
+        //         'Form' => [
+        //             'fields' => ['username' => 'email', 'password' => 'password']
+        //         ]
+        //     ],
+        //     'storage' => 'Session'
+        // ]);
 
-        $this->Auth->allow(['login', 'logout']);*/
+
+
+        
+        // $this->loadComponent('Auth', [
+        //     'loginAction' => [
+        //         'controller' => 'Users',
+        //         'action' => 'login',
+        //     ],
+        //     'authError' => 'Acces non autorisé.',
+        //     'authenticate' => [
+        //         'Form' => [
+        //             'fields' => ['username' => 'email', 'password' => 'password']
+        //         ]
+        //     ],
+        //     'storage' => 'Session'
+        // ]);
+
+        // $this->Auth->setConfig('authenticate', ['Form']);
+
+        // $this->Auth->setConfig('authenticate', [
+        //     'Form' => ['userModel' => 'Users'],
+        // ]);
+
+
+        //$this->loadComponent('Auth');
+        // if($this->request->prefix == 'admin'){
+        //     $this->loadComponent('Auth', [
+        //         'loginAction' => [
+        //             'controller' => 'Users',
+        //             'action' => 'login',
+        //             'prefix' => 'admin'
+        //         ],
+        //         'authError' => 'Vous croyez vraiment que vous pouvez faire cela?',
+        //         'authenticate' => [
+        //             'Form' => [
+        //                 'fields' => [
+        //                     'username' => 'email',
+        //                     'password' => 'password'
+        //                 ],
+        //                 'userModel' => 'Users'
+        //             ],
+        //         ],
+        //         'loginRedirect' => [
+        //             'controller' => 'Users',
+        //             'action' => 'index'
+        //         ],
+        //         'logoutRedirect' => [
+        //             'controller' => 'Users',
+        //             'action' => 'login'
+        //         ],
+        //         'storage' => 'Session'
+        //     ]);
+
+        //     //$this->Auth->config('authenticate', ['Form']);
+
+        //     //$this->Auth->config('authenticate', [
+        //         //'Form' => ['userModel' => 'Users'],
+        //     //]);
+
+        //     $this->Auth->allow(['login', 'logout']);
+        // }else{
+        //     return
+        //     $this->redirect(['controller' => 'Uers', 'action' => 'login']);
+        // }
+
+        // $this->loadComponent('Auth', [
+        //         'loginAction' => [
+        //             'controller' => 'Users',
+        //             'action' => 'login',
+        //             'prefix' => 'admin'
+        //         ],
+        //         'authError' => 'Vous croyez vraiment que vous pouvez faire cela?',
+        //         'authenticate' => [
+        //             'Form' => [
+        //                 'fields' => [
+        //                     'username' => 'email',
+        //                     'password' => 'password'
+        //                 ],
+        //                 'userModel' => 'Users'
+        //             ],
+        //         ],
+        //         'loginRedirect' => [
+        //             'controller' => 'Users',
+        //             'action' => 'index'
+        //         ],
+        //         'logoutRedirect' => [
+        //             'controller' => 'Users',
+        //             'action' => 'login'
+        //         ],
+        //         'storage' => 'Session'
+        //     ]);
+
+        //     $this->Auth->getConfig('authenticate', ['Form']);
+
+        //     $this->Auth->getConfig('authenticate', [
+        //         'Form' => ['userModel' => 'Users'],
+        //     ]);
+
+        // $this->Auth->allow(['login', 'logout']);
 
 
 
@@ -82,6 +151,6 @@ class AppController extends Controller
     {
         $this->viewBuilder()->setLayout('admin');
         //$this->Auth->allow(['login', 'index', 'add']);
-        $this->Auth->allow(['login', 'logout']);
+        // $this->Auth->allow(['login', 'logout']);
     }
 }

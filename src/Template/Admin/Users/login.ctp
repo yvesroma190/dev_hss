@@ -31,37 +31,30 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="p-5">
+
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Bienvenue - Connexion </h1>
+                                <p><?= $this->Flash->render() ?></p>
                             </div>
-                            <div class="users form">
+                            <div class="users">
+
                                 <?= $this->Flash->render() ?>
-                                <?= $this->Form->create() ?>
+                                <?= $this->Form->create('', ['class' => 'user']) ?>
                                 <div class="form-group">
-                                    <?= $this->Form->control('username', ['type'=>'text', 'class' => 'form-control form-control-user', 'label' => '', 'placeholder' => 'Entrer votre email...']) ?>
+                                    <?= $this->Form->control('email', ['type' => 'email', 'class' => 'form-control form-control-user', 'required' => FALSE, 'label' => '', 'placeholder' => 'Entrer votre email...']) ?>
                                 </div>
 
                                 <div>
-                                    <?= $this->Form->control('password', ['type'=>'password', 'class' => 'form-control form-control-user', 'label' => '', 'placeholder' => 'Entrer votre mot de passe...']) ?>
+                                    <?= $this->Form->control('password', ['type' => 'password', 'class' => 'form-control form-control-user', 'required' => FALSE, 'label' => '', 'placeholder' => 'Entrer votre mot de passe...']) ?>
                                 </div>
 
                                 <?= $this->Form->button(__('Se connecter'), ['type' => 'submit', 'class' => 'btn btn-primary btn-user btn-block']); ?>
                                 <?= $this->Form->end() ?>
                             </div>
-
-
-                            <!--<?= $this->Form->create('', ['class' => 'user']) ?>
-                            <div class="form-group">
-                                <?= $this->Form->control('username', ['class' => 'form-control form-control-user', 'label' => 'Nom d\'utilisateur :', 'placeholder' => 'Entrer votre nom d\'utilisateur...']); ?>
-                            </div>
-                            <div class="form-group">
-                                <?= $this->Form->control('password', ['class' => 'form-control form-control-user', 'label' => 'Mot de passe :', 'placeholder' => 'Entrer votre mot de passe...']); ?>
-                            </div>
-                            <?= $this->Form->button(__('Se connecter'), ['type' => 'submit', 'class' => 'btn btn-primary btn-user btn-block']) ?>
-                            <?= $this->Form->end() ?>-->
                             <hr>
                             <div class="text-center">
-                                <a class="small" href="forgot-password.html">Mot de passe oublié?</a>
+                                <!-- <a class="small" href="forgot-password.html">Mot de passe oublié?</a> -->
+                                <span>Contactez<strong> HIGH STAR SECURITY </strong>en cas d'oubli de votre mot de passe.</span>
                             </div>
                         </div>
                     </div>

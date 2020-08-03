@@ -17,6 +17,7 @@ namespace App\Controller;
 use Cake\Controller\Controller;
 use Cake\Event\Event;
 
+
 /**
  * Application Controller
  *
@@ -45,6 +46,76 @@ class AppController extends Controller
             'enableBeforeRedirect' => false,
         ]);
         $this->loadComponent('Flash');
+        $this->loadComponent('Flash');
+
+        // Authentification utilisateurs
+        if(!empty($this->request->getParam(['prefix']))){
+            if($this->request->getParam(['prefix']) == 'admin'){
+                $this->loadComponent('Auth', [
+                    'loginAction' => [
+                        'controller' => 'Users',
+                        'action' => 'login',
+                    ],
+					'loginRedirect' => [
+						'controller' => 'Souscriptions',
+						'action' => 'index'
+					],
+					'logoutRedirect' => [
+						'controller' => 'Users',
+						'action' => 'login'
+					],
+                    'authError' => 'Accès interdit.',
+                    'authenticate' => [
+                        'Form' => [
+                            'fields' => ['username' => 'email', 'password' => 'password']
+                        ]
+                    ],
+                    'storage' => [
+                        'className' => 'Session',
+                        'key' => 'Auth.Admin',
+                    ]
+                ]);
+                // $this->Auth->getConfig('authenticate', ['Form']);
+
+                // $this->Auth->getConfig('authenticate', [
+                //     'Form' => ['userModel' => 'Users'],
+                // ]);
+                $this->viewBuilder()->setLayout('admin');
+                // $this->Auth->allow(['login', 'index', 'add']);
+            }
+        }else{
+            //Authentification pour le frontend
+            $this->loadComponent('Auth', [
+                'loginAction' => [
+                    'controller' => 'Clients',
+                    'action' => 'login',
+                ],
+                'loginRedirect' => [
+                    'controller' => 'Souscriptions',
+                    'action' => 'index'
+                ],
+                'logoutRedirect' => [
+                    'controller' => 'Offres',
+                    'action' => 'index'
+                ],
+                'authError' => 'Accès interdit.',
+                'authenticate' => [
+                    'Form' => [
+                        'fields' => ['username' => 'email', 'password' => 'password']
+                    ]
+                ],
+                'storage' => 'Session'
+            ]);
+            // $this->Auth->getConfig('authenticate', ['Form']);
+
+            $this->Auth->getConfig('authenticate', [
+                'Form' => ['userModel' => 'Clients'],
+            ]);
+            $this->Auth->allow(['login', 'index', 'add','subscribe', 'payment']);
+        }
+
+        
+
 
         /*
          * Enable the following component for recommended CakePHP security settings.
@@ -52,35 +123,40 @@ class AppController extends Controller
          */
         //$this->loadComponent('Security');
 
-        
-
-
-        $this->loadComponent('Auth', [
+        /*$this->loadComponent('Auth', [
+            'loginAction' => [
+                'controller' => 'Users',
+                'action' => 'login',
+            ],
+            'authError' => 'Vous croyez vraiment que vous pouvez faire cela?',
             'authenticate' => [
                 'Form' => [
                     'fields' => [
                         'username' => 'email',
                         'password' => 'password'
-                        ]
-                    ]
+                    ],
+                    'userModel' => 'Users'
                 ],
-                'loginAction' => [
-                    'controller' => 'Clients',
-                    'action' => 'login'
-                ],
-                // Si pas autorisé, on renvoit sur la page précédente
-                'unauthorizedRedirect' => $this->referer()
-            ]);
-
-        $this->Auth->config('authenticate', [
-            'Basic' => ['userModel' => 'Clients'],
-            'Form' => ['userModel' => 'Clients']
+            ],
+            'loginRedirect' => [
+                'controller' => 'Users',
+                'action' => 'index'
+            ],
+            'logoutRedirect' => [
+                'controller' => 'Users',
+                'action' => 'login'
+            ],
+            'storage' => 'Session'
         ]);
 
+        $this->Auth->config('authenticate', ['Form']);
 
-            // Permet à l'action "display" de notre PagesController de continuer
-            // à fonctionner. Autorise également les actions "read-only".
-            $this->Auth->allow(['login', 'index', 'prestation', 'contact', 'reference', 'termecondition', 'contrat', 'add', 'souscrire', 'etape2']);
-        }
+        $this->Auth->config('authenticate', [
+            'Form'=>['userModel'=>'Users'],
+            ]);*/
+
+
+    }
+
+	
 }
-

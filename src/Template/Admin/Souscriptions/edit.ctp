@@ -4,7 +4,7 @@
  * @var \App\Model\Entity\Souscription $souscription
  */
 ?>
-<!--<nav class="large-3 medium-4 columns" id="actions-sidebar">
+<nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Form->postLink(
@@ -39,4 +39,4 @@
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
-</div>-->
+</div>

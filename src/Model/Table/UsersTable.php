@@ -74,26 +74,44 @@ class UsersTable extends Table
 
         $validator
             ->email('email')
-            ->allowEmptyString('email');
+            //->allowEmptyString('email');
+            ->requirePresence('email', 'create')
+            ->notEmptyString('email');
 
         $validator
             ->scalar('password')
-            ->maxLength('password', 45)
-            ->allowEmptyString('password');
+            ->maxLength('password', 255)
+            //->allowEmptyString('password');
+            ->requirePresence('password', 'create')
+            ->notEmptyString('password');
 
         $validator
             ->scalar('cel')
-            ->maxLength('cel', 45)
+            ->maxLength('cel', 8)
             ->allowEmptyString('cel');
 
         $validator
             ->scalar('tel')
-            ->maxLength('tel', 45)
+            ->maxLength('tel', 8)
             ->allowEmptyString('tel');
 
         return $validator;
     }
 
+    public function validationLogin(Validator $validator)
+    {
+        $validator
+        // User email
+            ->add('email', 'valid', [
+                'rule' => 'email',
+                'message' => 'Entrez une adresse email valide svp.'
+            ])
+
+            //User password validation
+            ->notEmptyString('password');
+
+        return $validator;
+    }
     /**
      * Returns a rules checker object that will be used for validating
      * application integrity.
@@ -110,4 +128,5 @@ class UsersTable extends Table
 
         return $rules;
     }
+
 }

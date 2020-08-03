@@ -112,4 +112,89 @@ class SouscriptionsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+    //Souscription du client à l'offre
+    public function subscribe($id = null)
+    {
+        $this->viewBuilder()->setLayout('staticpage');
+        //Chargement de modeles supplémentaires
+        $this->loadModel('Souscriptions');
+        $this->loadModel('Clients');
+
+        //Vérifier si le client est connecté
+        if ($this->Auth->user('id')) {
+            // debug($this->Auth->user('id'));
+            // exit;
+
+        } else {
+            //le client n'est pas connecté
+
+            //Afficher les infos de l'offre
+            $this->loadModel('Offres');
+            $offre = $this->Offres->get($id);
+            $this->set('offre', $offre);
+
+            //Connexion du client après enrégistrement
+            $this->loadModel('clients');
+            $client = $this->Clients->newEntity($this->request->getData());
+            if ($this->request->is('post')) {
+                $client = $this->Clients->patchEntity($client, $this->request->getData());
+                if ($this->Clients->save($client)) {
+                    $this->Auth->setUser($client->toArray());
+                }
+                $this->Flash->error(__('Impossible d\'enrégistrer les informations du client.'));
+            }
+            $this->set(compact('client'));
+
+            //Formulaire d'ajout de souscription
+            $souscription = $this->Souscriptions->newEntity();
+            if ($this->request->is('post')) {
+                //Recupération de la clé de l'offre
+                $this->loadModel('Offres');
+                $offre = $this->Offres->get($id);
+                $souscription->offre_id =  $offre->id;
+
+                //Recupération de l'Id du client connecté automatiquement
+                // $this->Auth->user('id');
+                $souscription->client_id = $this->Auth->user('id');
+
+                $souscription = $this->Souscriptions->patchEntity($souscription, $this->request->getData());
+
+                //Calcul du montant total
+                // $periode = $this->request->getData($souscription->periode->nbmois);
+                // $prix_offre = $this->request->getData($souscription->offre->$this->Number->format($offre->prix));
+                // $montanttotal = $prix_offre * $periode;
+                // $souscription->montanttotal = $montanttotal;
+                // $this->set('souscription');
+				//$periode = $_POST[$periode->nbmois];
+				//$prix_offre = $_POST[$offre->prix];
+				//$montant_total = $_POST[$offre->prix]*$_POST[$periode->nbmois];
+				//$montant_total = $_POST['montanttotal'];
+
+
+                if ($this->Souscriptions->save($souscription)) {
+                    $this->Flash->success(__('Succès de la souscription.'));
+
+                    return $this->redirect(['action' => 'payment']);
+                }
+                $this->Flash->error(__('Echec de la souscription.'));
+            }
+            $clients = $this->Souscriptions->Clients->find('list', ['limit' => 200]);
+            $offres = $this->Souscriptions->Offres->find('list', ['limit' => 200]);
+            $periodes = $this->Souscriptions->Periodes->find('list', ['limit' => 200]);
+            $this->set(compact('souscription', 'clients', 'offres', 'periodes'));
+        }
+    } // Fin fonction souscription
+
+    //Paiement de la souscription
+    public function payment()
+    {
+        $this->loadModel('Paiements');
+    } // Fin fonction payment
+
+
+
+
+
+
 }

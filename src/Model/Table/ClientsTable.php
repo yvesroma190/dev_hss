@@ -68,26 +68,35 @@ class ClientsTable extends Table
         $validator
             ->scalar('name')
             ->maxLength('name', 255)
-            ->allowEmptyString('name');
+            // ->allowEmptyString('name');
+            ->notEmptyString('name');
 
         $validator
             ->email('email')
-            ->allowEmptyString('email');
+            // ->allowEmptyString('email');
+            ->requirePresence('email', 'create')
+            ->notEmptyString('email');
 
         $validator
             ->scalar('password')
-            ->maxLength('password', 45)
-            ->allowEmptyString('password');
+            ->maxLength('password', 255)
+            // ->allowEmptyString('password');
+            ->requirePresence('password', 'create')
+            ->notEmptyString('password');
 
         $validator
             ->scalar('cel')
-            ->maxLength('cel', 45)
-            ->allowEmptyString('cel');
+            ->maxLength('cel', 8)
+            // ->allowEmptyString('cel');
+            ->notEmptyString('cel');
+
 
         $validator
             ->scalar('tel')
-            ->maxLength('tel', 45)
-            ->allowEmptyString('tel');
+            ->maxLength('tel', 8)
+        // ->allowEmptyString('tel');
+        ->notEmptyString('tel');
+
 
         $validator
             ->scalar('web')
@@ -102,12 +111,31 @@ class ClientsTable extends Table
         $validator
             ->scalar('adresse')
             ->maxLength('adresse', 45)
-            ->allowEmptyString('adresse');
+            // ->allowEmptyString('adresse');
+            ->notEmptyString('adresse');
+
 
         $validator
             ->scalar('localisation_site')
             ->maxLength('localisation_site', 4294967295)
-            ->allowEmptyString('localisation_site');
+            // ->allowEmptyString('localisation_site');
+            ->notEmptyString('localisation_site');
+
+
+        return $validator;
+    }
+    
+    public function validationLogin(Validator $validator)
+    {
+        $validator
+            // User email
+            ->add('email', 'valid', [
+                'rule' => 'email',
+                'message' => 'Entrez une adresse email valide svp.'
+            ])
+
+            //User password validation
+            ->notEmptyString('password');
 
         return $validator;
     }

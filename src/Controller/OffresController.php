@@ -9,6 +9,7 @@ use App\Controller\AppController;
  * @property \App\Model\Table\OffresTable $Offres
  *
  * @method \App\Model\Entity\Offre[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
+ * @property \App\Model\Table\ClientsTable $Clients
  */
 class OffresController extends AppController
 {
@@ -132,4 +133,7 @@ class OffresController extends AppController
     public function contact(){
       $this->viewBuilder()->setLayout('staticpage');
     }
+
+
+
 }
