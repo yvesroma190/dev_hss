@@ -4,5 +4,5 @@
 
 
 <video width="100%" height="400" controls preload="auto" loop autoplay>
-  <source src="video/last_video.mp4" type="video/mp4">
+  <source src="video/VIDEO_PUB_VCARE_VF.mp4" type="video/mp4">
 </video>
