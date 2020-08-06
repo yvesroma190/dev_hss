@@ -1,16 +1,18 @@
+<?= $this->element('header'); ?>
+
 <section id="inner-headline">
     <div class="container">
         <div class="row">
             <div class="span4">
                 <div class="inner-heading">
-                    <h2>SOUSCRIPTION</h2>
+                    <h2>ABONNEMENT</h2>
                 </div>
             </div>
             <div class="span8">
                 <ul class="breadcrumb">
                     <li><a href="<?= $this->Url->build(['controller' => 'Offres', 'action' => 'index']); ?>"><i class="icon-home"></i></a><i class="icon-angle-right"></i></li>
                     <!--<li><a href="#">Pages</a><i class="icon-angle-right"></i></li>-->
-                    <li class="active">Souscription</li>
+                    <li class="active">Abonnement</li>
                 </ul>
             </div>
         </div>
@@ -25,7 +27,7 @@
     <div class="container">
         <div class="row">
             <div class="span12">
-                <h4><strong>Souscription</strong></h4>
+                <h4><strong>Souscrire à un abonnement</strong></h4>
             </div>
         </div>
 
@@ -41,9 +43,9 @@
 
         <div class="row">
             <div>
-                <h6> <strong>Fiche du client</strong></h6>
+                <h6> <strong>Informations du client</strong></h6>
             </div>
-            <div class="span4 form-group">
+            <div class="span3 form-group">
                 <?php
                 echo $this->Form->control('name', ['class' => 'form-control', 'type' => 'text', 'placeholder' => 'Entrez votre nom et prénoms...', 'label' => 'Nom et Prénoms :']);
                 echo $this->Form->control('email', ['class' => 'form-control', 'type' => 'email', 'placeholder' => 'Entrez votre adresse email...', 'label' => 'Email :']);
@@ -53,28 +55,30 @@
                 echo $this->Form->control('web', ['class' => 'form-control', 'type' => 'text', 'placeholder' => 'Entrez votre site web...', 'label' => 'Site web :']);
                 ?>
             </div>
-            <div class="span4 form-group">
+            <div class="span3 form-group">
                 <?php
                 echo $this->Form->control('bp', ['class' => 'form-control', 'type' => 'text', 'placeholder' => 'Entrez votre boîte postale...', 'label' => 'Boîte postale :']);
                 echo $this->Form->control('adresse', ['class' => 'form-control', 'type' => 'text', 'placeholder' => 'Entrez votre adresse...', 'label' => 'Email :']);
                 echo $this->Form->control('localisation_site', ['class' => 'form-control', 'type' => 'textarea', 'placeholder' => 'Entrez votre la localisation du site à sécuriser...', 'label' => 'Localisation du site :']);
                 ?>
             </div>
-            <div class="span4">
-                <h6> <strong>Informations de l'offre</strong></h6>
-                <div class="pricing-heading">
+            <div class="span3"></div>
+            <div class="span3" id="infos">
+                <h6> <strong>Offre smart protect</strong></h6>
+                <div class="pricing-heading" id="infoprix">
                     <h3><strong style="color:#a00a0c"><?= @h($offre->name) ?></strong></h3>
-                    <h6 style="color:#000000"><?= $this->Number->format($offre->prix) ?> FCFA / Mois</h6>
+                    <h6 style="color:#000000"><strong><?= $this->Number->format($offre->prix) ?> FCFA / Mois</strong></h6>
                 </div>
-                <div class="form-group">
-                    <?= $this->Form->create($souscription) ?>
+                <div class="form-group" id="calcul">
+                    <?= $this->Form->create($souscription, ['id' => 'form']) ?>
                     <?php
-                    echo $this->Form->control('client_id', ['options' => $clients, 'empty' =>true, 'type' => 'hidden']);
-                    echo $this->Form->control('offre_id', ['options' => $offres, 'empty' =>true, 'type' => 'hidden']);
-                    echo $this->Form->control('periode_id', ['options' => $periodes, 'empty' =>true, 'label' => 'Périodicité :']);
-                    echo $this->Form->control('montanttotal', ['class' => 'form-control','value' =>'', 'readonly' =>'readonly' ,'label' => 'Montant Total :']);
-                    echo $this->Form->control('datedebut', ['empty' =>true, 'class' => 'form-control', 'type' =>'text', 'readonly' =>'readonly', 'label' => 'Date de début :']);
-                    echo $this->Form->control('datefin', ['empty' =>true, 'class' => 'form-control', 'type' =>'text', 'readonly' =>'readonly', 'label' => 'Date de fin :']);
+                    echo $this->Form->control('prix', ['name' => 'prix', 'id' => 'prix', 'value' => $this->Number->format($offre->prix), 'empty' => true, 'type' => 'hidden']);
+                    echo $this->Form->control('client_id', ['options' => $clients, 'empty' => true, 'type' => 'hidden']);
+                    echo $this->Form->control('offre_id', ['options' => $offres, 'id' => 'offre', 'empty' => true, 'type' => 'hidden']);
+                    echo $this->Form->control('periode_id', ['options' => $periodes, 'class' => 'form-control', 'id' => 'periode', 'name' => 'periode_id', 'empty' => true, 'label' => 'Durée de l\'offre :']);
+                    echo $this->Form->control('montanttotal', ['class' => 'form-control', 'id' => 'montanttotal', 'label' => 'Montant Total :']);
+                    echo $this->Form->control('datedebut', ['class' => 'form-control', 'empty' => true, 'class' => 'form-control', 'type' => 'text', 'readonly' => 'readonly', 'label' => 'Début abonnement :']);
+                    echo $this->Form->control('datefin', ['class' => 'form-control', 'empty' => true, 'class' => 'form-control', 'type' => 'text', 'readonly' => 'readonly', 'label' => 'Fin abonnement :']);
                     ?>
                     <?= $this->Form->end() ?>
                 </div>
@@ -85,3 +89,5 @@
 
 
 <?= $this->element('footer'); ?>
+
+<?php echo $this->Html->script('/js/calcul.js'); ?>

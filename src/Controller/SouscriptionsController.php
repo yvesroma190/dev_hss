@@ -116,7 +116,7 @@ class SouscriptionsController extends AppController
     //Souscription du client à l'offre
     public function subscribe($id = null)
     {
-        $this->viewBuilder()->setLayout('staticpage');
+        $this->viewBuilder()->setLayout('default');
         //Chargement de modeles supplémentaires
         $this->loadModel('Souscriptions');
         $this->loadModel('Clients');
@@ -158,20 +158,15 @@ class SouscriptionsController extends AppController
                 // $this->Auth->user('id');
                 $souscription->client_id = $this->Auth->user('id');
 
+                //Calcul du montant total -- Intégration du fichier js de calcul                
+                echo $this->Html->script(['calcul.js']);
+                if (in_array($this->request->params['action'], ['subscribe'])) {
+                    echo $this->Html->script(['js/calcul.js']);
+                }
+               
+
+
                 $souscription = $this->Souscriptions->patchEntity($souscription, $this->request->getData());
-
-                //Calcul du montant total
-                // $periode = $this->request->getData($souscription->periode->nbmois);
-                // $prix_offre = $this->request->getData($souscription->offre->$this->Number->format($offre->prix));
-                // $montanttotal = $prix_offre * $periode;
-                // $souscription->montanttotal = $montanttotal;
-                // $this->set('souscription');
-				//$periode = $_POST[$periode->nbmois];
-				//$prix_offre = $_POST[$offre->prix];
-				//$montant_total = $_POST[$offre->prix]*$_POST[$periode->nbmois];
-				//$montant_total = $_POST['montanttotal'];
-
-
                 if ($this->Souscriptions->save($souscription)) {
                     $this->Flash->success(__('Succès de la souscription.'));
 

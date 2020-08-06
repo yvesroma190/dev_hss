@@ -16,7 +16,7 @@
   <link href="css/jcarousel.css" rel="stylesheet" />
   <link href="css/flexslider.css" rel="stylesheet" />
   <link href="css/style.css" rel="stylesheet" />
-  
+
   <!-- Theme skin -->
   <link href="skins/default.css" rel="stylesheet" />
   <!-- Fav and touch icons -->
@@ -27,11 +27,11 @@
   <link rel="shortcut icon" href="ico/HSS_ico.jpg" />
 
 
-  
 
-    <?= $this->fetch('meta') ?>
-    <?= $this->fetch('css') ?>
-    <?= $this->fetch('script') ?>
+
+  <?= $this->fetch('meta') ?>
+  <?= $this->fetch('css') ?>
+  <?= $this->fetch('script') ?>
 
 
 </head>
@@ -64,5 +64,38 @@
   <!-- Template Custom JavaScript File -->
   <script src="js/custom.js"></script>
 
+  <!-- Calcul du montant total de souscription -->
+  <script>
+    function calculmontanttotal(parent) {
+      // var periode = document.getElementById('periode');
+      // var offre = document.getElementById('offre');
+      // periode.addEventListener('select', function() {
+      //   alert(list.options[list.selectedIndex].innerHTML);
+      // }, false);
+
+      //Récuperation des champs de control
+      var oParent = document.getElementById('calculmt');
+      var oPeriode = parent.querySelector('[name ^=periode_id]');
+      var oOffre = parent.querySelector('[name ^=offre_id]');
+      var oMontanttotal = parent.querySelector('[name ^=montanttotal]');
+
+      //Récuperation et calcul des valeurs
+      var periode = parseFloat(oPeriode.value) || 0;
+      var offre = parseFloat(oOffre.value) || 0;
+      var montanttotal = periode*offre;
+
+      //Affectation des valeurs
+      oMontanttotal.textContent = montanttotal.toFixed(2);
+    }
+
+    function addEvent(parent){
+      var oPeriode = parent.querySelector('[name ^=periode_id]');
+      oPeriode.onchange = function(){
+        calculmontanttotal(parent);
+      }
+    }
+  </script>
+
 </body>
+
 </html>

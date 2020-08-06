@@ -24,6 +24,7 @@
     <?= $this->Html->css('jcarousel') ?>
     <?= $this->Html->css('flexslider') ?>
     <?= $this->Html->css('style.css') ?>
+    <?= $this->Html->css('default.css') ?>
 
     <!-- Theme skin -->
     <link href="skins/default.css" rel="stylesheet" />

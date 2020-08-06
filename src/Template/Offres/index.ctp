@@ -68,11 +68,6 @@
 
 <section id="content">
     <div class="container">
-        <!--<div class="row">
-            <div class="span12">
-                <h4><strong>NOS OFFRES</strong></h4>
-            </div>-->
-    </div>
     <!-- divider -->
     <div class="row">
         <div class="span12">
@@ -86,6 +81,14 @@
 
         <div class="span12">
             <h4><strong>OFFRES SMART PROTECT</strong></h4>
+			<!-- divider -->
+    <div class="row">
+        <div class="span12">
+            <div class="solidline">
+            </div>
+        </div>
+    </div>
+    <!-- end divider -->
         </div>
         <?php foreach ($offres as $offre) : ?>
             <div class="span4">
@@ -132,6 +135,8 @@
     </div>
 
     </div>
+    </div>
+    
 </section>
 
 
