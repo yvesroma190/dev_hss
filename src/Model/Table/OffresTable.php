@@ -55,6 +55,9 @@ class OffresTable extends Table
         $this->hasMany('Souscriptions', [
             'foreignKey' => 'offre_id',
         ]);
+        $this->hasMany('Clients', [
+            'foreignKey' => 'offre_id',
+        ]);
     }
 
     /**

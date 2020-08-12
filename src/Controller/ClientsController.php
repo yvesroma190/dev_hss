@@ -12,6 +12,61 @@ use App\Controller\AppController;
  */
 class ClientsController extends AppController
 {
+	
+	//Login
+    public function login(){
+        // $this->viewBuilder()->setLayout('adminlogin');
+
+        //Vérification si client tjoujours connecté
+        if($this->Auth->user('id')){
+            //Utiliateur connecté
+            return $this->redirect($this->Auth->redirectUrl());
+        }else{
+            $login = $this->Clients->newEntity();
+        
+        if ($this->request->is('post') AND !empty($this->request->getData())) {
+            $check_login = $this->Clients->patchEntity($login, $this->request->getData(), [
+                'validate' => 'login'
+            ]);
+
+            if($check_login->getErrors())
+            {
+                //Form validation TRUE
+                $this->Flash->error(__("Veuillez renseigner les champs svp."));
+            }else
+            {
+                //User Auth
+                $user = $this->Auth->identify();
+                if ($user) {
+                    $this->Auth->setUser($client);
+                    return $this->redirect($this->Auth->redirectUrl());
+                    //return $this->redirect(['controller' => 'Souscriptions', 'action' => 'index']);
+                } else {
+                    $this->Flash->error(__("Email ou mot de passe incorrect"));
+                }
+            }
+            $this->set('login', $login);
+        }
+        
+        }
+
+    }
+
+	//Logout
+	public function logout(){
+		$this->viewBuilder()->setLayout('default');
+
+		// Destruction de la session
+		$this->request->getSession()->destroy();
+
+		$this->redirect($this->Auth->logout());        
+	}
+
+
+
+	
+	
+	
     /**
      * Index method
      *
@@ -19,6 +74,9 @@ class ClientsController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            'contain' => ['Offres'],
+        ];
         $clients = $this->paginate($this->Clients);
 
         $this->set(compact('clients'));
@@ -34,7 +92,7 @@ class ClientsController extends AppController
     public function view($id = null)
     {
         $client = $this->Clients->get($id, [
-            'contain' => ['Commentaires', 'Souscriptionsmarts', 'Souscriptionteles'],
+            'contain' => ['Commentaires', 'Offres', 'Souscriptions'],
         ]);
 
         $this->set('client', $client);
@@ -57,7 +115,8 @@ class ClientsController extends AppController
             }
             $this->Flash->error(__('The client could not be saved. Please, try again.'));
         }
-        $this->set(compact('client'));
+        $offres = $this->Clients->Offres->find('list', ['limit' => 200]);
+        $this->set(compact('client', 'offres'));
     }
 
     /**
@@ -81,7 +140,8 @@ class ClientsController extends AppController
             }
             $this->Flash->error(__('The client could not be saved. Please, try again.'));
         }
-        $this->set(compact('client'));
+        $offres = $this->Clients->Offres->find('list', ['limit' => 200]);
+        $this->set(compact('client', 'offres'));
     }
 
     /**
@@ -103,4 +163,12 @@ class ClientsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+
+
+    
+
+
+
+
 }

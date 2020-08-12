@@ -51,6 +51,10 @@ class ClientsTable extends Table
         $this->hasMany('Souscriptions', [
             'foreignKey' => 'client_id',
         ]);
+        $this->belongsTo('Offres', [
+            'foreignKey' => 'offre_id',
+        ]);
+        
     }
 
     /**
@@ -94,8 +98,8 @@ class ClientsTable extends Table
         $validator
             ->scalar('tel')
             ->maxLength('tel', 8)
-        // ->allowEmptyString('tel');
-        ->notEmptyString('tel');
+            ->allowEmptyString('tel');
+            // ->notEmptyString('tel');
 
 
         $validator

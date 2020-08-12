@@ -128,6 +128,7 @@ class SouscriptionsController extends AppController
 
         } else {
             //le client n'est pas connecté
+            // return $this->redirect(['action' => 'client']);
 
             //Afficher les infos de l'offre
             $this->loadModel('Offres');
@@ -135,60 +136,106 @@ class SouscriptionsController extends AppController
             $this->set('offre', $offre);
 
             //Connexion du client après enrégistrement
-            $this->loadModel('clients');
-            $client = $this->Clients->newEntity($this->request->getData());
+            $this->loadModel('Clients');
+            $client = $this->Clients->newEntity();
             if ($this->request->is('post')) {
-                $client = $this->Clients->patchEntity($client, $this->request->getData());
-                if ($this->Clients->save($client)) {
-                    $this->Auth->setUser($client->toArray());
-                }
-                $this->Flash->error(__('Impossible d\'enrégistrer les informations du client.'));
-            }
-            $this->set(compact('client'));
-
-            //Formulaire d'ajout de souscription
-            $souscription = $this->Souscriptions->newEntity();
-            if ($this->request->is('post')) {
-                //Recupération de la clé de l'offre
+                //Reccuperation de l'ID de l'offre associée au client
                 $this->loadModel('Offres');
                 $offre = $this->Offres->get($id);
-                $souscription->offre_id =  $offre->id;
+                $client->offre_id =  $offre->id;
 
-                //Recupération de l'Id du client connecté automatiquement
-                // $this->Auth->user('id');
-                $souscription->client_id = $this->Auth->user('id');
+                $client = $this->Clients->patchEntity($client, $this->request->getData());
+                if ($this->Clients->save($client)) {
+                    // $this->Flash->success(__('Votre compte a été bien enrégistré.'));
 
-                //Calcul du montant total -- Intégration du fichier js de calcul                
-                echo $this->Html->script(['calcul.js']);
-                if (in_array($this->request->params['action'], ['subscribe'])) {
-                    echo $this->Html->script(['js/calcul.js']);
+                    return $this->redirect(['action' => 'validation', $client->id]);
                 }
-               
-
-
-                $souscription = $this->Souscriptions->patchEntity($souscription, $this->request->getData());
-                if ($this->Souscriptions->save($souscription)) {
-                    $this->Flash->success(__('Succès de la souscription.'));
-
-                    return $this->redirect(['action' => 'payment']);
-                }
-                $this->Flash->error(__('Echec de la souscription.'));
+                $this->Flash->error(__('Echec de l\'enrégistrement du compte.'));
             }
-            $clients = $this->Souscriptions->Clients->find('list', ['limit' => 200]);
-            $offres = $this->Souscriptions->Offres->find('list', ['limit' => 200]);
-            $periodes = $this->Souscriptions->Periodes->find('list', ['limit' => 200]);
-            $this->set(compact('souscription', 'clients', 'offres', 'periodes'));
+            $offres = $this->Clients->Offres->find('list', ['limit' => 200]);
+            $this->set(compact('client', 'offres'));
+            }
+
+     } // Fin fonction souscription
+
+     public function validation($id = null){
+        $this->viewBuilder()->setLayout('default');
+        //Afficher les infos du client
+        $this->loadModel('Clients');
+        $client = $this->Clients->get($id, [
+            'contain' => ['Commentaires', 'Offres', 'Souscriptions'],
+        ]);
+        $this->set('client', $client);
+        
+        // Infos Offre
+        $this->loadModel('Offres');
+        // $offre = $this->Offres->get($id);
+        // $this->set('offre', $offre);
+
+        //Validation de la souscription avec la periode
+        $souscription = $this->Souscriptions->newEntity();
+        if ($this->request->is('post')) {
+
+            //Reccuperation de l'ID de l'offre associée à la souscription
+            $this->loadModel('Offres');
+            // $offre = $this->Offres->get($id);
+            // $offreid = $this->request->getData('offreid');
+            // $souscription->offre_id =  $offreid;
+
+            //Reccuperation de l'ID de l'offre associée au client
+            // $this->loadModel('Clients');
+            // $client = $this->Clients->get($id);
+            // $souscription->client_id =  $client->id;
+
+            $souscription = $this->Souscriptions->patchEntity($souscription, $this->request->getData());
+            // debug($this->request->getData());
+            // exit;
+            if ($this->Souscriptions->save($souscription)) {
+                $this->Flash->success(__('The souscription has been saved.'));
+
+                return $this->redirect(['action' => 'payment', $souscription->id]);
+            }
+            $this->Flash->error(__('The souscription could not be saved. Please, try again.'));
         }
-    } // Fin fonction souscription
+        $clients = $this->Souscriptions->Clients->find('list', ['limit' => 200]);
+        $offres = $this->Souscriptions->Offres->find('list', ['limit' => 200]);
+        $periodes = $this->Souscriptions->Periodes->find('list', ['limit' => 200]);
+        $this->set(compact('souscription', 'clients', 'offres', 'periodes'));
+        
+
+     }
 
     //Paiement de la souscription
-    public function payment()
+    public function payment($id = null)
     {
         $this->loadModel('Paiements');
+
+        $souscription = $this->Souscriptions->get($id, [
+            'contain' => ['Clients', 'Offres', 'Periodes', 'Paiements'],
+        ]);
+
+        $this->set('souscription', $souscription);
+
+
+        //Paiement
+        $paiement = $this->Paiements->newEntity();
+        if ($this->request->is('post')) {
+            $paiement = $this->Paiements->patchEntity($paiement, $this->request->getData());
+            // if ($this->Paiements->save($paiement)) {
+            //     $this->Flash->success(__('The paiement has been saved.'));
+
+            //     // return $this->redirect(['action' => 'index']);
+            // }
+            $this->Flash->error(__('The paiement could not be saved. Please, try again.'));
+        }
+        $clients = $this->Paiements->Clients->find('list', ['limit' => 200]);
+        $souscriptions = $this->Paiements->Souscriptions->find('list', ['limit' => 200]);
+        $offres = $this->Paiements->Offres->find('list', ['limit' => 200]);
+        $etatpaiements = $this->Paiements->Etatpaiements->find('list', ['limit' => 200]);
+        $this->set(compact('paiement', 'clients', 'souscriptions', 'offres', 'etatpaiements'));
+
+
     } // Fin fonction payment
-
-
-
 
 
 

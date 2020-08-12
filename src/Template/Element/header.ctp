@@ -5,11 +5,12 @@
         <div class="headnav">
             <ul>
             <!--<li><a href="#mySignin" data-toggle="modal">Connexion</a></li>-->
-            <li><a href="<?= $this->Url->build(['controller' => 'Clients', 'action' => 'login']); ?>" data-toggle="modal">Connexion</a></li>
+             <li><a href="<?= $this->Url->build(['controller' => 'Clients', 'action' => 'login']); ?>" data-toggle="modal">Connexion</a></li> 
+            <!--<li><a href="#mySignin" data-toggle="modal">Se connecter</a></li>-->
             </ul>
         </div>
         <!-- Signup Modal -->
-        <div id="mySignup" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="mySignupModalLabel" aria-hidden="true">
+        <!-- <div id="mySignup" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="mySignupModalLabel" aria-hidden="true">
             <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             <h4 id="mySignupModalLabel">Create an <strong>account</strong></h4>
@@ -44,26 +45,28 @@
                 </div>
             </form>
             </div>
-        </div>
+        </div> -->
         <!-- end signup modal -->
         <!-- Sign in Modal -->
         <div id="mySignin" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="mySigninModalLabel" aria-hidden="true">
             <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h4 id="mySigninModalLabel"><strong>Connectez-vous à votre compte</strong></h4>
+            <h4 id="mySigninModalLabel">Connectez-vous à votre compte</h4>
             </div>
             <div class="modal-body">
-            <form class="form-horizontal">
+            <?= $this->Flash->render() ?>
+            <?= $this->Form->create('$client', ['class' => 'form-horizontal', 'url' => ['controller' => 'Clients', 'action' => 'login']]) ?>
+            <!-- <form class="form-horizontal"> -->
                 <div class="control-group">
-                <label class="control-label" for="inputText">Nom d'utilisateur</label>
+                <label class="control-label" for="inputText">Email</label>
                 <div class="controls">
-                    <input type="text" id="inputText" placeholder="Username">
+                    <input type="email" name="email" id="inputText" placeholder="Entrez votre adresse email...">
                 </div>
                 </div>
                 <div class="control-group">
                 <label class="control-label" for="inputSigninPassword">Mot de passe</label>
                 <div class="controls">
-                    <input type="password" id="inputSigninPassword" placeholder="Password">
+                    <input type="password" name="password" id="inputSigninPassword" placeholder="Entrez votre mot de passe...">
                 </div>
                 </div>
                 <div class="control-group">
@@ -71,10 +74,12 @@
                     <button type="submit" class="btn">Se connecter</button>
                 </div>
                 <p class="aligncenter margintop20">
-                    Forgot password? <a href="#myReset" data-dismiss="modal" aria-hidden="true" data-toggle="modal">Reset</a>
+                    Vous avez oublié votre mot de passe? Contactez <strong> HIGH STAR SECURITY</strong>.
+                    <!-- <a href="#myReset" data-dismiss="modal" aria-hidden="true" data-toggle="modal">Reset</a> -->
                 </p>
                 </div>
-            </form>
+            <!-- </form> -->
+            <?= $this->Form->end() ?>
             </div>
         </div>
         <!-- end signin modal -->

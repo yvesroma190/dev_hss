@@ -3,7 +3,6 @@
 var prix = document.getElementById('prix');
 var periode = document.getElementById('periode');
 var montanttotal = document.getElementById('montanttotal');
-montanttotal.disabled = true;
 
 // Recup. des valeurs
 var valprix = parseFloat(prix.value) || 0;
@@ -32,8 +31,3 @@ periode.addEventListener('change', function () {
     }
 }, true);
 
-// valtotal = valprix*valperiode;
-
-//Affectation des valeurs
-// prix.textContent = valprix.toFixed(2);
-// montanttotal.textContent = valtotal.toFixed(3);

@@ -81,7 +81,7 @@ class AppController extends Controller
                 //     'Form' => ['userModel' => 'Users'],
                 // ]);
                 $this->viewBuilder()->setLayout('admin');
-                // $this->Auth->allow(['login', 'index', 'add']);
+                $this->Auth->allow(['login', 'logout']);
             }
         }else{
             //Authentification pour le frontend
@@ -91,7 +91,7 @@ class AppController extends Controller
                     'action' => 'login',
                 ],
                 'loginRedirect' => [
-                    'controller' => 'Souscriptions',
+                    'controller' => 'Offres',
                     'action' => 'index'
                 ],
                 'logoutRedirect' => [
@@ -106,12 +106,12 @@ class AppController extends Controller
                 ],
                 'storage' => 'Session'
             ]);
-            // $this->Auth->getConfig('authenticate', ['Form']);
+            $this->Auth->getConfig('authenticate', ['Form']);
 
             $this->Auth->getConfig('authenticate', [
                 'Form' => ['userModel' => 'Clients'],
             ]);
-            $this->Auth->allow(['login', 'index', 'add','subscribe', 'payment']);
+            $this->Auth->allow([ 'index', 'add','subscribe', 'payment', 'prestation', 'contact', 'reference', 'contrat', 'client', 'validation']);
         }
 
         

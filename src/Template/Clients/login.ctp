@@ -41,14 +41,15 @@
 
     <div class="container">
         <div class="row">
-                <?= $this->Form->create() ?>
-                    <div class="span12">
-                        <?= $this->Form->control('email', ['type'=> 'email', 'name'=> 'email', 'class'=> 'form-group', 'label'=> 'Email:']); ?>
-                        
-                        <?= $this->Form->control('password', ['type'=> 'password', 'name'=> 'password', 'class'=> 'form-group', 'label'=> 'Mot de passe:']); ?>
-                        <?= $this->Form->button(__('Se connecter'), ['type'=> 'submit','class'=> 'btn btn-danger']) ?>
-                    </div>
-                <?= $this->Form->end() ?>
+		<?= $this->Flash->render() ?>
+			<?= $this->Form->create('$client', ['class' => 'form-horizontal', 'url' => ['controller' => 'Clients', 'action' => 'login']]) ?>
+				<div class="span12">
+					<?= $this->Form->control('email', ['type'=> 'email', 'name'=> 'email', 'class'=> 'form-group', 'label'=> 'Email:']); ?>
+					
+					<?= $this->Form->control('password', ['type'=> 'password', 'name'=> 'password', 'class'=> 'form-group', 'label'=> 'Mot de passe:']); ?>
+					<?= $this->Form->button(__('Se connecter'), ['type'=> 'submit','class'=> 'btn btn-danger']) ?>
+				</div>
+			<?= $this->Form->end() ?>
         </div>
     </div>
 

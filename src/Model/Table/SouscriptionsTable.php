@@ -73,6 +73,7 @@ class SouscriptionsTable extends Table
         $validator
             ->numeric('montanttotal')
             ->allowEmptyString('montanttotal');
+            // ->notEmptyString('montanttotal');
 
         $validator
             ->dateTime('datedebut')

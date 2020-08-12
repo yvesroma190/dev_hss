@@ -945,7 +945,7 @@ font-size: 10px;
   padding: 10px 0 10px;
   margin-left:20px;
   margin-right:0;
-  color: #999999;
+  color: #000000;
   text-decoration: none;
   text-shadow: none;
   border-right:none;
@@ -954,7 +954,7 @@ font-size: 10px;
 
 .navbar .nav > li > a:hover,
 .navbar .nav > li > a:focus {
-  color: #dddddd;
+  color: #a00a0c;
    background-color: none;
   background-image: none;
   background-repeat: repeat-x;
@@ -967,7 +967,7 @@ font-size: 10px;
 .navbar .nav > .active > a,
 .navbar .nav > .active > a:hover,
 .navbar .nav > .active > a:focus {
-  color: #fff;
+  color: #000000;
    background-image: none;
   background-image: none;
   filter: none;  

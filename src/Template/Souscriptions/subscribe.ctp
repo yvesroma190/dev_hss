@@ -27,7 +27,7 @@
     <div class="container">
         <div class="row">
             <div class="span12">
-                <h4><strong>Souscrire à un abonnement</strong></h4>
+                <h4><strong>Etape 1</strong></h4>
             </div>
         </div>
 
@@ -43,45 +43,76 @@
 
         <div class="row">
             <div>
-                <h6> <strong>Informations du client</strong></h6>
+                <h6> <strong>Ouvrez un compte</strong></h6>
             </div>
-            <div class="span3 form-group">
-                <?php
-                echo $this->Form->control('name', ['class' => 'form-control', 'type' => 'text', 'placeholder' => 'Entrez votre nom et prénoms...', 'label' => 'Nom et Prénoms :']);
-                echo $this->Form->control('email', ['class' => 'form-control', 'type' => 'email', 'placeholder' => 'Entrez votre adresse email...', 'label' => 'Email :']);
-                echo $this->Form->control('password', ['class' => 'form-control', 'type' => 'password', 'placeholder' => 'Entrez votre mot de passe...', 'label' => 'Mot de passe :']);
-                echo $this->Form->control('cel', ['class' => 'form-control', 'type' => 'text', 'placeholder' => 'Entrez votre numéro cellulaire...', 'label' => 'N° Cellulaire :']);
-                echo $this->Form->control('tel', ['class' => 'form-control', 'type' => 'text', 'placeholder' => 'Entrez votre numéro de téléphone fixe...', 'label' => 'N° téléphone fixe :']);
-                echo $this->Form->control('web', ['class' => 'form-control', 'type' => 'text', 'placeholder' => 'Entrez votre site web...', 'label' => 'Site web :']);
-                ?>
-            </div>
-            <div class="span3 form-group">
-                <?php
-                echo $this->Form->control('bp', ['class' => 'form-control', 'type' => 'text', 'placeholder' => 'Entrez votre boîte postale...', 'label' => 'Boîte postale :']);
-                echo $this->Form->control('adresse', ['class' => 'form-control', 'type' => 'text', 'placeholder' => 'Entrez votre adresse...', 'label' => 'Email :']);
-                echo $this->Form->control('localisation_site', ['class' => 'form-control', 'type' => 'textarea', 'placeholder' => 'Entrez votre la localisation du site à sécuriser...', 'label' => 'Localisation du site :']);
-                ?>
-            </div>
-            <div class="span3"></div>
-            <div class="span3" id="infos">
-                <h6> <strong>Offre smart protect</strong></h6>
-                <div class="pricing-heading" id="infoprix">
-                    <h3><strong style="color:#a00a0c"><?= @h($offre->name) ?></strong></h3>
-                    <h6 style="color:#000000"><strong><?= $this->Number->format($offre->prix) ?> FCFA / Mois</strong></h6>
+            <div class="form-group">
+            <?= $this->Form->create($client) ?>
+                <div class="span3">
+                    <?php
+                    echo $this->Form->control('offre_id', ['options' => $offres, 'id' => 'offre', 'empty' => true, 'type' => 'hidden']);
+                    echo $this->Form->control('name', ['class' => 'form-control', 'type' => 'text', 'placeholder' => 'Entrez votre nom et prénoms...', 'label' => 'Nom et Prénoms :']);
+                    echo $this->Form->control('email', ['class' => 'form-control', 'type' => 'email', 'placeholder' => 'Entrez votre adresse email...', 'label' => 'Email :']);
+                    echo $this->Form->control('password', ['class' => 'form-control', 'type' => 'password', 'placeholder' => 'Entrez votre mot de passe...', 'label' => 'Mot de passe :']);
+                    echo $this->Form->control('cel', ['class' => 'form-control', 'type' => 'text', 'placeholder' => 'Entrez votre numéro cellulaire...', 'label' => 'N° Cellulaire :']);
+                    echo $this->Form->control('tel', ['class' => 'form-control', 'type' => 'text', 'placeholder' => 'Entrez votre numéro de téléphone fixe...', 'label' => 'N° téléphone fixe :']);
+                    echo $this->Form->control('web', ['class' => 'form-control', 'type' => 'text', 'placeholder' => 'Entrez votre site web...', 'label' => 'Site web :']);
+                    ?>
                 </div>
+                <div class="span3">
+                    <?php
+                    echo $this->Form->control('bp', ['class' => 'form-control', 'type' => 'text', 'placeholder' => 'Entrez votre boîte postale...', 'label' => 'Boîte postale :']);
+                    echo $this->Form->control('adresse', ['class' => 'form-control', 'type' => 'text', 'placeholder' => 'Entrez votre adresse...', 'label' => 'Adresse :']);
+                    echo $this->Form->control('localisation_site', ['class' => 'form-control', 'type' => 'textarea', 'placeholder' => 'Entrez votre la localisation du site à sécuriser...', 'label' => 'Localisation du site :']);
+                    ?>
+                    <?= $this->Form->button(__('Valider votre compte', ['class'=>'btn btn-large btn-danger btn-rounded'])) ?>
+                    <!-- <a class="btn btn-large btn-danger btn-rounded">Valider votre compte</a> -->
+                </div>
+            
+            <!-- <div class="span3" id="infos">
                 <div class="form-group" id="calcul">
-                    <?= $this->Form->create($souscription, ['id' => 'form']) ?>
                     <?php
                     echo $this->Form->control('prix', ['name' => 'prix', 'id' => 'prix', 'value' => $this->Number->format($offre->prix), 'empty' => true, 'type' => 'hidden']);
-                    echo $this->Form->control('client_id', ['options' => $clients, 'empty' => true, 'type' => 'hidden']);
+                    // echo $this->Form->control('souscriptions.0.client_id', ['options' => $clients, 'empty' => true, 'type' => 'hidden']);
                     echo $this->Form->control('offre_id', ['options' => $offres, 'id' => 'offre', 'empty' => true, 'type' => 'hidden']);
                     echo $this->Form->control('periode_id', ['options' => $periodes, 'class' => 'form-control', 'id' => 'periode', 'name' => 'periode_id', 'empty' => true, 'label' => 'Durée de l\'offre :']);
-                    echo $this->Form->control('montanttotal', ['class' => 'form-control', 'id' => 'montanttotal', 'label' => 'Montant Total :']);
-                    echo $this->Form->control('datedebut', ['class' => 'form-control', 'empty' => true, 'class' => 'form-control', 'type' => 'text', 'readonly' => 'readonly', 'label' => 'Début abonnement :']);
-                    echo $this->Form->control('datefin', ['class' => 'form-control', 'empty' => true, 'class' => 'form-control', 'type' => 'text', 'readonly' => 'readonly', 'label' => 'Fin abonnement :']);
+                    echo $this->Form->control('montanttotal', ['class' => 'form-control', 'id' => 'montanttotal', 'readonly' => 'readonly', 'label' => 'Montant Total :']);
+                    echo $this->Form->control('datedebut', ['class' => 'form-control', 'empty' => true, 'class' => 'form-control', 'type' => 'hidden', 'readonly' => 'readonly', 'label' => 'Début abonnement :']);
+                    echo $this->Form->control('datefin', ['class' => 'form-control', 'empty' => true, 'class' => 'form-control', 'type' => 'hidden', 'readonly' => 'readonly', 'label' => 'Fin abonnement :']);
                     ?>
-                    <?= $this->Form->end() ?>
+                    
+                    
                 </div>
+            </div> -->
+            <!-- <?= $this->Form->button(__('Valider votre compte', ['class'=>'btn btn-danger'])) ?> -->
+            </div>
+            <?= $this->Form->end() ?>
+            <div class="span6">
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>
+                                <h5><strong>Informations sur l'offre </strong></h5>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <h4><strong>OFFRE SMART PROTECT</strong></h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td name="offre">
+                                <h3><strong style="color:#a00a0c" ><?= @h($offre->name) ?></strong></h3>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                    <h6 style="color:#000000"><strong><?= $this->Number->format($offre->prix) ?> FCFA / Mois</strong></h6>
+                                </td>
+                            </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

@@ -23,8 +23,9 @@
     <?= $this->Html->css('jquery.fancybox') ?>
     <?= $this->Html->css('jcarousel') ?>
     <?= $this->Html->css('flexslider') ?>
-    <?= $this->Html->css('style.css') ?>
-    <?= $this->Html->css('default.css') ?>
+    <?= $this->Html->css('style') ?>
+    <?= $this->Html->css('default') ?>
+    <?= $this->Html->css('overwrite') ?>
 
     <!-- Theme skin -->
     <link href="skins/default.css" rel="stylesheet" />

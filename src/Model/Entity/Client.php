@@ -9,6 +9,7 @@ use Cake\Auth\DefaultPasswordHasher;
  * Client Entity
  *
  * @property int $id
+ * @property string|null $offre_id
  * @property string|null $name
  * @property string|null $email
  * @property string|null $password
@@ -49,8 +50,9 @@ class Client extends Entity
         'created' => true,
         'modified' => true,
         'commentaires' => true,
-        'souscriptionsmarts' => true,
-        'souscriptionteles' => true,
+        // 'souscriptionsmarts' => true,
+        'souscriptions' => true,
+        'offre' => true,
     ];
 
     /**
