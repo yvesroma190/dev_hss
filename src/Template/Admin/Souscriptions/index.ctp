@@ -82,16 +82,20 @@
     <div class="row">
 
         <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
+        <div class="col-xl-6 col-md-6 mb-4">
             <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Monthly)</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">SOUSCRIPTIONS DU JOUR</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                <?php
+                                    echo $jnumber = $souscriptions->count();
+                                ?>                            
+                            </div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            <i class="fas fa-bell fa-fw fa-2x text-gray-300  "></i>
                         </div>
                     </div>
                 </div>
@@ -99,16 +103,17 @@
         </div>
 
         <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
+        <div class="col-xl-6 col-md-6 mb-4">
             <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Earnings (Annual)</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">NOMBRE TOTAL DE SOUSCRIPTIONS</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $number = $souscriptions->count(); ?></div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                            <!-- <i class="fas fa-dollar-sign fa-2x text-gray-300"></i> -->
+                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -116,7 +121,7 @@
         </div>
 
         <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
+        <!-- <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -139,10 +144,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- Pending Requests Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
+        <!-- <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -156,11 +161,11 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 
 
-    <hr class="sidebar-divider d-none d-md-block">
+    <!-- <hr class="sidebar-divider d-none d-md-block"> -->
 
     <!-- Sous Menu -->
     <div class="row">
@@ -173,7 +178,7 @@
             </a>-->
         </div>
     </div>
-    <hr class="sidebar-divider d-none d-md-block">
+    <!-- <hr class="sidebar-divider d-none d-md-block"> -->
 
     <!-- Tableau -->
     <div class="card shadow mb-4">
@@ -189,9 +194,9 @@
                             <th scope="col"><?= $this->Paginator->sort('client_id') ?></th>
                             <th scope="col"><?= $this->Paginator->sort('offre_id') ?></th>
                             <th scope="col"><?= $this->Paginator->sort('periode_id') ?></th>
-                            <th scope="col"><?= $this->Paginator->sort('montanttotal') ?></th>
-                            <th scope="col"><?= $this->Paginator->sort('datedebut') ?></th>
-                            <th scope="col"><?= $this->Paginator->sort('datefin') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('montant total') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('date debut') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('date fin') ?></th>
                             <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                             <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
                             <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -203,9 +208,9 @@
                             <th scope="col"><?= $this->Paginator->sort('client_id') ?></th>
                             <th scope="col"><?= $this->Paginator->sort('offre_id') ?></th>
                             <th scope="col"><?= $this->Paginator->sort('periode_id') ?></th>
-                            <th scope="col"><?= $this->Paginator->sort('montanttotal') ?></th>
-                            <th scope="col"><?= $this->Paginator->sort('datedebut') ?></th>
-                            <th scope="col"><?= $this->Paginator->sort('datefin') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('montant total') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('date debut') ?></th>
+                            <th scope="col"><?= $this->Paginator->sort('date fin') ?></th>
                             <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                             <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
                             <th scope="col" class="actions"><?= __('Actions') ?></th>

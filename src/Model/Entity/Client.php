@@ -4,12 +4,10 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 use Cake\Auth\DefaultPasswordHasher;
 
-
 /**
  * Client Entity
  *
  * @property int $id
- * @property string|null $offre_id
  * @property string|null $name
  * @property string|null $email
  * @property string|null $password
@@ -19,12 +17,14 @@ use Cake\Auth\DefaultPasswordHasher;
  * @property string|null $bp
  * @property string|null $adresse
  * @property string|null $localisation_site
+ * @property string $offre_id
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
  *
+ * @property \App\Model\Entity\Offre $offre
  * @property \App\Model\Entity\Commentaire[] $commentaires
- * @property \App\Model\Entity\Souscriptionsmart[] $souscriptionsmarts
- * @property \App\Model\Entity\Souscriptiontele[] $souscriptionteles
+ * @property \App\Model\Entity\Paiement[] $paiements
+ * @property \App\Model\Entity\Souscription[] $souscriptions
  */
 class Client extends Entity
 {
@@ -47,12 +47,13 @@ class Client extends Entity
         'bp' => true,
         'adresse' => true,
         'localisation_site' => true,
+        'offre_id' => true,
         'created' => true,
         'modified' => true,
-        'commentaires' => true,
-        // 'souscriptionsmarts' => true,
-        'souscriptions' => true,
         'offre' => true,
+        'commentaires' => true,
+        'paiements' => true,
+        'souscriptions' => true,
     ];
 
     /**
@@ -63,10 +64,11 @@ class Client extends Entity
     protected $_hidden = [
         'password',
     ];
+
     protected function _setPassword($password)
     {
         if (strlen($password) > 0) {
-            return (new DefaultPasswordHasher)->hash($password);
+          return (new DefaultPasswordHasher)->hash($password);
         }
     }
 }

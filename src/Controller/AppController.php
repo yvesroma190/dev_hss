@@ -16,6 +16,7 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
+use Cake\Event\EventInterface;
 
 
 /**
@@ -47,6 +48,7 @@ class AppController extends Controller
         ]);
         $this->loadComponent('Flash');
         $this->loadComponent('Flash');
+        // $this->loadComponent('Auth');
 
         // Authentification utilisateurs
         if(!empty($this->request->getParam(['prefix']))){
@@ -83,9 +85,15 @@ class AppController extends Controller
                 $this->viewBuilder()->setLayout('admin');
                 $this->Auth->allow(['login', 'logout']);
             }
-        }else{
+        }else if(empty($this->request->getParam(['prefix']))){
             //Authentification pour le frontend
             $this->loadComponent('Auth', [
+				'authenticate' => [
+					'Form' => [
+					'fields' => ['username' => 'email', 'password' => 'password'],
+					'userModel' => 'Clients'
+					],
+                ],
                 'loginAction' => [
                     'controller' => 'Clients',
                     'action' => 'login',
@@ -95,23 +103,23 @@ class AppController extends Controller
                     'action' => 'index'
                 ],
                 'logoutRedirect' => [
-                    'controller' => 'Offres',
-                    'action' => 'index'
+                    'controller' => 'Clients',
+                    'action' => 'login'
                 ],
                 'authError' => 'Accès interdit.',
-                'authenticate' => [
-                    'Form' => [
-                        'fields' => ['username' => 'email', 'password' => 'password']
-                    ]
-                ],
-                'storage' => 'Session'
+                
+                /* ], */
+                /* 'storage' => 'Session' */
             ]);
-            $this->Auth->getConfig('authenticate', ['Form']);
+            // $this->Auth->getConfig('authenticate', ['Form']);
 
-            $this->Auth->getConfig('authenticate', [
-                'Form' => ['userModel' => 'Clients'],
-            ]);
+            /* $this->Auth->getConfig('authenticate', [
+                'Form' => ['Clients' => 'Clients'],
+            ]); */
             $this->Auth->allow([ 'index', 'add','subscribe', 'payment', 'prestation', 'contact', 'reference', 'contrat', 'client', 'validation']);
+			
+			//afficher le nom du client connecté
+			$this->set('name', $this->Auth->user('name'));
         }
 
         
@@ -123,39 +131,12 @@ class AppController extends Controller
          */
         //$this->loadComponent('Security');
 
-        /*$this->loadComponent('Auth', [
-            'loginAction' => [
-                'controller' => 'Users',
-                'action' => 'login',
-            ],
-            'authError' => 'Vous croyez vraiment que vous pouvez faire cela?',
-            'authenticate' => [
-                'Form' => [
-                    'fields' => [
-                        'username' => 'email',
-                        'password' => 'password'
-                    ],
-                    'userModel' => 'Users'
-                ],
-            ],
-            'loginRedirect' => [
-                'controller' => 'Users',
-                'action' => 'index'
-            ],
-            'logoutRedirect' => [
-                'controller' => 'Users',
-                'action' => 'login'
-            ],
-            'storage' => 'Session'
-        ]);
+    }
 
-        $this->Auth->config('authenticate', ['Form']);
-
-        $this->Auth->config('authenticate', [
-            'Form'=>['userModel'=>'Users'],
-            ]);*/
-
-
+    public function beforeFilter(EventInterface $event)
+    {
+		//afficher le nom du client connecté
+		/* $this->set('name', $this->Auth->user('name')); */
     }
 
 	

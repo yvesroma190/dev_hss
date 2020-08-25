@@ -118,8 +118,15 @@
                         </ul>
                     </div>
                     <div class="pricing-action">
+					 <!-- si le client n'est pas connecté -->
+					<?php if(empty($name)): ?>
                         <a href="<?= $this->Url->build(['controller' => 'Souscriptions', 'action' => 'subscribe', $offre->id]); ?>" class="btn btn-medium btn-theme"><i class="icon-bolt"></i>Souscrire</a>
-                    </div>
+                    <?php endif ?>
+					<!-- si le client est connecté -->
+					<?php if($name): ?>
+						<a href="<?= $this->Url->build(['controller' => 'Souscriptions', 'action' => 'validation', $this->request->getSession()->read('Auth.User.id')]); ?>" class="btn btn-medium btn-theme"><i class="icon-bolt"></i>Souscrire</a>
+					<?php endif ?>
+					</div>
                 </div>
             </div>
         <?php endforeach; ?>

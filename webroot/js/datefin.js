@@ -1,8 +1,8 @@
 
 //Recup. champs de contrôle
-var prix = document.getElementById('prix');
+var created = document.getElementById('created');
 var periode = document.getElementById('periode');
-var montanttotal = document.getElementById('montanttotal');
+var datefin = document.getElementById('datefin');
 
 // Recup. des valeurs
 var valprix = parseInt(prix.value) || 0;

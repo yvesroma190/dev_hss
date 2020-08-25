@@ -42,7 +42,7 @@
     <div class="container">
         <div class="row">
 		<?= $this->Flash->render() ?>
-			<?= $this->Form->create('$client', ['class' => 'form-horizontal', 'url' => ['controller' => 'Clients', 'action' => 'login']]) ?>
+			<?= $this->Form->create('', ['class' => 'form-horizontal', 'url' => ['controller' => 'Clients', 'action' => 'login']]) ?>
 				<div class="span12">
 					<?= $this->Form->control('email', ['type'=> 'email', 'name'=> 'email', 'class'=> 'form-group', 'label'=> 'Email:']); ?>
 					

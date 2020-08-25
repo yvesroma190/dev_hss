@@ -4,7 +4,7 @@
  * @var \App\Model\Entity\Souscription $souscription
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
+<!-- <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Edit Souscription'), ['action' => 'edit', $souscription->id]) ?> </li>
@@ -96,4 +96,120 @@
         </table>
         <?php endif; ?>
     </div>
-</div>
+</div> -->
+
+
+<?= $this->element('header'); ?>
+
+<section id="inner-headline">
+    <div class="container">
+        <div class="row">
+            <div class="span4">
+                <div class="inner-heading">
+                    <h2>PROFILE</h2>
+                </div>
+            </div>
+            <div class="span8">
+                <ul class="breadcrumb">
+                    <li><a href="<?= $this->Url->build(['controller' => 'Offres', 'action' => 'index']); ?>"><i class="icon-home"></i></a><i class="icon-angle-right"></i></li>
+                    <!--<li><a href="#">Pages</a><i class="icon-angle-right"></i></li>-->
+                    <li class="active">Ma souscription</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<section id="content">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <h4><strong>Ma Souscription</strong></h4>
+            </div>
+        </div>
+
+        <!-- divider -->
+        <div class="row">
+            <div class="span12">
+                <div class="solidline">
+                </div>
+            </div>
+        </div>
+        <!-- end divider -->
+        
+        <!-- Menu du profile -->
+        <div class="row">
+            <div class="span12">
+                <!-- <?= $this->Html->link(__('Mon profile'), ['controller' => 'Clients', 'action' => 'view', $client->id], ['class'=> 'btn btn-success']) ?> -->
+                <!-- <?= $this->Html->link(__('Mes souscriptions'), ['action' => 'edit', $client->id], ['class'=> 'btn btn-primary']) ?>
+                <?= $this->Html->link(__('Mes paiements'), ['action' => 'edit', $client->id], ['class'=> 'btn btn-danger']) ?> -->
+            </div>
+        </div>
+
+        <!-- divider -->
+        <!-- <div class="row">
+            <div class="span12">
+                <div class="solidline">
+                </div>
+            </div>
+        </div> -->
+        <!-- end divider -->
+
+        <!-- details client -->
+        <div class="row">
+            <div>
+                <h6> <strong>Informations souscription</strong></h6>
+            </div>
+            <p><?= $this->Flash->render() ?></p> 
+            <div class="span6">
+                <table class="table table-bordered">
+                    <tr>
+						<th scope="row"><?= __('Client') ?></th>
+						<td><?= $souscription->has('client') ? $this->Html->link($souscription->client->name, ['controller' => 'Clients', 'action' => 'view', $souscription->client->id]) : '' ?></td>
+					</tr>
+					<tr>
+						<th scope="row"><?= __('Offre') ?></th>
+						<td><?= $souscription->offre->name ?></td>
+					</tr>
+					<tr>
+						<th scope="row"><?= __('Periode') ?></th>
+						<td><?= $souscription->periode->name ?></td>
+					</tr>
+					<!-- <tr>
+						<th scope="row"><?= __('Id') ?></th>
+						<td><?= $this->Number->format($souscription->id) ?></td>
+					</tr> -->
+					<tr>
+						<th scope="row"><?= __('Montant total') ?></th>
+						<td><?= $this->Number->format($souscription->montanttotal) ?></td>
+					</tr>
+					<tr>
+						<th scope="row"><?= __('Date debut') ?></th>
+						<td><?= h($souscription->datedebut) ?></td>
+					</tr>
+					<tr>
+						<th scope="row"><?= __('Date fin') ?></th>
+						<td><?= h($souscription->datefin) ?></td>
+					</tr>
+					<!-- <tr>
+						<th scope="row"><?= __('Created') ?></th>
+						<td><?= h($souscription->created) ?></td>
+					</tr>
+					<tr>
+						<th scope="row"><?= __('Modified') ?></th>
+						<td><?= h($souscription->modified) ?></td>
+					</tr> -->
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<?= $this->element('footer'); ?>
+
+

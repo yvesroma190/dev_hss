@@ -49,7 +49,7 @@
             <?= $this->Form->create($client) ?>
                 <div class="span3">
                     <?php
-                    echo $this->Form->control('offre_id', ['options' => $offres, 'id' => 'offre', 'empty' => true, 'type' => 'hidden']);
+                    echo $this->Form->control('offre_id', ['type' => 'hidden', 'id' => 'offre', 'value' => $offre->id]);
                     echo $this->Form->control('name', ['class' => 'form-control', 'type' => 'text', 'placeholder' => 'Entrez votre nom et prénoms...', 'label' => 'Nom et Prénoms :']);
                     echo $this->Form->control('email', ['class' => 'form-control', 'type' => 'email', 'placeholder' => 'Entrez votre adresse email...', 'label' => 'Email :']);
                     echo $this->Form->control('password', ['class' => 'form-control', 'type' => 'password', 'placeholder' => 'Entrez votre mot de passe...', 'label' => 'Mot de passe :']);
@@ -64,26 +64,8 @@
                     echo $this->Form->control('adresse', ['class' => 'form-control', 'type' => 'text', 'placeholder' => 'Entrez votre adresse...', 'label' => 'Adresse :']);
                     echo $this->Form->control('localisation_site', ['class' => 'form-control', 'type' => 'textarea', 'placeholder' => 'Entrez votre la localisation du site à sécuriser...', 'label' => 'Localisation du site :']);
                     ?>
-                    <?= $this->Form->button(__('Valider votre compte', ['class'=>'btn btn-large btn-danger btn-rounded'])) ?>
-                    <!-- <a class="btn btn-large btn-danger btn-rounded">Valider votre compte</a> -->
-                </div>
-            
-            <!-- <div class="span3" id="infos">
-                <div class="form-group" id="calcul">
-                    <?php
-                    echo $this->Form->control('prix', ['name' => 'prix', 'id' => 'prix', 'value' => $this->Number->format($offre->prix), 'empty' => true, 'type' => 'hidden']);
-                    // echo $this->Form->control('souscriptions.0.client_id', ['options' => $clients, 'empty' => true, 'type' => 'hidden']);
-                    echo $this->Form->control('offre_id', ['options' => $offres, 'id' => 'offre', 'empty' => true, 'type' => 'hidden']);
-                    echo $this->Form->control('periode_id', ['options' => $periodes, 'class' => 'form-control', 'id' => 'periode', 'name' => 'periode_id', 'empty' => true, 'label' => 'Durée de l\'offre :']);
-                    echo $this->Form->control('montanttotal', ['class' => 'form-control', 'id' => 'montanttotal', 'readonly' => 'readonly', 'label' => 'Montant Total :']);
-                    echo $this->Form->control('datedebut', ['class' => 'form-control', 'empty' => true, 'class' => 'form-control', 'type' => 'hidden', 'readonly' => 'readonly', 'label' => 'Début abonnement :']);
-                    echo $this->Form->control('datefin', ['class' => 'form-control', 'empty' => true, 'class' => 'form-control', 'type' => 'hidden', 'readonly' => 'readonly', 'label' => 'Fin abonnement :']);
-                    ?>
-                    
-                    
-                </div>
-            </div> -->
-            <!-- <?= $this->Form->button(__('Valider votre compte', ['class'=>'btn btn-danger'])) ?> -->
+                    <?= $this->Form->button(__('Valider votre compte', ['class'=>'btn btn-large btn-danger btn-rounded'])) ?>                    
+                </div>            
             </div>
             <?= $this->Form->end() ?>
             <div class="span6">

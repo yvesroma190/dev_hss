@@ -4,9 +4,18 @@
         <div class="span12">
         <div class="headnav">
             <ul>
+			<li><strong><i class="icon-user"></i><?= $this->request->getSession()->read('Auth.User.name') ?></strong></li>
+			
+			
             <!--<li><a href="#mySignin" data-toggle="modal">Connexion</a></li>-->
-             <li><a href="<?= $this->Url->build(['controller' => 'Clients', 'action' => 'login']); ?>" data-toggle="modal">Connexion</a></li> 
-            <!--<li><a href="#mySignin" data-toggle="modal">Se connecter</a></li>-->
+			<?php if($name): ?>
+				<li><strong><a href="<?= $this->Url->build(['controller' => 'Clients', 'action' => 'view', $this->request->getSession()->read('Auth.User.id')]); ?>"><i class=" icon-eye-open"></i>Profile</a></strong></li>
+				<li><a href="<?= $this->Url->build(['controller' => 'Clients', 'action' => 'logout']); ?>">Déconnexion</a></li> 
+            <?php endif ?>
+			<?php if(empty($name)): ?>
+			<li><a href="<?= $this->Url->build(['controller' => 'Clients', 'action' => 'login']); ?>">Connexion</a></li>
+			<?php endif ?>
+			<!--<li><a href="#mySignin" data-toggle="modal">Se connecter</a></li>-->
             </ul>
         </div>
         <!-- Signup Modal -->

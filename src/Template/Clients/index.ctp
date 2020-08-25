@@ -8,8 +8,14 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Client'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Offres'), ['controller' => 'Offres', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Offre'), ['controller' => 'Offres', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Commentaires'), ['controller' => 'Commentaires', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Commentaire'), ['controller' => 'Commentaires', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Paiements'), ['controller' => 'Paiements', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Paiement'), ['controller' => 'Paiements', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Souscriptions'), ['controller' => 'Souscriptions', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Souscription'), ['controller' => 'Souscriptions', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="clients index large-9 medium-8 columns content">
@@ -26,6 +32,7 @@
                 <th scope="col"><?= $this->Paginator->sort('web') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('bp') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('adresse') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('offre_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -43,6 +50,7 @@
                 <td><?= h($client->web) ?></td>
                 <td><?= h($client->bp) ?></td>
                 <td><?= h($client->adresse) ?></td>
+                <td><?= $client->has('offre') ? $this->Html->link($client->offre->name, ['controller' => 'Offres', 'action' => 'view', $client->offre->id]) : '' ?></td>
                 <td><?= h($client->created) ?></td>
                 <td><?= h($client->modified) ?></td>
                 <td class="actions">

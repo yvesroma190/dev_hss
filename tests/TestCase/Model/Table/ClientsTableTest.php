@@ -24,9 +24,10 @@ class ClientsTableTest extends TestCase
      */
     public $fixtures = [
         'app.Clients',
+        'app.Offres',
         'app.Commentaires',
-        'app.Souscriptionsmarts',
-        'app.Souscriptionteles',
+        'app.Paiements',
+        'app.Souscriptions',
     ];
 
     /**

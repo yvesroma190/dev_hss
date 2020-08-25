@@ -22,7 +22,7 @@ class UsersController extends AppController
     {
         $this->viewBuilder()->setLayout('admin');
         //$this->Auth->allow(['login', 'index', 'add']);
-         $this->Auth->allow(['login', 'logout']);
+        //  $this->Auth->allow(['login', 'logout']);
     }
 
     //Login

@@ -108,13 +108,14 @@
                         <?php
                         // echo $this->Form->control('offreid', ['name' => 'offreid', 'id' => 'prix', 'value' => $this->Number->format($client->offre->id), 'type' => '']);
 
-                        echo $this->Form->control('prix', ['name' => 'prix', 'id' => 'prix', 'value' => $this->Number->format($client->offre->prix), 'type' => 'hidden']);
-                        echo $this->Form->control('client_id', ['type' => 'text', 'value' => $this->Number->format($client->id), 'type' => 'hidden']);
-                        echo $this->Form->control('offre_id', ['type' => 'text', 'id' => 'offre', 'value' => $this->Number->format($client->offre->id), 'type' => 'hidden']);
+                        echo $this->Form->control('created', ['name' => 'created', 'id' => 'created', 'type' => 'hidden']);
+                        echo $this->Form->control('prix', ['name' => 'prix', 'id' => 'prix', 'value' => $client->offre->prix, 'type' => '']);
+                        echo $this->Form->control('client_id', ['type' => 'text', 'value' => $client->id]);
+                        echo $this->Form->control('offre_id', ['type' => 'text', 'id' => 'offre', 'value' => $client->offre->id]);
                         echo $this->Form->control('periode_id', ['options' => $periodes, 'class' => 'form-control', 'id' => 'periode', 'name' => 'periode_id', 'empty' => true, 'label' => 'Durée de l\'offre :']);
                         echo $this->Form->control('montanttotal', ['class' => 'form-control', 'readonly' => 'readonly', 'id' => 'montanttotal', 'label' => 'Montant Total :']);
-                        echo $this->Form->control('datedebut', ['class' => 'form-control', 'empty' => true, 'class' => 'form-control', 'type' => 'hidden', 'readonly' => 'readonly', 'label' => 'Début abonnement :']);
-                        echo $this->Form->control('datefin', ['class' => 'form-control', 'empty' => true, 'class' => 'form-control', 'type' => 'hidden', 'readonly' => 'readonly', 'label' => 'Fin abonnement :']);
+                        echo $this->Form->control('datedebut', ['class' => 'form-control', 'type' => 'hidden', 'readonly' => 'readonly', 'label' => 'Début abonnement :']);
+                        echo $this->Form->control('datefin', ['class' => 'form-control', 'id' => 'datefin', 'type' => 'text', 'readonly' => 'readonly', 'label' => 'Fin abonnement :']);
                         ?>
                     </fieldset>
                 </div>

@@ -12,12 +12,12 @@ use App\Controller\AppController;
  */
 class ClientsController extends AppController
 {
-	
-	//Login
+
+    //Login
     public function login(){
         // $this->viewBuilder()->setLayout('adminlogin');
 
-        //Vérification si client tjoujours connecté
+        //Vérification si client toujours connecté
         if($this->Auth->user('id')){
             //Utiliateur connecté
             return $this->redirect($this->Auth->redirectUrl());
@@ -25,6 +25,8 @@ class ClientsController extends AppController
             $login = $this->Clients->newEntity();
         
         if ($this->request->is('post') AND !empty($this->request->getData())) {
+			/* debug($this->request->getData());
+			exit; */
             $check_login = $this->Clients->patchEntity($login, $this->request->getData(), [
                 'validate' => 'login'
             ]);
@@ -36,8 +38,8 @@ class ClientsController extends AppController
             }else
             {
                 //User Auth
-                $user = $this->Auth->identify();
-                if ($user) {
+                $client = $this->Auth->identify();
+                if ($client) {
                     $this->Auth->setUser($client);
                     return $this->redirect($this->Auth->redirectUrl());
                     //return $this->redirect(['controller' => 'Souscriptions', 'action' => 'index']);
@@ -63,10 +65,6 @@ class ClientsController extends AppController
 	}
 
 
-
-	
-	
-	
     /**
      * Index method
      *
@@ -92,7 +90,7 @@ class ClientsController extends AppController
     public function view($id = null)
     {
         $client = $this->Clients->get($id, [
-            'contain' => ['Commentaires', 'Offres', 'Souscriptions'],
+            'contain' => ['Offres', 'Commentaires', 'Paiements', 'Souscriptions'],
         ]);
 
         $this->set('client', $client);
@@ -163,12 +161,4 @@ class ClientsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
-
-
-
-    
-
-
-
-
 }

@@ -9,9 +9,10 @@ use Cake\Validation\Validator;
 /**
  * Clients Model
  *
+ * @property \App\Model\Table\OffresTable&\Cake\ORM\Association\BelongsTo $Offres
  * @property \App\Model\Table\CommentairesTable&\Cake\ORM\Association\HasMany $Commentaires
- * @property &\Cake\ORM\Association\HasMany $Paiements
- * @property &\Cake\ORM\Association\HasMany $Souscriptions
+ * @property \App\Model\Table\PaiementsTable&\Cake\ORM\Association\HasMany $Paiements
+ * @property \App\Model\Table\SouscriptionsTable&\Cake\ORM\Association\HasMany $Souscriptions
  *
  * @method \App\Model\Entity\Client get($primaryKey, $options = [])
  * @method \App\Model\Entity\Client newEntity($data = null, array $options = [])
@@ -42,6 +43,10 @@ class ClientsTable extends Table
 
         $this->addBehavior('Timestamp');
 
+        $this->belongsTo('Offres', [
+            'foreignKey' => 'offre_id',
+            'joinType' => 'INNER',
+        ]);
         $this->hasMany('Commentaires', [
             'foreignKey' => 'client_id',
         ]);
@@ -51,10 +56,6 @@ class ClientsTable extends Table
         $this->hasMany('Souscriptions', [
             'foreignKey' => 'client_id',
         ]);
-        $this->belongsTo('Offres', [
-            'foreignKey' => 'offre_id',
-        ]);
-        
     }
 
     /**
@@ -78,14 +79,12 @@ class ClientsTable extends Table
         $validator
             ->email('email')
             // ->allowEmptyString('email');
-            ->requirePresence('email', 'create')
             ->notEmptyString('email');
 
         $validator
             ->scalar('password')
             ->maxLength('password', 255)
             // ->allowEmptyString('password');
-            ->requirePresence('password', 'create')
             ->notEmptyString('password');
 
         $validator
@@ -94,13 +93,10 @@ class ClientsTable extends Table
             // ->allowEmptyString('cel');
             ->notEmptyString('cel');
 
-
         $validator
             ->scalar('tel')
             ->maxLength('tel', 8)
             ->allowEmptyString('tel');
-            // ->notEmptyString('tel');
-
 
         $validator
             ->scalar('web')
@@ -115,9 +111,7 @@ class ClientsTable extends Table
         $validator
             ->scalar('adresse')
             ->maxLength('adresse', 45)
-            // ->allowEmptyString('adresse');
-            ->notEmptyString('adresse');
-
+            ->allowEmptyString('adresse');
 
         $validator
             ->scalar('localisation_site')
@@ -125,10 +119,9 @@ class ClientsTable extends Table
             // ->allowEmptyString('localisation_site');
             ->notEmptyString('localisation_site');
 
-
         return $validator;
     }
-    
+
     public function validationLogin(Validator $validator)
     {
         $validator
@@ -154,6 +147,7 @@ class ClientsTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->isUnique(['email']));
+        $rules->add($rules->existsIn(['offre_id'], 'Offres'));
 
         return $rules;
     }
