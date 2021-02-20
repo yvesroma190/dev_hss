@@ -27,7 +27,7 @@
     <div class="container">
         <div class="row">
             <div class="span12">
-                <h4><strong>Paiement</strong></h4>
+                <h4><strong>Souscription</strong></h4>
             </div>
         </div>
 
@@ -43,8 +43,8 @@
 
         <div class="row">
             <div>
-                <h6> <strong>Validez votre Paiement</strong></h6>
-                <div class="span8">
+                <h6> <strong>Détails</strong></h6>
+                <div class="span4">
                     <table class="table table-striped">
                         <tr>
                             <th scope="row"><?= __('Nom du client:') ?></th>
@@ -63,47 +63,69 @@
                             <td><?= $this->Number->format($souscription->id) ?></td>
                         </tr> -->
                         <tr>
-                            <th scope="row"><?= __('Montant total:') ?></th>
+                            <th scope="row"><?= __('Montant Total TTC:') ?></th>
                             <td><?= $this->Number->format($souscription->montanttotal) ?></td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <th scope="row"><?= __('Date début:') ?></th>
                             <td><?= h($souscription->datedebut) ?></td>
                         </tr>
                         <tr>
                             <th scope="row"><?= __('Date fin:') ?></th>
                             <td><?= h($souscription->datefin) ?></td>
-                        </tr>
+                        </tr> -->
                         <tr>
-                            <th scope="row"><?= __('Created') ?></th>
+                            <th scope="row"><?= __('Date de soucription') ?></th>
                             <td><?= h($souscription->created) ?></td>
                         </tr>
-                        <tr>
-                            <th scope="row"><?= __('Modified') ?></th>
+                        <!-- <tr>
+                            <th scope="row"><?= __('Modifié le') ?></th>
                             <td><?= h($souscription->modified) ?></td>
-                        </tr>
+                        </tr> -->
                     </table>
-                </div>
-            </div>                     
+					<!-- Bouton de paiement -->
+				<!-- <?= $this->Html->link(__('Débuter le paiement'), ['action' => 'paie'], ['class' => 'btn btn-large btn-theme btn-danger btn-rounded']) ?> -->
+            </div>
             
-            <div class="span4">
-                <?= $this->Form->create($paiement) ?>
+            <div class="span8">
+			<h6> <strong>Choisir le mode de paiement</strong></h6>
+                <?= $this->Form->create() ?>
                 <fieldset>
                     <?php
-                        echo $this->Form->control('client_id', ['options' => $clients, 'empty' => true]);
-                        echo $this->Form->control('souscription_id', ['options' => $souscriptions, 'empty' => true]);
-                        echo $this->Form->control('offre_id', ['options' => $offres, 'empty' => true]);
-                        echo $this->Form->control('datepaiement', ['empty' => true]);
-                        echo $this->Form->control('etatpaiement_id', ['options' => $etatpaiements, 'empty' => true]);
+                        echo $this->Form->control('client_id', ['type' => 'hidden', 'class' => 'form-control', 'value' => $souscription->client->id]);
+						echo $this->Form->control('client_email', ['type' => 'hidden', 'class' => 'form-control', 'value' => $souscription->client->email]);
+						echo $this->Form->control('client_name', ['type' => 'hidden', 'class' => 'form-control', 'value' => $souscription->client->name]);
+						echo $this->Form->control('client_cel', ['type' => 'hidden', 'class' => 'form-control', 'value' => $souscription->client->cel]);
+                        echo $this->Form->control('souscription_id', ['type' => 'hidden', 'class' => 'form-control', 'value' => $this->Number->format($souscription->id)]);
+						echo $this->Form->control('montanttotal', ['type' => 'hidden', 'class' => 'form-control', 'value' => $souscription->montanttotal]);
+                        echo $this->Form->control('offre_id', ['type' => 'hidden', 'class' => 'form-control', 'value' => $souscription->offre->id]);
+                        echo $this->Form->control('datepaiement', ['type' => 'hidden', 'class' => 'form-control']);
+                        //echo $this->Form->control('etatpaiement_id', ['options' => $etatpaiements, 'empty' => true, 'type' => 'hidden']);
+						//echo $this->Form->radio('paidmod', ['OM','MOMO','FLOOZ','CARD']);
                     ?>
-                </fieldset>
-                <?= $this->Form->button(__('Procédez au paiement')) ?>
+					<div class="cc-selector">
+						<input checked="checked" id="om" type="radio" name="paid" value="OM" />
+						<label class="drinkcard-cc om" for="om"></label>
+						
+						<input id="momo" type="radio" name="paid" value="MOMO" />
+						<label class="drinkcard-cc momo" for="momo"></label>
+						
+						<input id="flooz" type="radio" name="paid" value="FLOOZ" />
+						<label class="drinkcard-cc flooz" for="flooz"></label>
+						
+						<input id="uba" type="radio" name="paid" value="CARD" />
+						<label class="drinkcard-cc uba" for="uba"></label>
+					</div>
+					
+                </fieldset>			
+                <?= $this->Form->button(__('Confirmer le mode de paiement'), ['class'=> 'btn btn-large btn-theme btn-danger btn-rounded']) ?>
                 <?= $this->Form->end() ?>
             </div>
 
         </div>
     </div>
 </section>
+
 
 
 <?= $this->element('footer'); ?>

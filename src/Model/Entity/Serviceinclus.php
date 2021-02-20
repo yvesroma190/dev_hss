@@ -6,7 +6,7 @@ use Cake\ORM\Entity;
 /**
  * Serviceinclus Entity
  *
- * @property int $is
+ * @property int $id
  * @property string|null $offre_id
  * @property string|null $name
  * @property \Cake\I18n\FrozenTime|null $created

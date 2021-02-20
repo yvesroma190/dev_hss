@@ -4,7 +4,7 @@
  * @var \App\Model\Entity\Paiement $paiement
  */
 ?>
-<!--<nav class="large-3 medium-4 columns" id="actions-sidebar">
+<nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Form->postLink(
@@ -29,13 +29,23 @@
     <fieldset>
         <legend><?= __('Edit Paiement') ?></legend>
         <?php
+            echo $this->Form->control('refpay');
+            echo $this->Form->control('session');
+            echo $this->Form->control('payid');
             echo $this->Form->control('client_id', ['options' => $clients, 'empty' => true]);
             echo $this->Form->control('souscription_id', ['options' => $souscriptions, 'empty' => true]);
             echo $this->Form->control('offre_id', ['options' => $offres, 'empty' => true]);
-            echo $this->Form->control('datepaiement', ['empty' => true]);
+            echo $this->Form->control('montant');
+            echo $this->Form->control('tel');
+            echo $this->Form->control('description');
+            echo $this->Form->control('modepaid');
+            echo $this->Form->control('datepay');
+            echo $this->Form->control('datefin', ['empty' => true]);
+            echo $this->Form->control('timepay');
+            echo $this->Form->control('canal');
             echo $this->Form->control('etatpaiement_id', ['options' => $etatpaiements, 'empty' => true]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
-</div>-->
+</div>

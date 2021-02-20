@@ -17,7 +17,7 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('is') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('offre_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
@@ -28,15 +28,15 @@
         <tbody>
             <?php foreach ($serviceinclus as $serviceinclus): ?>
             <tr>
-                <td><?= $this->Number->format($serviceinclus->is) ?></td>
+                <td><?= $this->Number->format($serviceinclus->id) ?></td>
                 <td><?= $serviceinclus->has('offre') ? $this->Html->link($serviceinclus->offre->name, ['controller' => 'Offres', 'action' => 'view', $serviceinclus->offre->id]) : '' ?></td>
                 <td><?= h($serviceinclus->name) ?></td>
                 <td><?= h($serviceinclus->created) ?></td>
                 <td><?= h($serviceinclus->modified) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $serviceinclus->is]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $serviceinclus->is]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $serviceinclus->is], ['confirm' => __('Are you sure you want to delete # {0}?', $serviceinclus->is)]) ?>
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $serviceinclus->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $serviceinclus->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $serviceinclus->id], ['confirm' => __('Are you sure you want to delete # {0}?', $serviceinclus->is)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

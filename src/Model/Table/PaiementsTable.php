@@ -71,8 +71,65 @@ class PaiementsTable extends Table
             ->add('id', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         $validator
-            ->date('datepaiement')
-            ->allowEmptyDate('datepaiement');
+            ->scalar('refpay')
+            ->maxLength('refpay', 255)
+            ->requirePresence('refpay', 'create')
+            ->notEmptyString('refpay');
+
+        $validator
+            ->scalar('session')
+            ->maxLength('session', 255)
+            ->requirePresence('session', 'create')
+            ->notEmptyString('session');
+
+        $validator
+            ->scalar('payid')
+            ->maxLength('payid', 255)
+            ->requirePresence('payid', 'create')
+            ->notEmptyString('payid');
+
+        $validator
+            ->numeric('montant')
+            ->requirePresence('montant', 'create')
+            ->notEmptyString('montant');
+
+        $validator
+            ->scalar('tel')
+            ->maxLength('tel', 13)
+            ->requirePresence('tel', 'create')
+            ->notEmptyString('tel');
+
+        $validator
+            ->scalar('description')
+            ->maxLength('description', 4294967295)
+            ->requirePresence('description', 'create')
+            ->notEmptyString('description');
+
+        $validator
+            ->scalar('modepaid')
+            ->maxLength('modepaid', 255)
+            ->requirePresence('modepaid', 'create')
+            ->notEmptyString('modepaid');
+
+        $validator
+            ->dateTime('datepay')
+            ->requirePresence('datepay', 'create')
+            ->notEmptyDateTime('datepay');
+
+        $validator
+            ->dateTime('datefin')
+            ->allowEmptyDateTime('datefin');
+
+        $validator
+            ->time('timepay')
+            ->requirePresence('timepay', 'create')
+            ->notEmptyTime('timepay');
+
+        $validator
+            ->scalar('canal')
+            ->maxLength('canal', 255)
+            ->requirePresence('canal', 'create')
+            ->notEmptyString('canal');
 
         return $validator;
     }

@@ -4,7 +4,7 @@
  * @var \App\Model\Entity\Paiement $paiement
  */
 ?>
-<!-- <nav class="large-3 medium-4 columns" id="actions-sidebar">
+<nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Edit Paiement'), ['action' => 'edit', $paiement->id]) ?> </li>
@@ -25,6 +25,18 @@
     <h3><?= h($paiement->id) ?></h3>
     <table class="vertical-table">
         <tr>
+            <th scope="row"><?= __('Refpay') ?></th>
+            <td><?= h($paiement->refpay) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Session') ?></th>
+            <td><?= h($paiement->session) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Payid') ?></th>
+            <td><?= h($paiement->payid) ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('Client') ?></th>
             <td><?= $paiement->has('client') ? $this->Html->link($paiement->client->name, ['controller' => 'Clients', 'action' => 'view', $paiement->client->id]) : '' ?></td>
         </tr>
@@ -37,6 +49,18 @@
             <td><?= $paiement->has('offre') ? $this->Html->link($paiement->offre->name, ['controller' => 'Offres', 'action' => 'view', $paiement->offre->id]) : '' ?></td>
         </tr>
         <tr>
+            <th scope="row"><?= __('Tel') ?></th>
+            <td><?= h($paiement->tel) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Modepaid') ?></th>
+            <td><?= h($paiement->modepaid) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Canal') ?></th>
+            <td><?= h($paiement->canal) ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('Etatpaiement') ?></th>
             <td><?= $paiement->has('etatpaiement') ? $this->Html->link($paiement->etatpaiement->name, ['controller' => 'Etatpaiements', 'action' => 'view', $paiement->etatpaiement->id]) : '' ?></td>
         </tr>
@@ -45,8 +69,20 @@
             <td><?= $this->Number->format($paiement->id) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Datepaiement') ?></th>
-            <td><?= h($paiement->datepaiement) ?></td>
+            <th scope="row"><?= __('Montant') ?></th>
+            <td><?= $this->Number->format($paiement->montant) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Datepay') ?></th>
+            <td><?= h($paiement->datepay) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Datefin') ?></th>
+            <td><?= h($paiement->datefin) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Timepay') ?></th>
+            <td><?= h($paiement->timepay) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Created') ?></th>
@@ -57,114 +93,8 @@
             <td><?= h($paiement->modified) ?></td>
         </tr>
     </table>
-</div> -->
-
-
-<?= $this->element('header'); ?>
-
-<section id="inner-headline">
-    <div class="container">
-        <div class="row">
-            <div class="span4">
-                <div class="inner-heading">
-                    <h2>PROFILE</h2>
-                </div>
-            </div>
-            <div class="span8">
-                <ul class="breadcrumb">
-                    <li><a href="<?= $this->Url->build(['controller' => 'Offres', 'action' => 'index']); ?>"><i class="icon-home"></i></a><i class="icon-angle-right"></i></li>
-                    <!--<li><a href="#">Pages</a><i class="icon-angle-right"></i></li>-->
-                    <li class="active">Paiement</li>
-                </ul>
-            </div>
-        </div>
+    <div class="row">
+        <h4><?= __('Description') ?></h4>
+        <?= $this->Text->autoParagraph(h($paiement->description)); ?>
     </div>
-</section>
-
-
-
-
-
-<section id="content">
-    <div class="container">
-        <div class="row">
-            <div class="span12">
-                <h4><strong>Mon paiement</strong></h4>
-            </div>
-        </div>
-
-        <!-- divider -->
-        <div class="row">
-            <div class="span12">
-                <div class="solidline">
-                </div>
-            </div>
-        </div>
-        <!-- end divider -->
-        
-        <!-- Menu du profile -->
-        <div class="row">
-            <div class="span12">
-                <!-- <?= $this->Html->link(__('Mon profile'), ['controller' => 'Clients', 'action' => 'view', $client->id], ['class'=> 'btn btn-success']) ?> -->
-                <!-- <?= $this->Html->link(__('Mes souscriptions'), ['action' => 'edit', $client->id], ['class'=> 'btn btn-primary']) ?>
-                <?= $this->Html->link(__('Mes paiements'), ['action' => 'edit', $client->id], ['class'=> 'btn btn-danger']) ?> -->
-            </div>
-        </div>
-
-        <!-- divider -->
-        <!-- <div class="row">
-            <div class="span12">
-                <div class="solidline">
-                </div>
-            </div>
-        </div> -->
-        <!-- end divider -->
-
-        <!-- details client -->
-        <div class="row">
-            <div>
-                <h6> <strong>Informations paiement</strong></h6>
-            </div>
-            <p><?= $this->Flash->render() ?></p> 
-            <div class="span6">
-                <table class="table table-bordered">
-                    <tr>
-						<th scope="row"><?= __('Client') ?></th>
-						<td><?= $paiement->has('client') ? $this->Html->link($paiement->client->name, ['controller' => 'Clients', 'action' => 'view', $paiement->client->id]) : '' ?></td>
-					</tr>
-					<tr>
-						<th scope="row"><?= __('Souscription') ?></th>
-						<td><?= $paiement->has('souscription') ? $this->Html->link($paiement->souscription->id, ['controller' => 'Souscriptions', 'action' => 'view', $paiement->souscription->id]) : '' ?></td>
-					</tr>
-					<tr>
-						<th scope="row"><?= __('Offre') ?></th>
-						<td><?= $paiement->has('offre') ? $this->Html->link($paiement->offre->name, ['controller' => 'Offres', 'action' => 'view', $paiement->offre->id]) : '' ?></td>
-					</tr>
-					<tr>
-						<th scope="row"><?= __('Etat paiement') ?></th>
-						<td><?= $paiement->has('etatpaiement') ? $this->Html->link($paiement->etatpaiement->name, ['controller' => 'Etatpaiements', 'action' => 'view', $paiement->etatpaiement->id]) : '' ?></td>
-					</tr>
-					<!-- <tr>
-						<th scope="row"><?= __('Id') ?></th>
-						<td><?= $this->Number->format($paiement->id) ?></td>
-					</tr> -->
-					<tr>
-						<th scope="row"><?= __('Datepaiement') ?></th>
-						<td><?= h($paiement->datepaiement) ?></td>
-					</tr>
-					<!-- <tr>
-						<th scope="row"><?= __('Created') ?></th>
-						<td><?= h($paiement->created) ?></td>
-					</tr>
-					<tr>
-						<th scope="row"><?= __('Modified') ?></th>
-						<td><?= h($paiement->modified) ?></td>
-					</tr> -->
-                </table>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<?= $this->element('footer'); ?>
+</div>

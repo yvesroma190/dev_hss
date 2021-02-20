@@ -128,7 +128,7 @@
                         echo $this->Form->control('adresse', ['class' => 'form-control span4', 'name' => 'adresse', 'type' => 'text', 'label' => 'Adresse :']);
                         echo $this->Form->control('localisation_site', ['class' => 'form-control span4', 'name' => 'localisation_site', 'type' => 'textarea', 'label' => 'Adresse du site à sécuriser :']);
                     ?>
-                    <?= $this->Form->button(__('Modifier votre profile', ['class'=>'btn btn-danger'])) ?>                
+                    <?= $this->Form->button(__('Modifier votre profile'), ['class'=>'btn btn-large btn-theme btn-danger btn-rounded']) ?>                
                 </div>
                 <?= $this->Form->end() ?>
             </div>

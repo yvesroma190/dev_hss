@@ -36,7 +36,7 @@ class ServiceinclusTable extends Table
 
         $this->setTable('serviceinclus');
         $this->setDisplayField('name');
-        $this->setPrimaryKey('is');
+        $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
 
@@ -54,9 +54,9 @@ class ServiceinclusTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->integer('is')
-            ->allowEmptyString('is', null, 'create')
-            ->add('is', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+            ->integer('id')
+            ->allowEmptyString('id', null, 'create')
+            ->add('id', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         $validator
             ->scalar('name')
@@ -75,7 +75,7 @@ class ServiceinclusTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['is']));
+        $rules->add($rules->isUnique(['id']));
         $rules->add($rules->existsIn(['offre_id'], 'Offres'));
 
         return $rules;

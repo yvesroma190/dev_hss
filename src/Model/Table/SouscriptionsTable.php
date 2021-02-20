@@ -69,6 +69,18 @@ class SouscriptionsTable extends Table
             ->integer('id')
             ->allowEmptyString('id', null, 'create')
             ->add('id', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+			
+		$validator
+            ->scalar('periode_id')
+            ->notEmptyString('periode_id');
+			
+		$validator
+            ->scalar('client_id')
+            ->notEmptyString('client_id');
+			
+		$validator
+			->scalar('offre_id')
+			->notEmptyString('offre_id');
 
         $validator
             ->numeric('montanttotal')
@@ -82,6 +94,7 @@ class SouscriptionsTable extends Table
         $validator
             ->dateTime('datefin')
             ->allowEmptyDateTime('datefin');
+			
 
         return $validator;
     }

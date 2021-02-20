@@ -7,8 +7,8 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Serviceinclus'), ['action' => 'edit', $serviceinclus->is]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Serviceinclus'), ['action' => 'delete', $serviceinclus->is], ['confirm' => __('Are you sure you want to delete # {0}?', $serviceinclus->is)]) ?> </li>
+        <li><?= $this->Html->link(__('Edit Serviceinclus'), ['action' => 'edit', $serviceinclus->id]) ?> </li>
+        <li><?= $this->Form->postLink(__('Delete Serviceinclus'), ['action' => 'delete', $serviceinclus->id], ['confirm' => __('Are you sure you want to delete # {0}?', $serviceinclus->id)]) ?> </li>
         <li><?= $this->Html->link(__('List Serviceinclus'), ['action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Serviceinclus'), ['action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Offres'), ['controller' => 'Offres', 'action' => 'index']) ?> </li>
@@ -27,8 +27,8 @@
             <td><?= h($serviceinclus->name) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Is') ?></th>
-            <td><?= $this->Number->format($serviceinclus->is) ?></td>
+            <th scope="row"><?= __('Id') ?></th>
+            <td><?= $this->Number->format($serviceinclus->id) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Created') ?></th>

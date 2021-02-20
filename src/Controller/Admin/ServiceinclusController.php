@@ -1,7 +1,7 @@
 <?php
 namespace App\Controller\Admin;
 
-use App\Controller\Admin\AppController;
+use App\Controller\AppController;
 
 /**
  * Serviceinclus Controller
@@ -56,8 +56,7 @@ class ServiceinclusController extends AppController
             if ($this->Serviceinclus->save($serviceinclus)) {
                 $this->Flash->success(__('The serviceinclus has been saved.'));
 
-                //return $this->redirect(['action' => 'index']);
-                return $this->redirect($this->referer());
+                return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The serviceinclus could not be saved. Please, try again.'));
         }

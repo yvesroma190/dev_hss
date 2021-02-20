@@ -19,12 +19,20 @@ class ArticlesController extends AppController
      */
     public function index()
     {
+		//Charger modele categories
+		$this->loadModel('CategorieArticles');
+		$categorieArticles = $this->paginate($this->CategorieArticles);
+        $this->set(compact('categorieArticles'));
+		
+		//Infos par defaut
         $this->paginate = [
             'contain' => ['Users', 'CategorieArticles'],
         ];
         $articles = $this->paginate($this->Articles);
-
+		
         $this->set(compact('articles'));
+		
+		
     }
 
     /**

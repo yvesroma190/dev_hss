@@ -24,9 +24,11 @@
 <section id="content">
     <div class="container">
     <div class="row">
-    <div class="span12">
+		<div class="span6"></div>
+		<div class="span4">
         <h4><strong>Se connecter</strong></h4>
         </div>
+		<!-- <div class="span4"></div> -->
     </div>
 
     <!-- divider -->
@@ -41,15 +43,32 @@
 
     <div class="container">
         <div class="row">
-		<?= $this->Flash->render() ?>
+		<div class="span2"></div>
+		<div class="span2"><?= $this->Html->image('admin_user_icon.png',['style'=>'height:150px']) ?></div>
+		<div class="span4">
+			<?= $this->Flash->render() ?>
 			<?= $this->Form->create('', ['class' => 'form-horizontal', 'url' => ['controller' => 'Clients', 'action' => 'login']]) ?>
-				<div class="span12">
-					<?= $this->Form->control('email', ['type'=> 'email', 'name'=> 'email', 'class'=> 'form-group', 'label'=> 'Email:']); ?>
-					
-					<?= $this->Form->control('password', ['type'=> 'password', 'name'=> 'password', 'class'=> 'form-group', 'label'=> 'Mot de passe:']); ?>
-					<?= $this->Form->button(__('Se connecter'), ['type'=> 'submit','class'=> 'btn btn-danger']) ?>
+				
+				<div class="control-group">
+					<label class="control-label">Email :</label>
+					<div class="controls">
+						<?= $this->Form->control('email', ['type'=> 'email', 'name'=> 'email', 'label'=> '']); ?>
+                    </div>					
 				</div>
+				<div class="control-group">
+					<label class="control-label">Mot de passe :</label>
+					<div class="controls">
+						<?= $this->Form->control('password', ['type'=> 'password', 'name'=> 'password', 'label'=> '']); ?>
+                    </div>					
+				</div>
+				<div class="control-group">
+                    <div class="controls">
+						<?= $this->Form->button(__('Se connecter'), ['type'=> 'submit','class'=> 'btn btn-large btn-theme btn-danger btn-rounded']) ?>
+                    </div>
+                </div>
+				
 			<?= $this->Form->end() ?>
+		</div>
         </div>
     </div>
 

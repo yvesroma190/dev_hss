@@ -124,7 +124,7 @@
                     <?php endif ?>
 					<!-- si le client est connecté -->
 					<?php if($name): ?>
-						<a href="<?= $this->Url->build(['controller' => 'Souscriptions', 'action' => 'validation', $this->request->getSession()->read('Auth.User.id')]); ?>" class="btn btn-medium btn-theme"><i class="icon-bolt"></i>Souscrire</a>
+						<a href="<?= $this->Url->build(['controller' => 'Souscriptions', 'action' => 'validation', $offre->id]); ?>" class="btn btn-medium btn-theme"><i class="icon-bolt"></i>Souscrire</a>
 					<?php endif ?>
 					</div>
                 </div>

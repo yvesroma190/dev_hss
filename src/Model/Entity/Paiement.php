@@ -7,10 +7,20 @@ use Cake\ORM\Entity;
  * Paiement Entity
  *
  * @property int $id
+ * @property string $refpay
+ * @property string $session
+ * @property string $payid
  * @property string|null $client_id
  * @property string|null $souscription_id
  * @property string|null $offre_id
- * @property \Cake\I18n\FrozenDate|null $datepaiement
+ * @property float $montant
+ * @property string $tel
+ * @property string $description
+ * @property string $modepaid
+ * @property \Cake\I18n\FrozenTime $datepay
+ * @property \Cake\I18n\FrozenTime|null $datefin
+ * @property \Cake\I18n\FrozenTime $timepay
+ * @property string $canal
  * @property string|null $etatpaiement_id
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
@@ -32,10 +42,20 @@ class Paiement extends Entity
      * @var array
      */
     protected $_accessible = [
+        'refpay' => true,
+        'session' => true,
+        'payid' => true,
         'client_id' => true,
         'souscription_id' => true,
         'offre_id' => true,
-        'datepaiement' => true,
+        'montant' => true,
+        'tel' => true,
+        'description' => true,
+        'modepaid' => true,
+        'datepay' => true,
+        'datefin' => true,
+        'timepay' => true,
+        'canal' => true,
         'etatpaiement_id' => true,
         'created' => true,
         'modified' => true,

@@ -27,7 +27,7 @@
             <td><?= h($serviceinclus->name) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Is') ?></th>
+            <th scope="row"><?= __('Id') ?></th>
             <td><?= $this->Number->format($serviceinclus->is) ?></td>
         </tr>
         <tr>

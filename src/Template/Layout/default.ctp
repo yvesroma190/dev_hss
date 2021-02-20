@@ -18,14 +18,15 @@
     <link href="css/flexslider.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" />
 
-    <?= $this->Html->css('bootstrap') ?>
-    <?= $this->Html->css('bootstrap-responsive') ?>
-    <?= $this->Html->css('jquery.fancybox') ?>
-    <?= $this->Html->css('jcarousel') ?>
-    <?= $this->Html->css('flexslider') ?>
-    <?= $this->Html->css('style') ?>
-    <?= $this->Html->css('default') ?>
-    <?= $this->Html->css('overwrite') ?>
+    <?= $this->Html->css('bootstrap.css') ?>
+    <?= $this->Html->css('bootstrap-responsive.css') ?>
+    <?= $this->Html->css('jquery.fancybox.css') ?>
+    <?= $this->Html->css('jcarousel.css') ?>
+    <?= $this->Html->css('flexslider.css') ?>
+    <?= $this->Html->css('style.css') ?>
+    <?= $this->Html->css('default.css') ?>
+    <?= $this->Html->css('overwrite.css') ?>
+	<?= $this->Html->css('radio.css') ?>
 
     <!-- Theme skin -->
     <link href="skins/default.css" rel="stylesheet" />

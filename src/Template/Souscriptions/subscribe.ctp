@@ -64,7 +64,7 @@
                     echo $this->Form->control('adresse', ['class' => 'form-control', 'type' => 'text', 'placeholder' => 'Entrez votre adresse...', 'label' => 'Adresse :']);
                     echo $this->Form->control('localisation_site', ['class' => 'form-control', 'type' => 'textarea', 'placeholder' => 'Entrez votre la localisation du site à sécuriser...', 'label' => 'Localisation du site :']);
                     ?>
-                    <?= $this->Form->button(__('Valider votre compte', ['class'=>'btn btn-large btn-danger btn-rounded'])) ?>                    
+                    <?= $this->Form->button(__('Valider votre compte'), ['class'=>'btn btn-large btn-theme btn-danger btn-rounded']) ?>                    
                 </div>            
             </div>
             <?= $this->Form->end() ?>

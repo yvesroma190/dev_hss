@@ -48,10 +48,10 @@
             <div class="form-group">
                 <div class="span5">
                 <table class="table table-striped">
-                    <tr>
+                    <!-- <tr>
                         <th scope="row"><?= __('Offre:') ?></th>
                         <td><?= h($client->offre->name) ?></td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <th scope="row"><?= __('Name:') ?></th>
                         <td><?= h($client->name) ?></td>
@@ -108,18 +108,19 @@
                         <?php
                         // echo $this->Form->control('offreid', ['name' => 'offreid', 'id' => 'prix', 'value' => $this->Number->format($client->offre->id), 'type' => '']);
 
-                        echo $this->Form->control('created', ['name' => 'created', 'id' => 'created', 'type' => 'hidden']);
-                        echo $this->Form->control('prix', ['name' => 'prix', 'id' => 'prix', 'value' => $client->offre->prix, 'type' => '']);
-                        echo $this->Form->control('client_id', ['type' => 'text', 'value' => $client->id]);
-                        echo $this->Form->control('offre_id', ['type' => 'text', 'id' => 'offre', 'value' => $client->offre->id]);
+                        //echo $this->Form->control('created', ['name' => 'created', 'id' => 'created', 'type' => '']);
+                        echo $this->Form->control('prix', ['name' => 'prix', 'id' => 'prix', 'value' => $offre->prix, 'type' => 'hidden']);
+                        echo $this->Form->control('client_id', ['type' => 'hidden', 'value' => $client->id]);
+                        echo $this->Form->control('offre_id', ['type' => 'hidden', 'id' => 'offre', 'value' => $offre->id]);
                         echo $this->Form->control('periode_id', ['options' => $periodes, 'class' => 'form-control', 'id' => 'periode', 'name' => 'periode_id', 'empty' => true, 'label' => 'Durée de l\'offre :']);
-                        echo $this->Form->control('montanttotal', ['class' => 'form-control', 'readonly' => 'readonly', 'id' => 'montanttotal', 'label' => 'Montant Total :']);
+						echo $this->Form->control('taxe', ['class' => 'form-control', 'readonly' => 'readonly', 'id' => 'taxe', 'value' => '5', 'label' => 'Taxe(%) :']);
+                        echo $this->Form->control('montanttotal', ['class' => 'form-control', 'readonly' => 'readonly', 'id' => 'montanttotal', 'label' => 'Montant Total TTC :']);
                         echo $this->Form->control('datedebut', ['class' => 'form-control', 'type' => 'hidden', 'readonly' => 'readonly', 'label' => 'Début abonnement :']);
-                        echo $this->Form->control('datefin', ['class' => 'form-control', 'id' => 'datefin', 'type' => 'text', 'readonly' => 'readonly', 'label' => 'Fin abonnement :']);
+                        echo $this->Form->control('datefin', ['class' => 'form-control', 'id' => 'datefin', 'type' => 'hidden', 'readonly' => 'readonly', 'label' => 'Fin abonnement :']);
                         ?>
                     </fieldset>
                 </div>
-                <?= $this->Form->button(__('Valider votre souscription', ['class' => 'btn btn-large btn-danger btn-rounded'])) ?>
+                <?= $this->Form->button(__('Valider votre souscription'), ['class' => 'btn btn-large btn-theme btn-danger btn-rounded']) ?>
                 <?= $this->Form->end() ?>
             </div>
             </div>
@@ -134,12 +135,12 @@
                         </tr>
                         <tr>
                             <td>
-                                <h3><strong style="color:#a00a0c"><?= @h($client->offre->name) ?></strong></h3>
+                                <h3><strong style="color:#a00a0c"><?= @h($offre->name) ?></strong></h3>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                    <h6 style="color:#000000"><strong><?= $this->Number->format($client->offre->prix) ?> FCFA / Mois</strong></h6>
+                                    <h6 style="color:#000000"><strong><?= $this->Number->format($offre->prix) ?> FCFA / Mois</strong></h6>
                                 </td>
                             </tr>
                     </tbody>

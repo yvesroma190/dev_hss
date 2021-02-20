@@ -48,8 +48,8 @@ class ServiceinclusFixture extends TestFixture
                 'is' => 1,
                 'offre_id' => 'Lorem ipsum dolor sit amet',
                 'name' => 'Lorem ipsum dolor sit amet',
-                'created' => '2020-07-24 11:17:58',
-                'modified' => '2020-07-24 11:17:58',
+                'created' => '2021-02-08 15:38:54',
+                'modified' => '2021-02-08 15:38:54',
             ],
         ];
         parent::init();

@@ -1,7 +1,7 @@
 <?php
 namespace App\Controller\Admin;
 
-use App\Controller\Admin\AppController;
+use App\Controller\AppController;
 
 /**
  * Paiements Controller

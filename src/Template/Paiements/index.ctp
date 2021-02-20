@@ -24,10 +24,19 @@
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('refpay') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('session') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('payid') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('client_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('souscription_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('offre_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('datepaiement') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('montant') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('tel') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('modepaid') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('datepay') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('datefin') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('timepay') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('canal') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('etatpaiement_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
@@ -38,10 +47,19 @@
             <?php foreach ($paiements as $paiement): ?>
             <tr>
                 <td><?= $this->Number->format($paiement->id) ?></td>
+                <td><?= h($paiement->refpay) ?></td>
+                <td><?= h($paiement->session) ?></td>
+                <td><?= h($paiement->payid) ?></td>
                 <td><?= $paiement->has('client') ? $this->Html->link($paiement->client->name, ['controller' => 'Clients', 'action' => 'view', $paiement->client->id]) : '' ?></td>
                 <td><?= $paiement->has('souscription') ? $this->Html->link($paiement->souscription->id, ['controller' => 'Souscriptions', 'action' => 'view', $paiement->souscription->id]) : '' ?></td>
                 <td><?= $paiement->has('offre') ? $this->Html->link($paiement->offre->name, ['controller' => 'Offres', 'action' => 'view', $paiement->offre->id]) : '' ?></td>
-                <td><?= h($paiement->datepaiement) ?></td>
+                <td><?= $this->Number->format($paiement->montant) ?></td>
+                <td><?= h($paiement->tel) ?></td>
+                <td><?= h($paiement->modepaid) ?></td>
+                <td><?= h($paiement->datepay) ?></td>
+                <td><?= h($paiement->datefin) ?></td>
+                <td><?= h($paiement->timepay) ?></td>
+                <td><?= h($paiement->canal) ?></td>
                 <td><?= $paiement->has('etatpaiement') ? $this->Html->link($paiement->etatpaiement->name, ['controller' => 'Etatpaiements', 'action' => 'view', $paiement->etatpaiement->id]) : '' ?></td>
                 <td><?= h($paiement->created) ?></td>
                 <td><?= h($paiement->modified) ?></td>

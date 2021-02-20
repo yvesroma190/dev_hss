@@ -133,11 +133,11 @@ class AppController extends Controller
 
     }
 
-    public function beforeFilter(EventInterface $event)
-    {
+    /* public function beforeFilter(EventInterface $event)
+    { */
 		//afficher le nom du client connecté
 		/* $this->set('name', $this->Auth->user('name')); */
-    }
+    /* } */
 
 	
 }

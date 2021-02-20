@@ -3,6 +3,11 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\I18n\Time;
+use SoapClient;
+/* use Cake\Http\Client;
+use Cake\Http\Response; */
+
+
 
 /**
  * Souscriptions Controller
@@ -124,7 +129,7 @@ class SouscriptionsController extends AppController
 
         //Vérifier si le client est connecté
         if ($this->Auth->user('id')) {
-            // Redirection  vers la validation apres achoix de l'offre
+            // Redirection  vers la validation apres choix de l'offre
 
         } else {
             //le client n'est pas connecté
@@ -140,10 +145,10 @@ class SouscriptionsController extends AppController
             $client = $this->Clients->newEntity();
             if ($this->request->is('post')) {
 
-                //Reccuperation de l'ID de l'offre associée au client
-                $this->loadModel('Offres');
+                //Reccuperation de l'ID de l'offre
+                /* $this->loadModel('Offres');
                 $offre = $this->Offres->get($id);
-                $client->offre_id =  $offre->id;
+                $client->offre_id =  $offre->id; */
 
                 $client = $this->Clients->patchEntity($client, $this->request->getData());
                 // debug($client);
@@ -153,7 +158,7 @@ class SouscriptionsController extends AppController
 					$this->Auth->setUser($client->toArray());
                     // $this->Flash->success(__('Votre compte a été bien enrégistré.'));
 
-                    return $this->redirect(['action' => 'validation', $client->id]);
+                    return $this->redirect(['action' => 'validation', $offre->id]);
                 }
                 $this->Flash->error(__('Echec de l\'enrégistrement du compte.'));
             }
@@ -211,18 +216,17 @@ class SouscriptionsController extends AppController
         }else{
 			/* si le client est connecté */
 			$this->viewBuilder()->setLayout('default');
+			
 			//Afficher les infos du client
 			$this->loadModel('Clients');
-			$client = $this->Clients->get($id, [
-				'contain' => ['Offres', 'Souscriptions'],
-			]);
+			$client = $this->Clients->get($this->request->getSession()->read('Auth.User.id'));
 			$this->set('client', $client);
 
 			
 			// Infos Offre
 			$this->loadModel('Offres');
-			// $offre = $this->Offres->get($id);
-			// $this->set('offre', $offre);
+			$offre = $this->Offres->get($id);
+			$this->set('offre', $offre);
 
 			//Validation de la souscription avec la periode
 			$souscription = $this->Souscriptions->newEntity();
@@ -230,33 +234,11 @@ class SouscriptionsController extends AppController
 
 				//Reccuperation de l'ID de l'offre associée à la souscription
 				$this->loadModel('Offres');
-				// $offre = $this->Offres->get($id);
-				// $offreid = $this->request->getData('offreid');
-				// $souscription->offre_id =  $offreid;
-
-				//Reccuperation de l'ID de l'offre associée au client
-				// $this->loadModel('Clients');
-				// $client = $this->Clients->get($id);
-				// $souscription->client_id =  $client->id;
+				$offre = $this->Offres->get($id);
+				$offreid = $this->request->getData('offreid');
+				$souscription->offre_id =  $offre->id;
 
 				$souscription = $this->Souscriptions->patchEntity($souscription, $this->request->getData());
-				// $this->loadModel('Offres');
-                // $offre = $this->Offres->get($id);
-                // $souscription->offre_id =  $client->offre->id;
-				// debug($souscription);
-                // exit;
-                // $this->loadModel('Clients');
-				// $client = $this->Clients->get($id);
-                // $souscription->client_id =  $client->id;
-
-                // Calcul de la date de fin abonnement
-                // $periode = $this->request->getData('periode_id');
-                // $datefin = $this->request->getData('datefin');
-                // $time = new Time($periode);
-
-                // if($periode==1){
-                //     $datefin = $time->isWithinNext(3);
-                // }
                 
 				if ($this->Souscriptions->save($souscription)) {
 					$this->Flash->success(__('Souscription effectuée avec succès.'));
@@ -278,35 +260,138 @@ class SouscriptionsController extends AppController
     //Paiement de la souscription
     public function payment($id = null)
     {
+		$this->viewBuilder()->setLayout('default');
+		
         $this->loadModel('Paiements');
+		
 
         $souscription = $this->Souscriptions->get($id, [
-            'contain' => ['Clients', 'Offres', 'Periodes', 'Paiements'],
+            'contain' => ['Clients', 'Offres', 'Periodes'],
         ]);
-
         $this->set('souscription', $souscription);
+		
+		//Paiement vers API
+		
+		if ($this->request->is('post')) {
+            //$paiement = $this->request->getData();
+			//$this->loadModel('Etatpaiements');
+			//$etatpaiements = $this->Etatpaiements->find('all');
+			
+			/* debug($this->request->getData());
+			exit; */
+			/* $souscriptionid = $souscription->id;
+			$offreid = $souscription->offre->id; */
+			$amount = $this->request->getData('montanttotal');
+			$customerId = $this->request->getData('client_id');
+			$email = $this->request->getData('client_email');
+			$name = $this->request->getData('client_name');
+			$lname = $this->request->getData('client_name');
+			$cel = $this->request->getData('client_cel');
+			$mpaid = $this->request->getData('paid');	
+			
+	
+			
+			ini_set("soap.wsdl_cache_enabled", 0); 
+			 $url="https://www.paiementpro.net/webservice/OnlineServicePayment_v2.php?wsdl"; 
+			 $client = new SoapClient($url,array('cache_wsdl' => WSDL_CACHE_NONE)); 
+			 $array= ['merchantId'=>'PP-F105', 
+			 'countryCurrencyCode'=>'952', 
+			 'amount'=>$amount, 
+			 'customerId'=>$customerId, 
+			 'channel'=>$mpaid, 
+			 'customerEmail'=>$email, 
+			 'customerFirstName'=>$name, 
+			 'customerLastname'=>$lname, 
+			 'customerPhoneNumber'=>$cel, 
+			 'referenceNumber'=>'878AABCDEFZ'.time(),
+			 'notificationURL'=>'http://highstarsecurity.com/souscriptions/notification',			 
+			 'returnURL'=>'http://highstarsecurity.com', 
+			 'description'=>'achat en ligne', 
+			 'returnContext'=>'test=2&ok=1&oui=2',
+			  ];
+			  
+			 
+			 try{ 
+			 $response=$client->initTransact($array); 
+			 /* debug($response);
+				exit; */
+			if($response->Code==0){
+				/* debug($client->initTransact($array));
+				exit; */
 
+			// var_dump($response->Sessionid);die();
+			return $this->redirect("https://www.paiementpro.net/webservice/onlinepayment/processing_v2.php?sessionid=".$response->Sessionid);
 
-        //Paiement
-        $paiement = $this->Paiements->newEntity();
-        if ($this->request->is('post')) {
-            $paiement = $this->Paiements->patchEntity($paiement, $this->request->getData());
-            // if ($this->Paiements->save($paiement)) {
-            //     $this->Flash->success(__('The paiement has been saved.'));
+			}
 
-            //     // return $this->redirect(['action' => 'index']);
-            // }
-            $this->Flash->error(__('The paiement could not be saved. Please, try again.'));
+			  }
+			   catch(Exception $e)
+			  { 
+			  echo $e->getMessage();
+			   }						
+			
         }
-        $clients = $this->Paiements->Clients->find('list', ['limit' => 200]);
-        $souscriptions = $this->Paiements->Souscriptions->find('list', ['limit' => 200]);
-        $offres = $this->Paiements->Offres->find('list', ['limit' => 200]);
-        $etatpaiements = $this->Paiements->Etatpaiements->find('list', ['limit' => 200]);
-        $this->set(compact('paiement', 'clients', 'souscriptions', 'offres', 'etatpaiements'));
+	
 
 
     } // Fin fonction payment
-
-
-
+	
+	public function notification($id = null){
+		
+		$this->viewBuilder()->setLayout('default');
+		
+		//Reccuperation ID souscription lié au paiement
+		$souscription = $this->Souscriptions->get($id, [
+            'contain' => ['Clients', 'Offres', 'Periodes'],
+        ]);
+		
+		/* $http = new Client();
+		$response = $http->get("https://www.paiementpro.net/webservice/onlinepayment/processing_v2.php?sessionid=".$response->Sessionid);
+		$api = $response->body(); */
+		
+		//Chargement de la table paiement
+		//$this->loadModel('Paiements');
+		
+		
+		/* $commande = $_GET['purchaseref'];
+		$sessionid = $_GET['sessionid'];
+		$montant = $_GET['amount'];
+		$ref = $_GET['payid'];
+		$telephone = $_GET['telephone'];
+		$description = $_GET['description'];
+		$date = $_GET['date'];
+		$time = $_GET['time'];
+		$chanel = $_GET['channel']; */
+		
+		/* $this->Paiements->save([
+			'refpay'=>$commande,
+			'session'=>$sessionid,
+			'payid'=>$ref,
+			'souscription_id'=>$souscription,
+			'montant'=>$montant,
+			'canal'=>$chanel,
+			'tel'=>$telephone,
+			'description'=>$description,
+			'datepay'=>$date,
+			'timepay'=>$time,
+		]); */
+		
+		
+		//Reccuperation du nombre de mois de la periode associée à la souscription
+				/* $this->loadModel('Periodes');
+				$periode = $this->Periodes->get($id);			
+				
+				$periodeid = $this->request->getData('periodeid');
+				$souscription->periode_id =  $periode->id;
+		if($periode->id ==1){
+			
+		}
+		$date = new DateTime();
+		$date->add(new DateInterval('P'.$date.'M'));
+		$this->Paiements->saveField('datefin',$date->format('Y-m-d H:i:s')); */
+		
+	}
+	
+	
+	
 }
