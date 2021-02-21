@@ -287,8 +287,7 @@ class SouscriptionsController extends AppController
 			$name = $this->request->getData('client_name');
 			$lname = $this->request->getData('client_name');
 			$cel = $this->request->getData('client_cel');
-			$mpaid = $this->request->getData('paid');	
-			
+			$mpaid = $this->request->getData('paid');			
 	
 			
 			ini_set("soap.wsdl_cache_enabled", 0); 
@@ -304,7 +303,8 @@ class SouscriptionsController extends AppController
 			 'customerLastname'=>$lname, 
 			 'customerPhoneNumber'=>$cel, 
 			 'referenceNumber'=>'878AABCDEFZ'.time(),
-			 'notificationURL'=>'http://highstarsecurity.com/souscriptions/notification',			 
+			 //'notificationURL'=>'http://highstarsecurity.com/souscriptions/notification',
+			 'notificationURL'=>'http://highstarsecurity.com/souscriptions/notification?$commande&$sessionid&$montant&$ref&$telephone&$description&$date&$time&$chanel',			 
 			 'returnURL'=>'http://highstarsecurity.com', 
 			 'description'=>'achat en ligne', 
 			 'returnContext'=>'test=2&ok=1&oui=2',
