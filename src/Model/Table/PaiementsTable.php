@@ -9,9 +9,8 @@ use Cake\Validation\Validator;
 /**
  * Paiements Model
  *
- * @property \App\Model\Table\ClientsTable&\Cake\ORM\Association\BelongsTo $Clients
  * @property \App\Model\Table\SouscriptionsTable&\Cake\ORM\Association\BelongsTo $Souscriptions
- * @property \App\Model\Table\OffresTable&\Cake\ORM\Association\BelongsTo $Offres
+ * @property \App\Model\Table\ClientsTable&\Cake\ORM\Association\BelongsTo $Clients
  * @property \App\Model\Table\EtatpaiementsTable&\Cake\ORM\Association\BelongsTo $Etatpaiements
  *
  * @method \App\Model\Entity\Paiement get($primaryKey, $options = [])
@@ -43,14 +42,12 @@ class PaiementsTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Clients', [
-            'foreignKey' => 'client_id',
-        ]);
         $this->belongsTo('Souscriptions', [
             'foreignKey' => 'souscription_id',
         ]);
-        $this->belongsTo('Offres', [
-            'foreignKey' => 'offre_id',
+        $this->belongsTo('Clients', [
+            'foreignKey' => 'client_id',
+            'joinType' => 'INNER',
         ]);
         $this->belongsTo('Etatpaiements', [
             'foreignKey' => 'etatpaiement_id',
@@ -106,12 +103,6 @@ class PaiementsTable extends Table
             ->notEmptyString('description');
 
         $validator
-            ->scalar('modepaid')
-            ->maxLength('modepaid', 255)
-            ->requirePresence('modepaid', 'create')
-            ->notEmptyString('modepaid');
-
-        $validator
             ->dateTime('datepay')
             ->requirePresence('datepay', 'create')
             ->notEmptyDateTime('datepay');
@@ -144,9 +135,8 @@ class PaiementsTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->isUnique(['id']));
-        $rules->add($rules->existsIn(['client_id'], 'Clients'));
         $rules->add($rules->existsIn(['souscription_id'], 'Souscriptions'));
-        $rules->add($rules->existsIn(['offre_id'], 'Offres'));
+        $rules->add($rules->existsIn(['client_id'], 'Clients'));
         $rules->add($rules->existsIn(['etatpaiement_id'], 'Etatpaiements'));
 
         return $rules;

@@ -8,12 +8,10 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Paiement'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Clients'), ['controller' => 'Clients', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Client'), ['controller' => 'Clients', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Souscriptions'), ['controller' => 'Souscriptions', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Souscription'), ['controller' => 'Souscriptions', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Offres'), ['controller' => 'Offres', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Offre'), ['controller' => 'Offres', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Clients'), ['controller' => 'Clients', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Client'), ['controller' => 'Clients', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Etatpaiements'), ['controller' => 'Etatpaiements', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Etatpaiement'), ['controller' => 'Etatpaiements', 'action' => 'add']) ?></li>
     </ul>
@@ -27,12 +25,10 @@
                 <th scope="col"><?= $this->Paginator->sort('refpay') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('session') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('payid') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('client_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('souscription_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('offre_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('client_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('montant') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('tel') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modepaid') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('datepay') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('datefin') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('timepay') ?></th>
@@ -50,12 +46,10 @@
                 <td><?= h($paiement->refpay) ?></td>
                 <td><?= h($paiement->session) ?></td>
                 <td><?= h($paiement->payid) ?></td>
-                <td><?= $paiement->has('client') ? $this->Html->link($paiement->client->name, ['controller' => 'Clients', 'action' => 'view', $paiement->client->id]) : '' ?></td>
                 <td><?= $paiement->has('souscription') ? $this->Html->link($paiement->souscription->id, ['controller' => 'Souscriptions', 'action' => 'view', $paiement->souscription->id]) : '' ?></td>
-                <td><?= $paiement->has('offre') ? $this->Html->link($paiement->offre->name, ['controller' => 'Offres', 'action' => 'view', $paiement->offre->id]) : '' ?></td>
+                <td><?= $paiement->has('client') ? $this->Html->link($paiement->client->name, ['controller' => 'Clients', 'action' => 'view', $paiement->client->id]) : '' ?></td>
                 <td><?= $this->Number->format($paiement->montant) ?></td>
                 <td><?= h($paiement->tel) ?></td>
-                <td><?= h($paiement->modepaid) ?></td>
                 <td><?= h($paiement->datepay) ?></td>
                 <td><?= h($paiement->datefin) ?></td>
                 <td><?= h($paiement->timepay) ?></td>

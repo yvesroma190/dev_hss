@@ -8,12 +8,10 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('List Paiements'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Clients'), ['controller' => 'Clients', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Client'), ['controller' => 'Clients', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Souscriptions'), ['controller' => 'Souscriptions', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Souscription'), ['controller' => 'Souscriptions', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Offres'), ['controller' => 'Offres', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Offre'), ['controller' => 'Offres', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Clients'), ['controller' => 'Clients', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Client'), ['controller' => 'Clients', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Etatpaiements'), ['controller' => 'Etatpaiements', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Etatpaiement'), ['controller' => 'Etatpaiements', 'action' => 'add']) ?></li>
     </ul>
@@ -26,13 +24,11 @@
             echo $this->Form->control('refpay');
             echo $this->Form->control('session');
             echo $this->Form->control('payid');
-            echo $this->Form->control('client_id', ['options' => $clients, 'empty' => true]);
             echo $this->Form->control('souscription_id', ['options' => $souscriptions, 'empty' => true]);
-            echo $this->Form->control('offre_id', ['options' => $offres, 'empty' => true]);
+            echo $this->Form->control('client_id', ['options' => $clients]);
             echo $this->Form->control('montant');
             echo $this->Form->control('tel');
             echo $this->Form->control('description');
-            echo $this->Form->control('modepaid');
             echo $this->Form->control('datepay');
             echo $this->Form->control('datefin', ['empty' => true]);
             echo $this->Form->control('timepay');

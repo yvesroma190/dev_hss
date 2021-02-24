@@ -296,8 +296,8 @@ class SouscriptionsController extends AppController
 			 $array= ['merchantId'=>'PP-F105', 
 			 'countryCurrencyCode'=>'952', 
 			 'amount'=>$amount, 
-			 'customerId'=>$customerId, 
-			 'channel'=>$mpaid, 
+			 'customerId'=>$customerId,
+			 'channel'=>$mpaid,
 			 'customerEmail'=>$email, 
 			 'customerFirstName'=>$name, 
 			 'customerLastname'=>$lname, 
@@ -340,20 +340,37 @@ class SouscriptionsController extends AppController
 		
 		$this->viewBuilder()->setLayout('default');
 		
-		//Reccuperation ID souscription lié au paiement
-		$souscription = $this->Souscriptions->get($id, [
-            'contain' => ['Clients', 'Offres', 'Periodes'],
-        ]);
-		
 		/* $http = new Client();
 		$response = $http->get("https://www.paiementpro.net/webservice/onlinepayment/processing_v2.php?sessionid=".$response->Sessionid);
 		$api = $response->body(); */
 		
 		//Chargement de la table paiement
-		//$this->loadModel('Paiements');
+		$this->loadModel('Paiements');	
 		
 		
-		/* $commande = $_GET['purchaseref'];
+		//Reccuperation ID souscription lié au paiement
+		$souscription = $this->Souscriptions->get($id, [
+            'contain' => ['Clients', 'Offres', 'Periodes'],
+        ]);	
+		$this->set('souscription', $souscription);	
+		
+		//Recuperation du nombre de mois de la periode associée à la souscription
+		$this->loadModel('Periodes');		
+		/* $periode = $this->Periodes->get($id);
+		$periodeid = $this->request->getData('periodeid');
+		$souscription->periode_id =  $periode->id; */
+		
+		//Deduction nombre de mois
+		//$nbmois = $periode->nbmois;		
+		$nbmois = $souscription->periode->nbmois;		
+		//$periode = $this->Periodes->get($id);
+		//$nbmois = $this->Souscriptions->Periodes->get(nbmois);	
+		//$periode = $souscription->periode->nbmois;
+		
+		//Calcul de la fin d'abonnement
+		$datefin = date('d-m-Y H:i:s', strtotime('+$nbmois month'));	
+		
+		$commande = $_GET['purchaseref'];
 		$sessionid = $_GET['sessionid'];
 		$montant = $_GET['amount'];
 		$ref = $_GET['payid'];
@@ -361,7 +378,26 @@ class SouscriptionsController extends AppController
 		$description = $_GET['description'];
 		$date = $_GET['date'];
 		$time = $_GET['time'];
-		$chanel = $_GET['channel']; */
+		$channel = $_GET['channel'];
+		
+		if($this->Auth->user('id')){
+			
+		//Recuperer l'ID du client
+		$this->loadModel('Clients');
+		$clientid = $this->Clients->get($this->request->getSession()->read('Auth.User.id'));		
+			
+			$paiement = $this->Paiements->newEntity();
+			if ($this->request->is('post')) {
+				$paiement = $this->Paiements->patchEntity($paiement, $this->request->getData());
+				if ($this->Paiements->save($paiement)){
+					$this->Flash->success(__('Succès, paiement achevé.'));
+
+					return $this->redirect(['controller' => 'Offres', 'action' => 'index']);
+				}
+				$this->Flash->error(__('Echec.'));
+			}
+			
+		}
 		
 		/* $this->Paiements->save([
 			'refpay'=>$commande,
@@ -369,26 +405,16 @@ class SouscriptionsController extends AppController
 			'payid'=>$ref,
 			'souscription_id'=>$souscription,
 			'montant'=>$montant,
-			'canal'=>$chanel,
+			'canal'=>$channel,
 			'tel'=>$telephone,
 			'description'=>$description,
 			'datepay'=>$date,
 			'timepay'=>$time,
+			'datefin'=>$datefin,
 		]); */
 		
-		
-		//Reccuperation du nombre de mois de la periode associée à la souscription
-				/* $this->loadModel('Periodes');
-				$periode = $this->Periodes->get($id);			
-				
-				$periodeid = $this->request->getData('periodeid');
-				$souscription->periode_id =  $periode->id;
-		if($periode->id ==1){
-			
-		}
-		$date = new DateTime();
-		$date->add(new DateInterval('P'.$date.'M'));
-		$this->Paiements->saveField('datefin',$date->format('Y-m-d H:i:s')); */
+		//Enregistrement date de fin d'abonnement dans SouscriptionsTable
+		$this->Souscriptions->saveField('datefin',$datefin->format('Y-m-d H:i:s'));	
 		
 	}
 	

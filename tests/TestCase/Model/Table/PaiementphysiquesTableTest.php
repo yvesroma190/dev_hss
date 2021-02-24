@@ -1,21 +1,21 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\PaiementsTable;
+use App\Model\Table\PaiementphysiquesTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\PaiementsTable Test Case
+ * App\Model\Table\PaiementphysiquesTable Test Case
  */
-class PaiementsTableTest extends TestCase
+class PaiementphysiquesTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\PaiementsTable
+     * @var \App\Model\Table\PaiementphysiquesTable
      */
-    public $Paiements;
+    public $Paiementphysiques;
 
     /**
      * Fixtures
@@ -23,10 +23,10 @@ class PaiementsTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.Paiements',
-        'app.Souscriptions',
-        'app.Clients',
-        'app.Etatpaiements',
+        'app.Paiementphysiques',
+        'app.Physclients',
+        'app.Offres',
+        'app.Periodes',
     ];
 
     /**
@@ -37,8 +37,8 @@ class PaiementsTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::getTableLocator()->exists('Paiements') ? [] : ['className' => PaiementsTable::class];
-        $this->Paiements = TableRegistry::getTableLocator()->get('Paiements', $config);
+        $config = TableRegistry::getTableLocator()->exists('Paiementphysiques') ? [] : ['className' => PaiementphysiquesTable::class];
+        $this->Paiementphysiques = TableRegistry::getTableLocator()->get('Paiementphysiques', $config);
     }
 
     /**
@@ -48,7 +48,7 @@ class PaiementsTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Paiements);
+        unset($this->Paiementphysiques);
 
         parent::tearDown();
     }

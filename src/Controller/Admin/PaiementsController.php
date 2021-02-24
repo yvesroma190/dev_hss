@@ -20,7 +20,7 @@ class PaiementsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Clients', 'Souscriptions', 'Offres', 'Etatpaiements'],
+            'contain' => ['Souscriptions', 'Clients', 'Etatpaiements'],
         ];
         $paiements = $this->paginate($this->Paiements);
 
@@ -37,7 +37,7 @@ class PaiementsController extends AppController
     public function view($id = null)
     {
         $paiement = $this->Paiements->get($id, [
-            'contain' => ['Clients', 'Souscriptions', 'Offres', 'Etatpaiements'],
+            'contain' => ['Souscriptions', 'Clients', 'Etatpaiements'],
         ]);
 
         $this->set('paiement', $paiement);
@@ -60,11 +60,10 @@ class PaiementsController extends AppController
             }
             $this->Flash->error(__('The paiement could not be saved. Please, try again.'));
         }
-        $clients = $this->Paiements->Clients->find('list', ['limit' => 200]);
         $souscriptions = $this->Paiements->Souscriptions->find('list', ['limit' => 200]);
-        $offres = $this->Paiements->Offres->find('list', ['limit' => 200]);
+        $clients = $this->Paiements->Clients->find('list', ['limit' => 200]);
         $etatpaiements = $this->Paiements->Etatpaiements->find('list', ['limit' => 200]);
-        $this->set(compact('paiement', 'clients', 'souscriptions', 'offres', 'etatpaiements'));
+        $this->set(compact('paiement', 'souscriptions', 'clients', 'etatpaiements'));
     }
 
     /**
@@ -88,11 +87,10 @@ class PaiementsController extends AppController
             }
             $this->Flash->error(__('The paiement could not be saved. Please, try again.'));
         }
-        $clients = $this->Paiements->Clients->find('list', ['limit' => 200]);
         $souscriptions = $this->Paiements->Souscriptions->find('list', ['limit' => 200]);
-        $offres = $this->Paiements->Offres->find('list', ['limit' => 200]);
+        $clients = $this->Paiements->Clients->find('list', ['limit' => 200]);
         $etatpaiements = $this->Paiements->Etatpaiements->find('list', ['limit' => 200]);
-        $this->set(compact('paiement', 'clients', 'souscriptions', 'offres', 'etatpaiements'));
+        $this->set(compact('paiement', 'souscriptions', 'clients', 'etatpaiements'));
     }
 
     /**
