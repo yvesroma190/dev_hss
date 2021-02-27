@@ -2,6 +2,8 @@
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;
+use Cake\I18n\Time;
+use Cake\I18n\Date;
 
 /**
  * Paiementphysiques Controller
@@ -49,11 +51,43 @@ class PaiementphysiquesController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
     public function add()
-    {
-        $paiementphysique = $this->Paiementphysiques->newEntity();
+    {		
+		$nmois = $this->request->getData('nbmois');		
+			
+		// Determiniation de date de d'enregistrement (debut d'abonnement)
+		//$date = new Time();
+		$datedebut = Time::now();
+		$datedebut->timezone = 'Africa/Abidjan';
+		$date_debut = $datedebut;
+
+		/* debug($date_debut);
+		die(); */
+		
+		//Calcul de la fin d'abonnement		
+		//$date = new Time();
+		$date = Time::now();
+		$datefin = $date->addMonth($nmois);	
+		$datefin->timezone = 'Africa/Abidjan';
+		$date_fin = $datefin;
+		/* debug($date_fin);
+		die(); */	
+		
+		/* $datedebut = $this->request->getData('date_debut');
+		$datefin = $this->request->getData('date_fin'); */	
+		
+        $paiementphysique = $this->Paiementphysiques->newEntity();		
         if ($this->request->is('post')) {
+			
+			$date_debut = $this->request->getData('date_debut');
+			$date_fin = $this->request->getData('date_fin');
+			
             $paiementphysique = $this->Paiementphysiques->patchEntity($paiementphysique, $this->request->getData());
             if ($this->Paiementphysiques->save($paiementphysique)) {
+				
+				/* $this->Paiementphysiques->saveField('date_debut', $date_debut);
+				$this->Paiementphysiques->saveField('date_fin', $date_fin); */
+				
+				
                 $this->Flash->success(__('The paiementphysique has been saved.'));
 
                 return $this->redirect(['action' => 'index']);

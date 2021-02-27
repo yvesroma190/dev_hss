@@ -75,13 +75,15 @@ class PaiementphysiquesTable extends Table
 
         $validator
             ->dateTime('date_debut')
-            ->requirePresence('date_debut', 'create')
-            ->notEmptyDateTime('date_debut');
+            //->requirePresence('date_debut', 'create')
+            //->notEmptyDateTime('date_debut');
+			->allowEmptyString('date_debut');
 
         $validator
             ->dateTime('date_fin')
-            ->requirePresence('date_fin', 'create')
-            ->notEmptyDateTime('date_fin');
+            //->requirePresence('date_fin', 'create')
+            //->notEmptyDateTime('date_fin');
+			->allowEmptyString('date_fin');
 
         return $validator;
     }

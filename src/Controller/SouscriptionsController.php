@@ -368,7 +368,14 @@ class SouscriptionsController extends AppController
 		//$periode = $souscription->periode->nbmois;
 		
 		//Calcul de la fin d'abonnement
-		$datefin = date('d-m-Y H:i:s', strtotime('+$nbmois month'));	
+		/* $datefin = new DateTime();
+		$datefin->add(new DateInterval('P'.$nbmois.'M'));
+		$datefin->format('Y-m-d H:i:s'); */
+		/* $datefin = date('d-m-Y H:i:s', strtotime('+$nbmois month')); */	
+		$datefin = new Time();
+		$datefin = Time::now();
+		$datefin->addMonth($nbmois);
+		$datefin->timezone = 'Europe/Paris';
 		
 		$commande = $_GET['purchaseref'];
 		$sessionid = $_GET['sessionid'];
@@ -397,24 +404,11 @@ class SouscriptionsController extends AppController
 				$this->Flash->error(__('Echec.'));
 			}
 			
-		}
-		
-		/* $this->Paiements->save([
-			'refpay'=>$commande,
-			'session'=>$sessionid,
-			'payid'=>$ref,
-			'souscription_id'=>$souscription,
-			'montant'=>$montant,
-			'canal'=>$channel,
-			'tel'=>$telephone,
-			'description'=>$description,
-			'datepay'=>$date,
-			'timepay'=>$time,
-			'datefin'=>$datefin,
-		]); */
+		}		
 		
 		//Enregistrement date de fin d'abonnement dans SouscriptionsTable
-		$this->Souscriptions->saveField('datefin',$datefin->format('Y-m-d H:i:s'));	
+		//$this->Souscriptions->saveField('datefin',$datefin->format('Y-m-d H:i:s'));
+		$this->Souscriptions->saveField('datefin',$datefin->i18nFormat(null, 'Europe/Paris'));		
 		
 	}
 	

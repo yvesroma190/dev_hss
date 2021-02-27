@@ -2,6 +2,8 @@
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;
+use Cake\I18n\Time;
+use Cake\I18n\Date;
 
 /**
  * Paiements Controller
@@ -25,6 +27,24 @@ class PaiementsController extends AppController
         $paiements = $this->paginate($this->Paiements);
 
         $this->set(compact('paiements'));
+		
+		//afficher le nombre total de paiements
+		$souscriptions = $this->Paiements->find('all', [
+			'contain' => ['Souscriptions', 'Clients', 'Etatpaiements'],			
+		]);
+        $number = $paiements->count();
+        
+        // Afficher le nombre journalier de paiements
+        //  $date = date::now();
+        //  $time = new Time();
+        // debug($date);
+        // exit;
+		
+        $souscriptions = $this->Paiements->find('all', [
+            'conditions' => ['Paiements.created >=' => Date::now('')],
+			'contain' => ['Souscriptions', 'Clients', 'Etatpaiements'],			
+		]);
+		$jnumber = $paiements->count();
     }
 
     /**

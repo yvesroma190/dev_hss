@@ -4,7 +4,7 @@
  * @var \App\Model\Entity\Paiementphysique $paiementphysique
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
+<!-- <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Edit Paiementphysique'), ['action' => 'edit', $paiementphysique->id]) ?> </li>
@@ -59,4 +59,78 @@
             <td><?= h($paiementphysique->modified) ?></td>
         </tr>
     </table>
+</div> -->
+
+
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Gestion des paiements physiques</h1>
+    </div>
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sous Menu -->
+    <div class="row">
+        <div class="lg-12">
+            <?= $this->Html->link(__('Liste des paiements physiques'), ['action' => 'index'], ['class' => 'btn btn-info']) ?>
+            <?= $this->Html->link(__('Ajouter un paiement physique'), ['action' => 'add'], ['class' => 'btn btn-primary']) ?>
+            <?= $this->Html->link(__('Modifer'), ['action' => 'edit', $paiementphysique->id], ['class' => 'btn btn-success']) ?>
+            <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $paiementphysique->id], ['confirm' => __('Voulez-vous supprimer le paiement? # {0}?', $paiementphysique->id), 'class' => 'btn btn-danger']) ?>
+            
+        </div>
+    </div>
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <div class="card shadow mb-6">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary"><?= h($offre->name) ?></h6>
+        </div>
+        <div class="card-body">
+            <table>
+				<tr>
+					<th scope="row"><?= __('Physclient') ?></th>
+					<td><?= $paiementphysique->has('physclient') ? $this->Html->link($paiementphysique->physclient->name, ['controller' => 'Physclients', 'action' => 'view', $paiementphysique->physclient->id]) : '' ?></td>
+				</tr>
+				<tr>
+					<th scope="row"><?= __('Offre') ?></th>
+					<td><?= $paiementphysique->has('offre') ? $this->Html->link($paiementphysique->offre->name, ['controller' => 'Offres', 'action' => 'view', $paiementphysique->offre->id]) : '' ?></td>
+				</tr>
+				<tr>
+					<th scope="row"><?= __('Periode') ?></th>
+					<td><?= $paiementphysique->has('periode') ? $this->Html->link($paiementphysique->periode->name, ['controller' => 'Periodes', 'action' => 'view', $paiementphysique->periode->id]) : '' ?></td>
+				</tr>
+				<tr>
+					<th scope="row"><?= __('Id') ?></th>
+					<td><?= $this->Number->format($paiementphysique->id) ?></td>
+				</tr>
+				<tr>
+					<th scope="row"><?= __('Montant') ?></th>
+					<td><?= $this->Number->format($paiementphysique->montant) ?></td>
+				</tr>
+				<tr>
+					<th scope="row"><?= __('Date Debut') ?></th>
+					<td><?= h($paiementphysique->date_debut) ?></td>
+				</tr>
+				<tr>
+					<th scope="row"><?= __('Date Fin') ?></th>
+					<td><?= h($paiementphysique->date_fin) ?></td>
+				</tr>
+				<tr>
+					<th scope="row"><?= __('Created') ?></th>
+					<td><?= h($paiementphysique->created) ?></td>
+				</tr>
+				<tr>
+					<th scope="row"><?= __('Modified') ?></th>
+					<td><?= h($paiementphysique->modified) ?></td>
+				</tr>
+			</table>            
+            
+        </div>
+    </div>
+
+
 </div>
+
+
+

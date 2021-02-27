@@ -4,7 +4,7 @@
  * @var \App\Model\Entity\Physclient[]|\Cake\Collection\CollectionInterface $physclients
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
+<!-- <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Physclient'), ['action' => 'add']) ?></li>
@@ -58,4 +58,102 @@
         </ul>
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
+</div> -->
+
+
+
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Gestion des Clients Physiques</h1>
+    </div>
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sous Menu -->
+    <div class="row">
+        <div class="lg-12">
+
+            <a href="<?= $this->Url->build(['controller' => 'Physclients', 'action' => 'add']) ?>" class="btn btn-primary btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="fas fa-plus"></i>
+                </span>
+                <span class="text">Ajouter un client physique</span>
+            </a>
+            <a href=<?= $this->Url->build(['controller' => 'Paiementphysiques', 'action' => 'index']) ?> class="btn btn-warning btn-icon-hand">
+                <span class="icon text-white-50">
+                    <i class="fas fa-users"></i>
+                </span>
+                <span class="text">PAIEMENTS PHYSIQUES</span>
+            </a>
+        </div>
+    </div>
+    <hr class="sidebar-divider d-none d-md-block">
+
+
+
+
+    <!-- Content Row -->
+
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Liste des clients physiques</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+							<th scope="col"><?= $this->Paginator->sort('id') ?></th>
+							<th scope="col"><?= $this->Paginator->sort('nom et Prénoms') ?></th>
+							<!-- <th scope="col"><?= $this->Paginator->sort('prenoms') ?></th> -->
+							<th scope="col"><?= $this->Paginator->sort('email') ?></th>
+							<th scope="col"><?= $this->Paginator->sort('cel') ?></th>
+							<th scope="col"><?= $this->Paginator->sort('tel') ?></th>
+							<th scope="col"><?= $this->Paginator->sort('created') ?></th>
+							<th scope="col"><?= $this->Paginator->sort('modified') ?></th>
+							<th scope="col" class="actions"><?= __('Actions') ?></th>
+						</tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+							<th scope="col"><?= $this->Paginator->sort('id') ?></th>
+							<th scope="col"><?= $this->Paginator->sort('nom et Prénoms') ?></th>
+							<!-- <th scope="col"><?= $this->Paginator->sort('prenoms') ?></th> -->
+							<th scope="col"><?= $this->Paginator->sort('email') ?></th>
+							<th scope="col"><?= $this->Paginator->sort('cel') ?></th>
+							<th scope="col"><?= $this->Paginator->sort('tel') ?></th>
+							<th scope="col"><?= $this->Paginator->sort('created') ?></th>
+							<th scope="col"><?= $this->Paginator->sort('modified') ?></th>
+							<th scope="col" class="actions"><?= __('Actions') ?></th>
+						</tr>
+                    </tfoot>
+                    <tbody>
+						<?php foreach ($physclients as $physclient): ?>
+						<tr>
+							<td><?= $this->Number->format($physclient->id) ?></td>
+							<td><?= h($physclient->name) ?></td>
+							<!-- <td><?= h($physclient->prenoms) ?></td> -->
+							<td><?= h($physclient->email) ?></td>
+							<td><?= h($physclient->cel) ?></td>
+							<td><?= h($physclient->tel) ?></td>
+							<td><?= h($physclient->created) ?></td>
+							<td><?= h($physclient->modified) ?></td>
+							<td class="actions">
+								<?= $this->Html->link(__('Détails'), ['action' => 'view', $physclient->id]) ?>
+								<?= $this->Html->link(__('Modifier'), ['action' => 'edit', $physclient->id]) ?>
+								<?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $physclient->id], ['confirm' => __('Voulez-vous supprimer ce client? # {0}?', $physclient->id)]) ?>
+							</td>
+						</tr>
+						<?php endforeach; ?>
+					</tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
 </div>

@@ -66,13 +66,15 @@ class PhysclientsTable extends Table
         $validator
             ->scalar('prenoms')
             ->maxLength('prenoms', 255)
-            ->requirePresence('prenoms', 'create')
-            ->notEmptyString('prenoms');
+            //->requirePresence('prenoms', 'create')
+            //->notEmptyString('prenoms');
+			->allowEmptyString('prenoms');
 
         $validator
             ->email('email')
-            ->requirePresence('email', 'create')
-            ->notEmptyString('email');
+            //->requirePresence('email', 'create')
+            //->notEmptyString('email');
+			->allowEmptyString('email');
 
         $validator
             ->scalar('cel')
@@ -83,14 +85,16 @@ class PhysclientsTable extends Table
         $validator
             ->scalar('tel')
             ->maxLength('tel', 13)
-            ->requirePresence('tel', 'create')
-            ->notEmptyString('tel');
+            //->requirePresence('tel', 'create')
+            //->notEmptyString('tel');
+			->allowEmptyString('tel');
 
         $validator
             ->scalar('adresse')
             ->maxLength('adresse', 4294967295)
-            ->requirePresence('adresse', 'create')
-            ->notEmptyString('adresse');
+            //->requirePresence('adresse', 'create')
+            //->notEmptyString('adresse');
+			->allowEmptyString('adresse');
 
         return $validator;
     }
@@ -104,7 +108,8 @@ class PhysclientsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['email']));
+        //$rules->add($rules->isUnique(['email']));
+		$rules->add($rules->isUnique(['id']));
 
         return $rules;
     }

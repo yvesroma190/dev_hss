@@ -60,17 +60,19 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider">
+			
+			<li class="nav-item">
+                <a class="nav-link" href=<?= $this->Url->build(['controller' => 'Paiements', 'action' => 'index']) ?>>
+                    <i class="fas fa-fw fa-credit-card"></i>
+                    <span><strong>PAIEMENTS</strong></span></a>
+            </li>
 
             <li class="nav-item">
                 <a class="nav-link" href=<?= $this->Url->build(['controller' => 'Souscriptions', 'action' => 'index']) ?>>
                     <i class="fas fa-fw fa-bolt"></i>
                     <span><strong>SOUSCRIPTIONS</strong></span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href=<?= $this->Url->build(['controller' => 'Paiements', 'action' => 'index']) ?>>
-                    <i class="fas fa-fw fa-credit-card"></i>
-                    <span><strong>PAIEMENTS</strong></span></a>
-            </li>
+            
             <li class="nav-item">
                 <a class="nav-link" href=<?= $this->Url->build(['controller' => 'Offres', 'action' => 'index'])  ?>>
                     <i class="fas fa-fw fa-coffee"></i>
@@ -281,6 +283,13 @@
     <?= $this->Html->script('jquery.dataTables.min') ?>
     <?= $this->Html->script('dataTables.bootstrap4.min') ?>
     <?= $this->Html->script('datatables-demo') ?>
+	
+	<!-- CALCUL DATE ET MONTANT -->
+	<?php echo $this->Html->script('/js/datefin.js'); ?>
+	<?php echo $this->Html->script('/js/montant.js'); ?>
+	<script src="js/montant.js"></script>
+	
+	<?php echo $this->Html->script('/js/montant.js'); ?>
 
 </body>
 
