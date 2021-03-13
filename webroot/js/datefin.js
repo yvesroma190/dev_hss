@@ -1,11 +1,30 @@
 
 //Recup. champs de contrôle
-let datedebut = document.getElementById('date_debut');
-let periode = document.getElementById('periode');
-let datefin = document.getElementById('date_fin');
+var datedebut = document.getElementById('date_debut');
+var periode = document.getElementById('periode');
+var datefin = document.getElementById('date_fin');
 
-let date_debut = Date();
 
-document.getElementById('date_debut').innerHTML = date_debut;
-//let datedebut.innerHTML = let date_debut;
+
+periode.addEventListener('change', function () {
+    // On affiche le contenu de l'élément <option> ciblé par la propriété selectedIndex
+    // alert(periode.options[periode.selectedIndex].innerHTML);
+    if (periode.selectedIndex === 1) {
+		
+		// On determine la date du jour
+		var date_debut = new Date();
+		var datedebut = var date_debut;
+		//datefin.value = 
+		
+		
+    }
+    if (periode.selectedIndex === 2) {
+        
+    }
+    if (periode.selectedIndex === 3) {
+        
+    }
+	
+		
+}, true);
 

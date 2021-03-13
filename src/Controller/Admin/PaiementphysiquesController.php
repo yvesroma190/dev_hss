@@ -58,7 +58,7 @@ class PaiementphysiquesController extends AppController
 		//$date = new Time();
 		$datedebut = Time::now();
 		$datedebut->timezone = 'Africa/Abidjan';
-		$date_debut = $datedebut;
+		/* $date_debut = $datedebut; */
 
 		/* debug($date_debut);
 		die(); */
@@ -68,7 +68,7 @@ class PaiementphysiquesController extends AppController
 		$date = Time::now();
 		$datefin = $date->addMonth($nmois);	
 		$datefin->timezone = 'Africa/Abidjan';
-		$date_fin = $datefin;
+		/* $date_fin = $datefin; */
 		/* debug($date_fin);
 		die(); */	
 		
@@ -78,21 +78,25 @@ class PaiementphysiquesController extends AppController
         $paiementphysique = $this->Paiementphysiques->newEntity();		
         if ($this->request->is('post')) {
 			
-			$date_debut = $this->request->getData('date_debut');
-			$date_fin = $this->request->getData('date_fin');
+			/* $date_debut = $this->request->getData('date_debut');
+			$date_fin = $this->request->getData('date_fin'); */
 			
             $paiementphysique = $this->Paiementphysiques->patchEntity($paiementphysique, $this->request->getData());
-            if ($this->Paiementphysiques->save($paiementphysique)) {
+			/* debug($paiementphysique);
+			exit; */
+			$paiementphysique->date_debut = $datedebut;
+			$paiementphysique->date_fin = $datefin;
+			
+			/* debug($datefin);
+			die(); */
+			
+            if ($this->Paiementphysiques->save($paiementphysique)) {				
 				
-				/* $this->Paiementphysiques->saveField('date_debut', $date_debut);
-				$this->Paiementphysiques->saveField('date_fin', $date_fin); */
-				
-				
-                $this->Flash->success(__('The paiementphysique has been saved.'));
+                $this->Flash->success(__('Succès.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The paiementphysique could not be saved. Please, try again.'));
+            $this->Flash->error(__('Echec.'));
         }
         $physclients = $this->Paiementphysiques->Physclients->find('list', ['limit' => 200]);
         $offres = $this->Paiementphysiques->Offres->find('list', ['limit' => 200]);

@@ -81,7 +81,7 @@
                 <?= $this->Form->control('montant', ['name' => 'montant', 'id' => 'montant', 'readonly' => 'readonly', 'class' => 'form-control', 'label' => 'Montant:']); ?>
             </div>
 			<div class="form-group">
-                <?= $this->Form->control('date_debut', ['type' => 'hidden', 'name' => 'date_debut',  'readonly' => 'readonly', 'class' => 'form-control', 'label' => 'Date de début:']); ?>
+                <?= $this->Form->control('date_debut', ['type' => 'hidden', 'name' => 'date_debut', 'readonly' => 'readonly', 'class' => 'form-control', 'label' => 'Date de début:']); ?>
             </div>
 			<div class="form-group">
                 <?= $this->Form->control('date_fin', ['type' => 'hidden', 'name' => 'date_fin', 'readonly' => 'readonly', 'class' => 'form-control', 'label' => 'Date de fin:']); ?>
@@ -102,4 +102,5 @@
 
 
 <?php echo $this->Html->script('/js/montant.js'); ?>
+<?php echo $this->Html->script('/js/datefin.js'); ?>
 

@@ -187,7 +187,7 @@
                 <span class="icon text-white-50">
                     <i class="fas fa-credit-card"></i>
                 </span>
-                <span class="text"><strong>GESTION DES PAIEMENtS PHYSIQUES</strong></span>
+                <span class="text"><strong>GESTION DES PAIEMENTS PHYSIQUES</strong></span>
             </a>
         </div>
     </div>

@@ -228,6 +228,19 @@ class SouscriptionsController extends AppController
 			$offre = $this->Offres->get($id);
 			$this->set('offre', $offre);
 
+
+			//Détermination de la debut de souscription
+			$datedebut = Time::now();
+			$datedebut->timezone = 'Africa/Abidjan';
+
+			//Déterminiation du nombre de mois			
+			$nmois = $this->request->getData('nmois');
+			
+			//Calcul de la date de fin d'abonnement
+			$date = Time::now();
+			$datefin = $date->addMonth($nmois);	
+			$datefin->timezone = 'Africa/Abidjan';
+
 			//Validation de la souscription avec la periode
 			$souscription = $this->Souscriptions->newEntity();
 			if ($this->request->is('post')) {
@@ -239,6 +252,10 @@ class SouscriptionsController extends AppController
 				$souscription->offre_id =  $offre->id;
 
 				$souscription = $this->Souscriptions->patchEntity($souscription, $this->request->getData());
+
+				//Définition des differntes dates
+				$souscription->datedebut = $datedebut;
+				$souscription->datefin = $datefin;
                 
 				if ($this->Souscriptions->save($souscription)) {
 					$this->Flash->success(__('Souscription effectuée avec succès.'));
@@ -333,16 +350,15 @@ class SouscriptionsController extends AppController
         }
 	
 
-
+		
     } // Fin fonction payment
 	
 	public function notification($id = null){
 		
 		$this->viewBuilder()->setLayout('default');
 		
-		/* $http = new Client();
-		$response = $http->get("https://www.paiementpro.net/webservice/onlinepayment/processing_v2.php?sessionid=".$response->Sessionid);
-		$api = $response->body(); */
+		// Connexion du client automatiquement
+		//$this->Auth->setUser($client->toArray());
 		
 		//Chargement de la table paiement
 		$this->loadModel('Paiements');	
@@ -356,28 +372,17 @@ class SouscriptionsController extends AppController
 		
 		//Recuperation du nombre de mois de la periode associée à la souscription
 		$this->loadModel('Periodes');		
-		/* $periode = $this->Periodes->get($id);
-		$periodeid = $this->request->getData('periodeid');
-		$souscription->periode_id =  $periode->id; */
 		
 		//Deduction nombre de mois
 		//$nbmois = $periode->nbmois;		
 		$nbmois = $souscription->periode->nbmois;		
-		//$periode = $this->Periodes->get($id);
-		//$nbmois = $this->Souscriptions->Periodes->get(nbmois);	
-		//$periode = $souscription->periode->nbmois;
 		
-		//Calcul de la fin d'abonnement
-		/* $datefin = new DateTime();
-		$datefin->add(new DateInterval('P'.$nbmois.'M'));
-		$datefin->format('Y-m-d H:i:s'); */
-		/* $datefin = date('d-m-Y H:i:s', strtotime('+$nbmois month')); */	
-		$datefin = new Time();
-		$datefin = Time::now();
-		$datefin->addMonth($nbmois);
-		$datefin->timezone = 'Europe/Paris';
 		
-		$commande = $_GET['purchaseref'];
+		$date = Time::now();
+		$datefin = $date->addMonth($nbmois);	
+		$datefin->timezone = 'Africa/Abidjan';
+		
+		/* $commande = $_GET['purchaseref'];
 		$sessionid = $_GET['sessionid'];
 		$montant = $_GET['amount'];
 		$ref = $_GET['payid'];
@@ -385,7 +390,18 @@ class SouscriptionsController extends AppController
 		$description = $_GET['description'];
 		$date = $_GET['date'];
 		$time = $_GET['time'];
-		$channel = $_GET['channel'];
+		$channel = $_GET['channel']; */
+		
+		$commande = $this->request->getData('purchaseref');
+		$sessionid = $this->request->getData('sessionid');
+		$montant = $this->request->getData('amount');
+		$ref = $this->request->getData('payid');
+		$telephone = $this->request->getData('telephone');
+		$description = $this->request->getData('description');
+		$date = $this->request->getData('date');
+		$time = $this->request->getData('time');
+		$channel = $this->request->getData('channel');
+		
 		
 		if($this->Auth->user('id')){
 			
@@ -396,6 +412,20 @@ class SouscriptionsController extends AppController
 			$paiement = $this->Paiements->newEntity();
 			if ($this->request->is('post')) {
 				$paiement = $this->Paiements->patchEntity($paiement, $this->request->getData());
+			
+			$paiement->refpay = $commande;
+			$paiement->session = $sessionid;
+			$paiement->payid = $ref;
+			$paiement->souscription_id = $souscription;
+			$paiement->client_id = $clientid;
+			$paiement->montant = $montant;
+			$paiement->tel = $telephone;
+			$paiement->description = $description;
+			$paiement->datepay = $date;
+			$paiement->timepay = $time;
+			$paiement->datefin = $datefin;
+			$paiement->canal = $channel;			
+				
 				if ($this->Paiements->save($paiement)){
 					$this->Flash->success(__('Succès, paiement achevé.'));
 
@@ -406,9 +436,6 @@ class SouscriptionsController extends AppController
 			
 		}		
 		
-		//Enregistrement date de fin d'abonnement dans SouscriptionsTable
-		//$this->Souscriptions->saveField('datefin',$datefin->format('Y-m-d H:i:s'));
-		$this->Souscriptions->saveField('datefin',$datefin->i18nFormat(null, 'Europe/Paris'));		
 		
 	}
 	

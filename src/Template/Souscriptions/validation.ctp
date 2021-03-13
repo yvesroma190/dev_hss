@@ -113,6 +113,7 @@
                         echo $this->Form->control('client_id', ['type' => 'hidden', 'value' => $client->id]);
                         echo $this->Form->control('offre_id', ['type' => 'hidden', 'id' => 'offre', 'value' => $offre->id]);
                         echo $this->Form->control('periode_id', ['options' => $periodes, 'class' => 'form-control', 'id' => 'periode', 'name' => 'periode_id', 'empty' => true, 'label' => 'Durée de l\'offre :']);
+                        echo $this->Form->control('nmois', ['type' => 'hidden', 'class' => 'form-control', 'id' => 'nbmois', 'name' => 'nmois', 'label' => 'nbmois :']);
 						echo $this->Form->control('taxe', ['class' => 'form-control', 'readonly' => 'readonly', 'id' => 'taxe', 'value' => '5', 'label' => 'Taxe(%) :']);
                         echo $this->Form->control('montanttotal', ['class' => 'form-control', 'readonly' => 'readonly', 'id' => 'montanttotal', 'label' => 'Montant Total TTC :']);
                         echo $this->Form->control('datedebut', ['class' => 'form-control', 'type' => 'hidden', 'readonly' => 'readonly', 'label' => 'Début abonnement :']);

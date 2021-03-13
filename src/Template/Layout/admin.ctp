@@ -288,6 +288,7 @@
 	<?php echo $this->Html->script('/js/datefin.js'); ?>
 	<?php echo $this->Html->script('/js/montant.js'); ?>
 	<script src="js/montant.js"></script>
+	<script src="js/datefin.js"></script>
 	
 	<?php echo $this->Html->script('/js/montant.js'); ?>
 
