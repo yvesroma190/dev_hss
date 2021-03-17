@@ -67,10 +67,19 @@
         <table cellpadding="0" cellspacing="0">
             <tr>
                 <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Client Id') ?></th>
+                <th scope="col"><?= __('Refpay') ?></th>
+                <th scope="col"><?= __('Session') ?></th>
+                <th scope="col"><?= __('Payid') ?></th>
                 <th scope="col"><?= __('Souscription Id') ?></th>
                 <th scope="col"><?= __('Offre Id') ?></th>
-                <th scope="col"><?= __('Datepaiement') ?></th>
+                <th scope="col"><?= __('Client Id') ?></th>
+                <th scope="col"><?= __('Montant') ?></th>
+                <th scope="col"><?= __('Tel') ?></th>
+                <th scope="col"><?= __('Description') ?></th>
+                <th scope="col"><?= __('Datepay') ?></th>
+                <th scope="col"><?= __('Datefin') ?></th>
+                <th scope="col"><?= __('Timepay') ?></th>
+                <th scope="col"><?= __('Canal') ?></th>
                 <th scope="col"><?= __('Etatpaiement Id') ?></th>
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
@@ -79,10 +88,19 @@
             <?php foreach ($souscription->paiements as $paiements): ?>
             <tr>
                 <td><?= h($paiements->id) ?></td>
-                <td><?= h($paiements->client_id) ?></td>
+                <td><?= h($paiements->refpay) ?></td>
+                <td><?= h($paiements->session) ?></td>
+                <td><?= h($paiements->payid) ?></td>
                 <td><?= h($paiements->souscription_id) ?></td>
                 <td><?= h($paiements->offre_id) ?></td>
-                <td><?= h($paiements->datepaiement) ?></td>
+                <td><?= h($paiements->client_id) ?></td>
+                <td><?= h($paiements->montant) ?></td>
+                <td><?= h($paiements->tel) ?></td>
+                <td><?= h($paiements->description) ?></td>
+                <td><?= h($paiements->datepay) ?></td>
+                <td><?= h($paiements->datefin) ?></td>
+                <td><?= h($paiements->timepay) ?></td>
+                <td><?= h($paiements->canal) ?></td>
                 <td><?= h($paiements->etatpaiement_id) ?></td>
                 <td><?= h($paiements->created) ?></td>
                 <td><?= h($paiements->modified) ?></td>

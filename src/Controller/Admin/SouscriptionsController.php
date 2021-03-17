@@ -2,7 +2,7 @@
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;
-use Cake\I18n\Time;
+
 use Cake\I18n\Date;
 
 /**
@@ -21,31 +21,28 @@ class SouscriptionsController extends AppController
      */
     public function index()
     {
+		$date = new Date();
+		/* debug($date);
+		exit; */
+		
+	
+		
+		
         $this->paginate = [
             'contain' => ['Clients', 'Offres', 'Periodes'],
-        ];
-        $souscriptions = $this->paginate($this->Souscriptions);
+        ];	
+        $souscriptions = $this->paginate($this->Souscriptions);			
 
         $this->set(compact('souscriptions'));
 		
-		//afficher le nombre total de souscriptions
-		$souscriptions = $this->Souscriptions->find('all', [
-			'contain' => ['Clients', 'Offres', 'Periodes'],			
+		/* $souscriptions = $this->Souscriptions->find('all', [
+			'conditions' => ['Souscriptions.datedebut =' => new Date()]
 		]);
-        $number = $souscriptions->count();
-        
-        // Afficher le nombre journalier de souscriptions
-        //  $date = date::now();
-        //  $time = new Time();
-        // debug($date);
-        // exit;
+		$number = $souscriptions->count(); */
+		/* debug($number);
+		exit; */
+
 		
-        $souscriptions = $this->Souscriptions->find('all', [
-            'conditions' => ['Souscriptions.created >=' => Date::now('')],
-			'contain' => ['Clients', 'Offres', 'Periodes'],			
-		]);
-		$jnumber = $souscriptions->count();
-        
     }
 
     /**

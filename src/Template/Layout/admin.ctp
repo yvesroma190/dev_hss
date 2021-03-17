@@ -53,7 +53,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="<?= $this->Url->build(['controller' => 'Souscriptions', 'action' => 'index']) ?>">
+                <a class="nav-link" href="<?= $this->Url->build(['controller' => 'Paiements', 'action' => 'index']) ?>">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>TABLEAU DE BORD</span></a>
             </li>
@@ -83,10 +83,15 @@
                       <i class="fas fa-fw fa-chart-area"></i>
                       <span>Offres télésurveillance</span></a>
               </li>-->
+			  <li class="nav-item">
+                <a class="nav-link" href="<?= $this->Url->build(['controller' => 'Fclients', 'action' => 'index'])  ?>">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span><strong>CLIENTS</strong></span></a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href=<?= $this->Url->build(['controller' => 'Clients', 'action' => 'index'])  ?>>
                     <i class="fas fa-fw fa-users"></i>
-                    <span><strong>CLIENTS</strong></span></a>
+                    <span><strong>PROSPECTS</strong></span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href=<?= $this->Url->build(['controller' => 'Articles', 'action' => 'index'])  ?>>
@@ -200,7 +205,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Tout droit réservé &copy; HIGH STAR SECURITY</span>
+                        <span>Tous droits réservés &copy; HIGH STAR SECURITY</span>
                     </div>
                 </div>
             </footer>

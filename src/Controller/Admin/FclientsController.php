@@ -5,14 +5,8 @@ use App\Controller\AppController;
 use Cake\I18n\Time;
 use Cake\I18n\Date;
 
-/**
- * Paiements Controller
- *
- * @property \App\Model\Table\PaiementsTable $Paiements
- *
- * @method \App\Model\Entity\Paiement[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
- */
-class PaiementsController extends AppController
+
+class FclientsController extends AppController
 {
     /**
      * Index method
@@ -21,7 +15,10 @@ class PaiementsController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
+		$this->viewBuilder()->setLayout('admin');
+		$this->loadModel('Paiements');
+        
+		$this->paginate = [
             'contain' => ['Souscriptions', 'Clients', 'Etatpaiements'],
         ];
         $paiements = $this->paginate($this->Paiements);
@@ -133,3 +130,6 @@ class PaiementsController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 }
+
+
+

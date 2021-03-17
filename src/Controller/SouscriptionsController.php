@@ -320,7 +320,6 @@ class SouscriptionsController extends AppController
 			 'customerLastname'=>$lname, 
 			 'customerPhoneNumber'=>$cel, 
 			 'referenceNumber'=>'878AABCDEFZ'.time(),
-			 //'notificationURL'=>'http://highstarsecurity.com/souscriptions/notification',
 			 'notificationURL'=>'http://highstarsecurity.com/souscriptions/notification',			 
 			 'returnURL'=>'http://highstarsecurity.com/souscriptions/notification', 
 			 'description'=>'achat en ligne', 

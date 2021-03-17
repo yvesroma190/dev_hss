@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Souscription[]|\Cake\Collection\CollectionInterface $souscriptions
@@ -18,8 +17,8 @@
         <li><?= $this->Html->link(__('List Paiements'), ['controller' => 'Paiements', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Paiement'), ['controller' => 'Paiements', 'action' => 'add']) ?></li>
     </ul>
-</nav> -->
-<!-- <div class="souscriptions index large-9 medium-8 columns content">
+</nav>
+<div class="souscriptions index large-9 medium-8 columns content">
     <h3><?= __('Souscriptions') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
@@ -37,7 +36,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($souscriptions as $souscription) : ?>
+            <?php foreach ($souscriptions as $souscription): ?>
             <tr>
                 <td><?= $this->Number->format($souscription->id) ?></td>
                 <td><?= $souscription->has('client') ? $this->Html->link($souscription->client->name, ['controller' => 'Clients', 'action' => 'view', $souscription->client->id]) : '' ?></td>
@@ -70,6 +69,7 @@
 </div> -->
 
 
+
 <div class="container-fluid">
 
     <!-- Page Heading -->
@@ -90,7 +90,8 @@
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">SOUSCRIPTIONS DU JOUR</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                 <?php
-                                    echo $jnumber = $souscriptions->count();
+									//echo $number->count();
+									echo $number = $souscriptions->count();;
                                 ?>                            
                             </div>
                         </div>
@@ -119,49 +120,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Earnings (Monthly) Card Example -->
-        <!-- <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks</div>
-                            <div class="row no-gutters align-items-center">
-                                <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                </div>
-                                <div class="col">
-                                    <div class="progress progress-sm mr-2">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
-        <!-- Pending Requests Card Example -->
-        <!-- <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
     </div>
 
 
@@ -190,55 +148,59 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                            <th scope="col"><?= $this->Paginator->sort('client_id') ?></th>
-                            <th scope="col"><?= $this->Paginator->sort('offre_id') ?></th>
-                            <th scope="col"><?= $this->Paginator->sort('periode_id') ?></th>
-                            <th scope="col"><?= $this->Paginator->sort('montant total') ?></th>
-                            <th scope="col"><?= $this->Paginator->sort('date debut') ?></th>
-                            <th scope="col"><?= $this->Paginator->sort('date fin') ?></th>
-                            <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                            <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
-                            <th scope="col" class="actions"><?= __('Actions') ?></th>
-                        </tr>
+							<th scope="col"><?= $this->Paginator->sort('id') ?></th>
+							<th scope="col"><?= $this->Paginator->sort('client_id') ?></th>
+							<th scope="col"><?= $this->Paginator->sort('offre_id') ?></th>
+							<th scope="col"><?= $this->Paginator->sort('periode_id') ?></th>
+							<th scope="col"><?= $this->Paginator->sort('montanttotal') ?></th>
+							<th scope="col"><?= $this->Paginator->sort('datedebut') ?></th>
+							<th scope="col"><?= $this->Paginator->sort('datefin') ?></th>
+							<th scope="col"><?= $this->Paginator->sort('created') ?></th>
+							<th scope="col"><?= $this->Paginator->sort('modified') ?></th>
+							<th scope="col" class="actions"><?= __('Actions') ?></th>
+						</tr>
                     </thead>
                     <tfoot>
                         <tr>
-                            <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                            <th scope="col"><?= $this->Paginator->sort('client_id') ?></th>
-                            <th scope="col"><?= $this->Paginator->sort('offre_id') ?></th>
-                            <th scope="col"><?= $this->Paginator->sort('periode_id') ?></th>
-                            <th scope="col"><?= $this->Paginator->sort('montant total') ?></th>
-                            <th scope="col"><?= $this->Paginator->sort('date debut') ?></th>
-                            <th scope="col"><?= $this->Paginator->sort('date fin') ?></th>
-                            <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                            <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
-                            <th scope="col" class="actions"><?= __('Actions') ?></th>
-                        </tr>
+							<th scope="col"><?= $this->Paginator->sort('id') ?></th>
+							<th scope="col"><?= $this->Paginator->sort('client_id') ?></th>
+							<th scope="col"><?= $this->Paginator->sort('offre_id') ?></th>
+							<th scope="col"><?= $this->Paginator->sort('periode_id') ?></th>
+							<th scope="col"><?= $this->Paginator->sort('montanttotal') ?></th>
+							<th scope="col"><?= $this->Paginator->sort('datedebut') ?></th>
+							<th scope="col"><?= $this->Paginator->sort('datefin') ?></th>
+							<th scope="col"><?= $this->Paginator->sort('created') ?></th>
+							<th scope="col"><?= $this->Paginator->sort('modified') ?></th>
+							<th scope="col" class="actions"><?= __('Actions') ?></th>
+						</tr>
                     </tfoot>
                     <tbody>
-                        <?php foreach ($souscriptions as $souscription) : ?>
-                            <tr>
-                                <td><?= $this->Number->format($souscription->id) ?></td>
-                                <td><?= $souscription->has('client') ? $this->Html->link($souscription->client->name, ['controller' => 'Clients', 'action' => 'view', $souscription->client->id]) : '' ?></td>
-                                <td><?= $souscription->has('offre') ? $this->Html->link($souscription->offre->name, ['controller' => 'Offres', 'action' => 'view', $souscription->offre->id]) : '' ?></td>
-                                <td><?= $souscription->has('periode') ? $this->Html->link($souscription->periode->name, ['controller' => 'Periodes', 'action' => 'view', $souscription->periode->id]) : '' ?></td>
-                                <td><?= $this->Number->format($souscription->montanttotal) ?></td>
-                                <td><?= h($souscription->datedebut) ?></td>
-                                <td><?= h($souscription->datefin) ?></td>
-                                <td><?= h($souscription->created) ?></td>
-                                <td><?= h($souscription->modified) ?></td>
-                                <td class="actions">
-                                    <?= $this->Html->link(__('View'), ['action' => 'view', $souscription->id]) ?>
-                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $souscription->id]) ?>
-                                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $souscription->id], ['confirm' => __('Are you sure you want to delete # {0}?', $souscription->id)]) ?>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
+						<?php foreach ($souscriptions as $souscription): ?>
+						<tr>
+							<td><?= $this->Number->format($souscription->id) ?></td>
+							<td><?= $souscription->has('client') ? $this->Html->link($souscription->client->name, ['controller' => 'Clients', 'action' => 'view', $souscription->client->id]) : '' ?></td>
+							<td><?= $souscription->has('offre') ? $this->Html->link($souscription->offre->name, ['controller' => 'Offres', 'action' => 'view', $souscription->offre->id]) : '' ?></td>
+							<td><?= $souscription->has('periode') ? $this->Html->link($souscription->periode->name, ['controller' => 'Periodes', 'action' => 'view', $souscription->periode->id]) : '' ?></td>
+							<td><?= $this->Number->format($souscription->montanttotal) ?></td>
+							<td><?= h($souscription->datedebut) ?></td>
+							<td><?= h($souscription->datefin) ?></td>
+							<td><?= h($souscription->created) ?></td>
+							<td><?= h($souscription->modified) ?></td>
+							<td class="actions">
+								<?= $this->Html->link(__('View'), ['action' => 'view', $souscription->id]) ?>
+								<?= $this->Html->link(__('Edit'), ['action' => 'edit', $souscription->id]) ?>
+								<?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $souscription->id], ['confirm' => __('Are you sure you want to delete # {0}?', $souscription->id)]) ?>
+							</td>
+						</tr>
+						<?php endforeach; ?>
+					</tbody>
                 </table>
             </div>
         </div>
     </div>
 
 </div>
+
+
+
+
